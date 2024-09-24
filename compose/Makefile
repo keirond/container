@@ -23,6 +23,9 @@ cassandra:
 mongodb:
 	podman-compose -f mongodb.yml -p mongodb up -d
 
+keycloak:
+	podman-compose -f keycloak.yml -p keycloak up -d
+
 # ======================================
 
 confluent-down:
@@ -39,6 +42,10 @@ cassandra-down:
 
 mongodb-down:
 	podman-compose -f mongodb.yml -p mongodb down
+
+keycloak:
+	podman-compose -f keycloak.yml -p keycloak down
+
 # ======================================
 
 services := $(filter-out $@,$(MAKECMDGOALS))
