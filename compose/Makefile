@@ -43,7 +43,7 @@ cassandra-down:
 mongodb-down:
 	podman-compose -f mongodb.yml -p mongodb down
 
-keycloak:
+keycloak-down:
 	podman-compose -f keycloak.yml -p keycloak down
 
 # ======================================
