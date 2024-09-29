@@ -1,33 +1,8 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: vn
-
----
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: es-data-pvc
-  namespace: vn
-  labels:
-    component: elasticsearch
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-
----
-
-apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: es-config
+  name: elasticsearch-config
   namespace: vn
-  labels:
-    component: elasticsearch
 data:
   elasticsearch.yml: |
     discovery.type: single-node
@@ -36,32 +11,29 @@ data:
 ---
 
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: elasticsearch
   namespace: vn
 spec:
-  serviceName: elasticsearch
   replicas: 1
   selector:
     matchLabels:
-      component: elasticsearch
+      app: elasticsearch
   template:
     metadata:
       labels:
-        component: elasticsearch
+        app: elasticsearch
     spec:
       containers:
         - name: elasticsearch
-          image: nexus.fnc.reg/baodh/elasticsearch:8.5.1
+          image: nexus.fnc.reg/baodh/elasticsearch:8.13.4
           ports:
             - containerPort: 9200
           volumeMounts:
             - name: es-config
-              mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+              mountPath: /opt/bitnami/elasticsearch/config/elasticsearch.yml
               subPath: elasticsearch.yml
-            - name: es-data
-              mountPath: /usr/share/elasticsearch/data
           resources:
             limits:
               cpu: 500m
@@ -75,10 +47,7 @@ spec:
       volumes:
         - name: es-config
           configMap:
-            name: es-config
-        - name: es-data
-          persistentVolumeClaim:
-            claimName: es-data-pvc
+            name: elasticsearch-config
 
 ---
 
@@ -87,16 +56,15 @@ kind: Service
 metadata:
   name: elasticsearch
   namespace: vn
-  labels:
-    component: elasticsearch
 spec:
-  type: NodePort  # Change to ClusterIP or LoadBalancer if needed
-  ports:
-    - port: 9200
-      targetPort: 9200
-      protocol: TCP
   selector:
-    component: elasticsearch
+    app: elasticsearch
+  ports:
+    - name: http
+      protocol: TCP
+      port: 9200
+      targetPort: 9200
+  type: NodePort
 
 ---
 
@@ -107,7 +75,7 @@ metadata:
   namespace: vn
 spec:
   rules:
-    - host: vn-elasticsearch.167.254.190.2.nip.io  # Change to your desired hostname
+    - host: vn-elasticsearch.167.254.190.14.nip.io  # Change to your desired hostname
       http:
         paths:
           - path: /

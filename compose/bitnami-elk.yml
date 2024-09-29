@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  es_bitnami:
+    image: bitnami/elasticsearch:8.13.4
+    container_name: es_bitnami
+    volumes:
+      - ./config/elasticsearch-bitnami.yml:/opt/bitnami/elasticsearch/config/elasticsearch.yml
+      - es_bitnami_data:/bitnami/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - elk_bitnami
+
+volumes:
+  es_bitnami_data:
+    name: es_bitnami_data
+    driver: local
+
+networks:
+  elk_bitnami:
+    name: elk_bitnami
+    driver: bridge
+
+
+podman run -d \
+  --name es_bitnami \
+  -p 39200:9200 \
+  -p 39300:9300 \
+  --network elk_bitnami \
+  --mount type=bind,source="$(pwd)/config/elasticsearch-bitnami.yml",target=/opt/bitnami/elasticsearch/config/elasticsearch.yml \
+  --mount type=volume,source=es_bitnami_data,target=/bitnami/elasticsearch/data \
+  localhost/elasticsearch:8.13.4
