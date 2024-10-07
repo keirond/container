@@ -22,13 +22,3 @@ networks:
   elk_bitnami:
     name: elk_bitnami
     driver: bridge
-
-
-podman run -d \
-  --name es_bitnami \
-  -p 39200:9200 \
-  -p 39300:9300 \
-  --network elk_bitnami \
-  --mount type=bind,source="$(pwd)/config/elasticsearch-bitnami.yml",target=/opt/bitnami/elasticsearch/config/elasticsearch.yml \
-  --mount type=volume,source=es_bitnami_data,target=/bitnami/elasticsearch/data \
-  localhost/elasticsearch:8.13.4
