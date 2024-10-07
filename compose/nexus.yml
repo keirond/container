@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nexus:
+    container_name: nexus_repository
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - "nexus-data:/sonatype-work"
+    ports:
+      - "3000:8081"
+      - "8085:8085"
+
+volumes:
+  nexus-data:
+    name: nexus-data
+    driver: local
