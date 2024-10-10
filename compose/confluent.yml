@@ -4,7 +4,7 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.1
     container_name: kafka_zookeeper
-    restart: always
+    restart: unless-stopped
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
     ports:
@@ -18,7 +18,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:7.7.1
     container_name: kafka
-    restart: always
+    restart: unless-stopped
     ports:
       - "9092:9092"
     environment:
@@ -54,7 +54,7 @@ services:
   schema-registry:
     image: confluentinc/cp-schema-registry:7.7.1
     container_name: kafka_schema_registry
-    restart: always
+    restart: unless-stopped
     environment:
       SCHEMA_REGISTRY_HOST_NAME: "schema-registry"
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka:9092"
@@ -69,7 +69,7 @@ services:
   connect:
     image:  confluentinc/cp-kafka-connect:7.7.1
     container_name: kafka_connect
-    restart: always
+    restart: unless-stopped
     ports:
       - "8083:8083"
     environment:
@@ -99,7 +99,7 @@ services:
   akhq:
     image: tchiotludo/akhq:0.25.1
     container_name: kafka_akhq
-    restart: always
+    restart: unless-stopped
     ports:
       - "8080:8080"
     environment:
