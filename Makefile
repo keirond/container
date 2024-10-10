@@ -2,7 +2,8 @@
 
 # ======================================
 
-all: sonarqube elk cassandra
+up-all: confluent sonarqube elk cassandra mongodb postgres keycloak nexus
+down-all: confluent-down sonarqube-down elk-down cassandra-down mongodb-down postgres-down keycloak-down nexus-down
 
 cmd: $(services)
 
