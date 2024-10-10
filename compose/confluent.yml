@@ -4,18 +4,21 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.7.1
     container_name: kafka_zookeeper
+    restart: always
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
     ports:
       - "2182:2181"
+    volumes:
+      - kafka_zookeeper_data:/var/lib/zookeeper/data
+      - kafka_zookeeper_log:/var/lib/zookeeper/log
     networks:
       - kafka
 
   kafka:
     image: confluentinc/cp-kafka:7.7.1
     container_name: kafka
-    depends_on:
-      - zookeeper
+    restart: always
     ports:
       - "9092:9092"
     environment:
@@ -43,15 +46,15 @@ services:
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: "kafka:9092"
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 3
       CONFLUENT_METRICS_REPORTER_PUBLISH_INTERVAL_SECONDS: 30
-
+    volumes:
+      - kafka_data:/var/lib/kafka/data
     networks:
       - kafka
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.7.1
     container_name: kafka_schema_registry
-    depends_on:
-      - kafka
+    restart: always
     environment:
       SCHEMA_REGISTRY_HOST_NAME: "schema-registry"
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka:9092"
@@ -60,17 +63,13 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
     ports:
       - "8081:8081"
-
     networks:
       - kafka
 
   connect:
     image:  confluentinc/cp-kafka-connect:7.7.1
     container_name: kafka_connect
-    restart: unless-stopped
-    depends_on:
-      - kafka
-      - schema-registry
+    restart: always
     ports:
       - "8083:8083"
     environment:
@@ -94,18 +93,13 @@ services:
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: '1'
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
       CONNECT_PLUGIN_PATH: '/usr/share/java/'
-
     networks:
       - kafka
 
   akhq:
     image: tchiotludo/akhq:0.25.1
     container_name: kafka_akhq
-    restart: on-failure
-    depends_on:
-      - kafka
-      - schema-registry
-      - connect
+    restart: always
     ports:
       - "8080:8080"
     environment:
@@ -122,7 +116,16 @@ services:
                   url: "http://connect:8083"
     networks:
       - kafka
-
+volumes:
+  kafka_zookeeper_data:
+    name: kafka_zookeeper_data
+    driver: local
+  kafka_zookeeper_log:
+    name: kafka_zookeeper_log
+    driver: local
+  kafka_data:
+    name: kafka_data
+    driver: local
 networks:
   kafka:
     name: kafka

@@ -4,6 +4,7 @@ services:
   es_bitnami:
     image: bitnami/elasticsearch:8.13.4
     container_name: es_bitnami
+    restart: always
     volumes:
       - ./config/elasticsearch-bitnami.yml:/opt/bitnami/elasticsearch/config/elasticsearch.yml
       - es_bitnami_data:/bitnami/elasticsearch/data

@@ -1,9 +1,10 @@
 version: '3.8'
+
 services:
   nifi:
-    # this version is currently the latest,
     image: apache/nifi:1.27.0
     container_name: nifi
+    restart: always
     ports:
       - "8080:8080"  # NiFi Web UI
     environment:

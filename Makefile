@@ -26,6 +26,9 @@ mongodb:
 keycloak:
 	podman-compose -f compose/keycloak.yml -p keycloak up -d
 
+nexus:
+	podman-compose -f compose/neuxs.yml -p nexus up -d
+
 # ======================================
 
 confluent-down:
@@ -45,6 +48,9 @@ mongodb-down:
 
 keycloak-down:
 	podman-compose -f compose/keycloak.yml -p keycloak down
+
+nexus-down:
+	podman-compose -f compose/neuxs.yml -p nexus down
 
 # ======================================
 
