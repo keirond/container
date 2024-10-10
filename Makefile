@@ -27,7 +27,7 @@ keycloak:
 	podman-compose -f compose/keycloak.yml -p keycloak up -d
 
 nexus:
-	podman-compose -f compose/neuxs.yml -p nexus up -d
+	podman-compose -f compose/nexus.yml -p nexus up -d
 
 # ======================================
 
