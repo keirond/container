@@ -50,7 +50,7 @@ keycloak-down:
 	podman-compose -f compose/keycloak.yml -p keycloak down
 
 nexus-down:
-	podman-compose -f compose/neuxs.yml -p nexus down
+	podman-compose -f compose/nexus.yml -p nexus down
 
 # ======================================
 
