@@ -23,6 +23,9 @@ cassandra:
 mongodb:
 	podman-compose -f compose/mongodb.yml -p mongodb up -d
 
+postgres:
+	podman-compose -f compose/postgres.yml -p postgres up -d
+
 keycloak:
 	podman-compose -f compose/keycloak.yml -p keycloak up -d
 
@@ -45,6 +48,9 @@ cassandra-down:
 
 mongodb-down:
 	podman-compose -f compose/mongodb.yml -p mongodb down
+
+postgres-down:
+	podman-compose -f compose/postgres.yml -p postgres down
 
 keycloak-down:
 	podman-compose -f compose/keycloak.yml -p keycloak down
