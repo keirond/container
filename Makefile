@@ -33,6 +33,12 @@ keycloak:
 nexus:
 	podman-compose -f compose/nexus.yml -p nexus up -d
 
+redis:
+	podman-compose -f compose/redis.yml -p redis up -d
+
+monitoring:
+	podman-compose -f compose/monitoring.yml -p monitoring up -d
+
 # ======================================
 
 confluent-down:
@@ -58,6 +64,12 @@ keycloak-down:
 
 nexus-down:
 	podman-compose -f compose/nexus.yml -p nexus down
+
+redis-down:
+	podman-compose -f compose/redis.yml -p redis down
+
+monitoring-down:
+	podman-compose -f compose/monitoring.yml -p monitoring down
 
 # ======================================
 
