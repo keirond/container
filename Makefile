@@ -36,6 +36,9 @@ nexus:
 redis:
 	podman-compose -f compose/redis.yml -p redis up -d
 
+keydb:
+	podman-compose -f compose/keydb.yml -p keydb up -d
+
 monitoring:
 	podman-compose -f compose/monitoring.yml -p monitoring up -d
 
@@ -67,6 +70,9 @@ nexus-down:
 
 redis-down:
 	podman-compose -f compose/redis.yml -p redis down
+
+keydb-down:
+	podman-compose -f compose/redis.yml -p keydb down
 
 monitoring-down:
 	podman-compose -f compose/monitoring.yml -p monitoring down
