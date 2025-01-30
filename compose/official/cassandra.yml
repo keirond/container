@@ -4,7 +4,7 @@ services:
 
   cassandra:
     image: cassandra:5.0.2
-    container_name: cassandra
+    container_name: std_cassandra
     restart: always
     volumes:
       - std_cassandra_data:/var/lib/cassandra
