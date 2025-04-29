@@ -1,0 +1,14 @@
+kubeVersion: ""
+replicaCount: 3
+
+zookeeper:
+  enabled: true
+  replicaCount: 3
+  auth:
+    enabled: true
+
+resources:
+  requests:
+    memory: 1Gi
+    cpu: 500m
+  limits:

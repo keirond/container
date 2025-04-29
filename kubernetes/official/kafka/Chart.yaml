@@ -1,0 +1,19 @@
+apiVersion: v2
+name: kafka
+version: 1.0.0
+appVersion: 4.0.0
+description: A helm chart of kafka
+type: application
+
+kubeVersion: 1.32.0
+keywords:
+  - kafka
+  - streaming
+  - producer
+  - consumer
+maintainers:
+  - name: Keiron Dang
+    url: https://github.com/keirond/setup-container
+
+
+
