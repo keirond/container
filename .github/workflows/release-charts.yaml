@@ -31,7 +31,6 @@ jobs:
       - name: Detect changed charts
         id: changed-charts
         run: |
-          git fetch origin main
           changed=$(git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u)
           dirs=()
           for chart in $changed; do
