@@ -3,7 +3,7 @@
 # nameOverride: kafka (# replace .Chart.Name)
 
 broker:
-  replicaCount: 0
+  replicaCount: 1
 
 service:
   type: ClusterIP
