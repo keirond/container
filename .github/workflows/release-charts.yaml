@@ -35,7 +35,7 @@ jobs:
 
       - name: Publish Helm Charts
         uses: |
-          git clone --branch main https://x-access-token:${{ secrets.HELM_REPO_TOKEN }}@github.com/keirond/helm-charts.git
+          git clone --branch main https://x-access-token:${TOKEN}@github.com/keirond/helm-charts.git
           
           cd helm-charts
           cp ../package/*.tgz .
@@ -44,3 +44,5 @@ jobs:
           git add .
           git commit -m "Publish Helm charts"
           git push origin main
+        env:
+          TOKEN: ${{ secrets.HELM_REPO_TOKEN }}
