@@ -17,7 +17,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          fetch-tags: true
 
       - name: Configure git
         run: |
@@ -32,28 +31,25 @@ jobs:
       - name: Detect changed charts
         id: changed-charts
         run: |
-          git fetch origin main:refs/remotes/origin/main
-          changed=$(git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u || true)
-          dirs=()
-          for chart in $changed; do
+          echo "CHANGED_DIRS<<EOF" >> $GITHUB_OUTPUT
+          git fetch origin main
+          git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u | while read chart; do
             if [ -f "charts/$chart/Chart.yaml" ]; then
-              dirs+=("charts/$chart")
+              echo "charts/$chart"
             fi
-          done
-          echo "CHANGED_DIRS=${dirs[*]}" >> $GITHUB_ENV
-          echo "CHANGED_DIRS=${dirs[*]}"
-        shell: bash
+          done >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Package changed charts
-        if: env.CHANGED_DIRS != ''
+        if: steps.changed-charts.outputs.CHANGED_DIRS != ''
         run: |
           mkdir -p package
-          for dir in $CHANGED_DIRS; do
+          for dir in ${{ steps.changed-charts.outputs.CHANGED_DIRS }}; do
             helm package "$dir" --destination package
           done
 
       - name: Publish changed charts
-        if: env.CHANGED_DIRS != ''
+        if: steps.changed-charts.outputs.CHANGED_DIRS != ''
         run: |
           git clone --branch main https://x-access-token:${TOKEN}@github.com/keirond/helm-charts.git
           cd helm-charts
