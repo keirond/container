@@ -1,14 +1,5 @@
-kubeVersion: ""
-replicaCount: 3
+# Copyright Keiron Dang. All Rights Reserved.
 
-zookeeper:
-  enabled: true
-  replicaCount: 3
-  auth:
-    enabled: true
-
-resources:
-  requests:
-    memory: 1Gi
-    cpu: 500m
-  limits:
+service:
+  type: ClusterIP
+  clusterIP: ""
