@@ -1,19 +1,20 @@
-# Copyright 2025 Keiron Dang. All rights reserved.
+# Copyright Keiron Dang. All Rights Reserved.
 
 apiVersion: v2
 name: common
 version: 1.0.0
-appVersion: 4.0.0
 kubeVersion: 1.32.0
 description: A Library Helm Chart for grouping common logic between charts. This chart is not deployable by itself.
-icon: https://dyltqmyl993wv.cloudfront.net/assets/stacks/kafka/img/kafka-stack-220x234.png
+
+type: library
+appVersion: 1.0.0
 sources:
-  - https://github.com/keirond/setup-container/tree/main/kubernetes/official/kafka
-keywords:
-  - common
-  - helper
+  - https://github.com/keirond/setup-container/tree/main/kubernetes/official/common
 maintainers:
   - name: Keiron Dang
     url: https://github.com/keirond/setup-container
+keywords:
+  - common
+  - helper
 annotations:
   category: Infrastructure
