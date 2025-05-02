@@ -2,9 +2,10 @@
 
 apiVersion: v2
 name: common
-version: 0.1.1
+version: 0.1.0
 kubeVersion: 1.32.0
-description: A Library Helm Chart for grouping common logic between charts. This chart is not deployable by itself.
+description: A Library Helm Chart for grouping common logic between charts.
+  This chart is not deployable by itself.
 
 type: library
 appVersion: 1.0.0

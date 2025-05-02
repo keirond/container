@@ -4,7 +4,13 @@ apiVersion: v2
 name: kafka
 version: 0.1.0
 kubeVersion: 1.32.0
-description: Apache Kafka is a distributed streaming platform designed to build real-time pipelines and can be used as a message broker or as a replacement for a log aggregation solution for big data applications.
+description: Apache Kafka is a distributed streaming platform designed
+  to build real-time pipelines and can be used as a message broker
+  or as a replacement for a log aggregation solution for big data applications.
+dependencies:
+  - name: common
+    version: 0.1.0
+    repository: https://keirond.github.io/helm-charts
 
 type: application
 appVersion: 4.0.0
