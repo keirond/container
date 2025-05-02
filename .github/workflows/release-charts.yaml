@@ -25,11 +25,13 @@ jobs:
 
       - name: Setup Helm
         uses: azure/setup-helm@v3
+        with:
+          version: 'v3.9.0'
 
       - name: Package charts
         run: |
           mkdir -p package
-          for dir in chart/*/; do
+          for dir in charts/*/; do
             helm package "$dir" --destination package
           done
 
