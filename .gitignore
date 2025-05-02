@@ -1,3 +1,6 @@
 .idea
 .vscode/
 .project
+
+*.tgz
+.DS_Store
