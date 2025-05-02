@@ -31,13 +31,13 @@ jobs:
       - name: Detect changed charts
         id: changed-charts
         run: |
-          echo "CHANGED_DIRS<<EOF" >> $GITHUB_OUTPUT
+          packaged=""
           git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u | while read chart; do
             if [ -f "charts/$chart/Chart.yaml" ]; then
-              echo "charts/$chart"
+              packaged="$packaged charts/$chart"
             fi
-          done >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          done
+          echo "CHANGED_DIRS=$packaged" >> $GITHUB_OUTPUT
 
       - name: Package changed charts
         if: steps.changed-charts.outputs.CHANGED_DIRS != ''
@@ -48,6 +48,7 @@ jobs:
           done
 
       - name: Publish changed charts
+        if: steps.changed-charts.outputs.CHANGED_DIRS != ''
         run: |
           git clone --branch main https://x-access-token:${TOKEN}@github.com/keirond/helm-charts.git
           cd helm-charts
