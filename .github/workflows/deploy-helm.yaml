@@ -1,0 +1,37 @@
+name: Deploy Helm Chart Repository to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'charts/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'charts/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v3
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0
+        with:
+          charts_dir: charts
+          skip_existing: true
+          packages_with_index: true
+        env:
+          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
