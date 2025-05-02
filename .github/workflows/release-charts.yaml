@@ -29,5 +29,6 @@ jobs:
           charts_dir: charts
           skip_existing: true
           packages_with_index: true
+          pages_branch: main
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
