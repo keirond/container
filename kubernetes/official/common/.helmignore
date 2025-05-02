@@ -1,0 +1,10 @@
+.git/
+.gitignore
+
+*.swp
+*.bak
+*.tmp
+
+.idea/
+.vscode/
+.project

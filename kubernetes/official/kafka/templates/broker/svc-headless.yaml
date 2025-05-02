@@ -1,6 +1,4 @@
-{{-/*
-Copyright Keiron Dang. All Rights Reserved.
-*/}}
+{{/*Copyright Keiron Dang. All Rights Reserved.*/}}
 
 {{- $replicaCount := int .Values.broker.replicaCount }}
 {{- if gt $replicaCount 0 }}
