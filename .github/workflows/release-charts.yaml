@@ -1,4 +1,4 @@
-name: Release Helm Chart Repository to GitHub Pages
+name: Publish Helm Chart to GitHub Pages
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - 'charts/**'
 
 jobs:
-  release:
+  publish:
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -23,12 +23,24 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
-        with:
-          charts_dir: charts
-          skip_existing: true
-          packages_with_index: true
-          pages_branch: main
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+
+      - name: Package charts
+        run: |
+          mkdir -p package
+          for dir in chart/*/; do
+            helm package "$dir" --destination package
+          done
+
+      - name: Publish Helm Charts
+        uses: |
+          git clone --branch main https://x-access-token:${{ secrets.HELM_REPO_TOKEN }}@github.com/keirond/helm-charts.git
+          
+          cd helm-charts
+          cp ../package/*.tgz .
+          helm repo index . --url https://keirond.github.io/helm-charts
+          
+          git add .
+          git commit -m "Publish Helm charts"
+          git push origin main
