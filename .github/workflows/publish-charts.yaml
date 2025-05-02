@@ -47,6 +47,7 @@ jobs:
         run: |
           mkdir -p package
           for dir in ${{ steps.changed-charts.outputs.CHANGED_DIRS }}; do
+            helm dependency update "$dir"
             helm package "$dir" --destination package
           done
 
