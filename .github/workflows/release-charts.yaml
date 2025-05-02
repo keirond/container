@@ -20,8 +20,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
       - name: Setup Helm
         uses: azure/setup-helm@v3
@@ -38,11 +38,9 @@ jobs:
       - name: Publish Helm Charts
         run: |
           git clone --branch main https://x-access-token:${TOKEN}@github.com/keirond/helm-charts.git
-          
           cd helm-charts
           cp ../package/*.tgz .
           helm repo index . --url https://keirond.github.io/helm-charts
-          
           git add .
           git commit -m "Publish Helm charts" || echo "No changes to commit"
           git push origin main
