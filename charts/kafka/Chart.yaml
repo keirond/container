@@ -9,10 +9,10 @@ description: Apache Kafka is a distributed streaming platform designed to build 
 type: application
 appVersion: 4.0.0
 sources:
-  - https://github.com/keirond/setup-container/tree/main/kubernetes/official/kafka
+  - https://github.com/keirond/container/tree/main/charts/kafka
 maintainers:
   - name: Keiron Dang
-    url: https://github.com/keirond/setup-container
+    url: https://github.com/keirond
 keywords:
   - kafka
   - streaming
