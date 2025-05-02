@@ -1,5 +1,5 @@
 {{/*Copyright Keiron Dang. All Rights Reserved.*/}}
 
-{{ define "kafka.svc-headless.name" -}}
-{{ printf "%s-headless" (include "common.names.name" .) | trunc 63 | trimSuffix "-" }}
+{{ define "kafka.broker.name" -}}
+{{ printf "%s-broker" (include "common.names.name" .) | trunc 63 | trimSuffix "-" }}
 {{- end }}
