@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
 
       - name: Configure git
         run: |
@@ -31,7 +32,8 @@ jobs:
       - name: Detect changed charts
         id: changed-charts
         run: |
-          changed=$(git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u)
+          git fetch origin main:refs/remotes/origin/main
+          changed=$(git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u || true)
           dirs=()
           for chart in $changed; do
             if [ -f "charts/$chart/Chart.yaml" ]; then
