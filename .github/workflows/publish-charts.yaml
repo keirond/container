@@ -18,6 +18,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Fetch
+        run: git fetch origin main
+
       - name: Configure git
         run: |
           git config --global user.name "Container Actions"
@@ -32,7 +35,6 @@ jobs:
         id: changed-charts
         run: |
           echo "CHANGED_DIRS<<EOF" >> $GITHUB_OUTPUT
-          git fetch origin main
           git diff --name-only origin/main HEAD | grep '^charts/' | cut -d/ -f2 | sort -u | while read chart; do
             if [ -f "charts/$chart/Chart.yaml" ]; then
               echo "charts/$chart"
