@@ -1,5 +1,10 @@
 # Copyright Keiron Dang. All Rights Reserved.
 
+# nameOverride: kafka (# replace .Chart.Name)
+
+broker:
+  replicaCount: 0
+
 service:
   type: ClusterIP
   clusterIP: ""
