@@ -7,6 +7,9 @@ kind: Service
 metadata:
   name: {{ printf "%s-headless" (include "kafka.broker.name" .) | trunc 63 | trimSuffix "-" }}
   namespace: {{ include "common.names.namespace" . | quote }}
+  labels:
+    app.kubernetes.io/component: broker
+    app.kubernetes.io/part-of: kafka
 spec:
   type: {{ .Values.service.type }}
 {{- end}}
