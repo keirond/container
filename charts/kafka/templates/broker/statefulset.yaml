@@ -1,0 +1,66 @@
+{{/*Copyright Keiron Dang. All Rights Reserved.*/ -}}
+
+{{- $replicaCount := int .Values.broker.replicaCount }}
+{{- if or (gt $replicaCount 0) .Values.broker.autoScaling.hpa.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: {{ template "kafka.broker.name" . }}
+  namespace: {{ template "common.names.namespace" . }}
+  labels: {{- include "common.labels.custom" (dict "labels" .Values.broker.labels "context" $) | nindent 4 }}
+    app.kubernetes.io/component: broker
+    app.kubernetes.io/part-of: kafka
+  {{- with .Values.broker.annotations }}
+  annotations: {{- include "common.annotations.custom" (dict "annotations" . "context" $) | nindent 4 }}
+  {{- end }}
+
+spec:
+  podManagementPolicy: {{ .Values.broker.podManagementPolicy }}
+  {{- if not .Values.broker.autoScaling.hpa.enabled }}
+  replicas: {{ .Values.broker.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{/* custom matching labels */}}
+      app.kubernetes.io/component: broker
+      app.kubernetes.io/part-of: kafka
+  serviceName: {{ printf "%s-headless" ( include "kafka.broker.name" . ) | trunc 63 | trimSuffix "-" }}
+  {{/* updateStrategy */}}
+  {{/* minReadySeconds */}}
+  template:
+    metadata:
+      labels:
+        {{/* custom labels */}}
+        app.kubernetes.io/component: broker
+        app.kubernetes.io/part-of: kafka
+      {{- with .Values.broker.pod.annotations }}
+      annotations: {{- include "common.annotations.custom" (dict "annotations" . "context" $) | nindent 8 }}
+      {{- end }}
+    spec:
+      containers:
+        - name: kafka
+  volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: data
+        {{- with .Values.broker.persistence.labels }}
+        labels: {{ include "common.labels.custom" (dict "labels" . "context" $) | nindent 10 }}
+        {{- end }}
+        {{- with .Values.broker.persistence.annotations }}
+        annotations: {{ include "common.annotations.custom" (dict "annotations" . "context" $) | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - ReadWriteOnce
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: logs
+        {{- if .Values.custom.logAnnotations }}
+        annotations: {{include "common.annotations.custom" (dict "annotations" . "context" $) | nindent 10 }}
+        {{- end }}
+      spec:
+
+{{- end }}
