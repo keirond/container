@@ -2,5 +2,7 @@
 .vscode/
 .project
 
+temp/
+
 *.tgz
 .DS_Store

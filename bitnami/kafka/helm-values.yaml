@@ -1,0 +1,81 @@
+image:
+  registry: docker.io
+  repository: bitnami/kafka
+  tag: 4.0.0-debian-12-r5
+  pullPolicy: IfNotPresent
+
+clusterId: f8687b15-9e49-4fae-bb33-90af62898415
+
+listeners:
+  client:
+    name: CLIENT
+    containerPort: 9092
+    protocol: PLAINTEXT
+    sslClientAuth: ""
+
+  controller:
+    name: CONTROLLER
+    containerPort: 9093
+    protocol: PLAINTEXT
+    sslClientAuth: ""
+
+  interbroker:
+    name: INTERNAL
+    containerPort: 9094
+    protocol: PLAINTEXT
+    sslClientAuth: ""
+
+  external:
+    name: EXTERNAL
+    containerPort: 9095
+    protocol: PLAINTEXT
+    sslClientAuth: ""
+
+controller:
+  minId: 0
+  replicaCount: 3
+  controllerOnly: true
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 1Gi
+    mountPath: /bitnami/kafka
+
+broker:
+  minId: 100
+  replicaCount: 3
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 30Gi
+    mountPath: /bitnami/kafka
+
+externalAccess:
+  enabled: true
+  controller:
+    service:
+      type: NodePort
+      nodePorts:
+        - 31094
+        - 31095
+        - 31096
+      externalIPs:
+        - 192.168.49.2
+        - 192.168.49.2
+        - 192.168.49.2
+
+  broker:
+    service:
+      type: NodePort
+      nodePorts:
+        - 32094
+        - 32095
+        - 32096
+      externalIPs:
+        - 192.168.49.2
+        - 192.168.49.2
+        - 192.168.49.2
+
+metrics:
+  jmx:
+    enabled: true
