@@ -1,0 +1,3 @@
+controller:
+  minReadySeconds: 10
+  progressDeadlineSeconds: 60
