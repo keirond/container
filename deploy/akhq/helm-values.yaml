@@ -5,12 +5,13 @@ extraEnv:
         connections:
           kafka-cluster:
             properties:
-              bootstrap.servers: "PLAINTEXT://kafka-headless.kafka:9092"
+              bootstrap.servers: "PLAINTEXT://kafka-broker-headless.kafka:9092"
             schema-registry:
               url: "http://schema-registry.kafka:8081"
 
 ingress:
   enabled: true
+  ingressClassName: nginx
   pathType: Prefix
   hosts:
-    - akhq.
+    - akhq.10.20.3.62.nip.io
