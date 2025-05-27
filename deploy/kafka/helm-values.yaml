@@ -1,9 +1,3 @@
-image:
-  registry: docker.io
-  repository: bitnami/kafka
-  tag: 4.0.0-debian-12-r5
-  pullPolicy: IfNotPresent
-
 clusterId: 2654a977-82cd-40e3-92e3-c5bd9692d540
 
 listeners:

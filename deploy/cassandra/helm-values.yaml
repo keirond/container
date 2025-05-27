@@ -1,0 +1,17 @@
+dbUser:
+  user: cassandra
+  forcePassword: true
+  password: cassandra
+
+replicaCount: 3
+
+persistence:
+  enabled: true
+  storageClass: standard
+  commitStorageClass: standard
+  size: 30Gi
+  commitLogsize: 8Gi
+  mountPath: /bitnami/cassandra
+
+metrics:
+  enabled: true
