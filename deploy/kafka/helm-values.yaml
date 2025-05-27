@@ -4,7 +4,7 @@ image:
   tag: 4.0.0-debian-12-r5
   pullPolicy: IfNotPresent
 
-clusterId: f8687b15-9e49-4fae-bb33-90af62898415
+clusterId: 2654a977-82cd-40e3-92e3-c5bd9692d540
 
 listeners:
   client:
@@ -60,9 +60,9 @@ externalAccess:
         - 31095
         - 31096
       externalIPs:
-        - 192.168.49.2
-        - 192.168.49.2
-        - 192.168.49.2
+        - 10.20.3.62 # HOST_IP
+        - 10.20.3.62 # HOST_IP
+        - 10.20.3.62 # HOST_IP
 
   broker:
     service:
@@ -72,9 +72,9 @@ externalAccess:
         - 32095
         - 32096
       externalIPs:
-        - 192.168.49.2
-        - 192.168.49.2
-        - 192.168.49.2
+        - 10.20.3.62 # HOST_IP
+        - 10.20.3.62 # HOST_IP
+        - 10.20.3.62 # HOST_IP
 
 metrics:
   jmx:
