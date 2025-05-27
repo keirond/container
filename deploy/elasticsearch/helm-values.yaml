@@ -1,0 +1,25 @@
+kibanaEnabled: true
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  pathType: Prefix
+  hostname: elasticsearch.10.20.3.62.nip.io
+
+master:
+  masterOnly: true
+  replicaCount: 3
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 10Gi
+
+data:
+  replicaCount: 3
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 50Gi
+
+metrics:
+  enabled: true
