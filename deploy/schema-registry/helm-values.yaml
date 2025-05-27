@@ -7,10 +7,10 @@ ingress:
   enabled: true
   ingressClassName: nginx
   pathType: Prefix
-  hostname: schema-registry.10.20.3.62.nip.io
+  hostname: schema-registry.167.254.190.2.nip.io
 
 externalKafka:
   brokers:
-    - PLAINTEXT://kafka-broker-headless.kafka:9092
+    - PLAINTEXT://kafka-broker-headless.vn-kafka:9092
   listener:
     protocol: PLAINTEXT
