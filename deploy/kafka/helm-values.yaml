@@ -31,7 +31,7 @@ controller:
   controllerOnly: true
   persistence:
     enabled: true
-    storageClass: standard
+    storageClass: longhorn
     size: 5Gi
     mountPath: /bitnami/kafka
 
@@ -40,7 +40,7 @@ broker:
   replicaCount: 3
   persistence:
     enabled: true
-    storageClass: standard
+    storageClass: longhorn
     size: 50Gi
     mountPath: /bitnami/kafka
 
