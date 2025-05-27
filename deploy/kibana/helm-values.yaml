@@ -1,0 +1,15 @@
+persistence:
+  enabled: true
+  storageClass: standard
+  size: 1Gi
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  pathType: Prefix
+  hostname: kibana.10.20.3.62.nip.io
+
+elasticsearch:
+  hosts:
+    - elasticsearch.elastic
+  port: 9200
