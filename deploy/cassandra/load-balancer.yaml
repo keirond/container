@@ -6,6 +6,7 @@ metadata:
 spec:
   type: NodePort
   selector:
+    app.kubernetes.io/instance: cassandra
     app.kubernetes.io/name: cassandra
   ports:
     - port: 9042
