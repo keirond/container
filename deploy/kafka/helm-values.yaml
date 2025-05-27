@@ -1,4 +1,4 @@
-clusterId: 2654a977-82cd-40e3-92e3-c5bd9692d540
+clusterId: 4221a609-9f59-4a32-845f-231565341de4
 
 listeners:
   client:
@@ -32,7 +32,7 @@ controller:
   persistence:
     enabled: true
     storageClass: standard
-    size: 1Gi
+    size: 5Gi
     mountPath: /bitnami/kafka
 
 broker:
@@ -41,7 +41,7 @@ broker:
   persistence:
     enabled: true
     storageClass: standard
-    size: 30Gi
+    size: 50Gi
     mountPath: /bitnami/kafka
 
 externalAccess:
@@ -54,9 +54,9 @@ externalAccess:
         - 31095
         - 31096
       externalIPs:
-        - 10.20.3.62 # HOST_IP
-        - 10.20.3.62 # HOST_IP
-        - 10.20.3.62 # HOST_IP
+        - 167.254.190.2 # HOST_IP
+        - 167.254.190.2 # HOST_IP
+        - 167.254.190.2 # HOST_IP
 
   broker:
     service:
@@ -66,9 +66,9 @@ externalAccess:
         - 32095
         - 32096
       externalIPs:
-        - 10.20.3.62 # HOST_IP
-        - 10.20.3.62 # HOST_IP
-        - 10.20.3.62 # HOST_IP
+        - 167.254.190.2 # HOST_IP
+        - 167.254.190.2 # HOST_IP
+        - 167.254.190.2 # HOST_IP
 
 metrics:
   jmx:
