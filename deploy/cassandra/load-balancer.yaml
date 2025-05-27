@@ -4,10 +4,11 @@ metadata:
   name: cassandra-lb
   namespace: cassandra
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app.kubernetes.io/name: cassandra
   ports:
     - port: 9042
       targetPort: 9042
       protocol: TCP
+      nodePort: 39042
