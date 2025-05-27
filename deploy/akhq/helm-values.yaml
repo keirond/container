@@ -5,15 +5,12 @@ extraEnv:
         connections:
           kafka-cluster:
             properties:
-              bootstrap.servers: "192.168.49.2:32094,192.168.49.2:32095,192.168.49.2:32096"
+              bootstrap.servers: "PLAINTEXT://kafka-headless.kafka:9092"
             schema-registry:
-              url: ""
-            connect:
-              - name: connect
-                url: ""
+              url: "http://schema-registry.kafka:8081"
 
 ingress:
   enabled: true
   pathType: Prefix
   hosts:
-    - akhq.local
+    - akhq.

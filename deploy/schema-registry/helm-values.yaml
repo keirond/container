@@ -1,0 +1,19 @@
+image:
+  registry: docker.io
+  repository: bitnami/schema-registry
+  tag: 7.9.1-debian-12-r1
+  pullPolicy: IfNotPresent
+
+kafka:
+  enabled: false
+
+ingress:
+  enabled: true
+  pathType: Prefix
+  hostname: schema-registry.167.254.190.14.nip.io
+
+externalKafka:
+  brokers:
+    - PLAINTEXT://localhost:9092
+  listener:
+    protocol: PLAINTEXT
