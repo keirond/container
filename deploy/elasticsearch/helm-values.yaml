@@ -23,3 +23,8 @@ data:
 
 metrics:
   enabled: true
+
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false

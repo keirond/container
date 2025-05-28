@@ -13,3 +13,8 @@ elasticsearch:
   hosts:
     - elasticsearch.elastic
   port: 9200
+
+livenessProbe:
+  enabled: false
+readinessProbe:
+  enabled: false
