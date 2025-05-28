@@ -1,4 +1,4 @@
-kibanaEnabled: true
+kibanaEnabled: false
 
 ingress:
   enabled: true
