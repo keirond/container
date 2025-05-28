@@ -12,7 +12,7 @@ master:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 10Gi
+    size: 5Gi
   livenessProbe:
     enabled: false
   readinessProbe:
@@ -23,7 +23,7 @@ data:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 50Gi
+    size: 20Gi
   livenessProbe:
     enabled: false
   readinessProbe:

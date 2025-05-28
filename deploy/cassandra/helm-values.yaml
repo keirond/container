@@ -9,8 +9,8 @@ persistence:
   enabled: true
   storageClass: longhorn
   commitStorageClass: longhorn
-  size: 50Gi
-  commitLogsize: 10Gi
+  size: 20Gi
+  commitLogsize: 5Gi
   mountPath: /bitnami/cassandra
 
 metrics:
