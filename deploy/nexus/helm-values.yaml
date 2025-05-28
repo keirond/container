@@ -1,0 +1,8 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostRepo: nexus.167.254.190.2.nip.io
+
+persistence:
+  storageClass: longhorn
+  storageSize: 8Gi
