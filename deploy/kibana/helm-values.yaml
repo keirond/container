@@ -7,7 +7,7 @@ ingress:
   enabled: true
   ingressClassName: nginx
   pathType: Prefix
-  hostname: kibana.10.20.3.62.nip.io
+  hostname: kibana.167.254.190.2.nip.io
 
 elasticsearch:
   hosts:
