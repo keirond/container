@@ -11,6 +11,6 @@ ingress:
 
 externalKafka:
   brokers:
-    - PLAINTEXT://kafka-broker-headless.vn-kafka:9092
+    - PLAINTEXT://kafka-broker-headless.kafka:9092
   listener:
     protocol: PLAINTEXT
