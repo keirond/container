@@ -7,10 +7,10 @@ replicaCount: 3
 
 persistence:
   enabled: true
-  storageClass: standard
-  commitStorageClass: standard
-  size: 30Gi
-  commitLogsize: 8Gi
+  storageClass: longhorn
+  commitStorageClass: longhorn
+  size: 50Gi
+  commitLogsize: 10Gi
   mountPath: /bitnami/cassandra
 
 metrics:

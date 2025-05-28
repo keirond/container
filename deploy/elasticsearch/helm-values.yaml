@@ -11,14 +11,14 @@ master:
   replicaCount: 3
   persistence:
     enabled: true
-    storageClass: standard
+    storageClass: longhorn
     size: 10Gi
 
 data:
   replicaCount: 3
   persistence:
     enabled: true
-    storageClass: standard
+    storageClass: longhorn
     size: 50Gi
 
 metrics:

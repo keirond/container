@@ -1,6 +1,6 @@
 persistence:
   enabled: true
-  storageClass: standard
+  storageClass: longhorn
   size: 1Gi
 
 ingress:
