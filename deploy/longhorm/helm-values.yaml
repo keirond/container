@@ -1,0 +1,8 @@
+persistence:
+  defaultClassReplicaCount: 3
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  pathType: Prefix
+  host: longhorn.167.254.190.2.nip.io
