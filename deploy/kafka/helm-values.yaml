@@ -5,25 +5,21 @@ listeners:
     name: CLIENT
     containerPort: 9092
     protocol: PLAINTEXT
-    sslClientAuth: ""
 
   controller:
     name: CONTROLLER
     containerPort: 9093
     protocol: PLAINTEXT
-    sslClientAuth: ""
 
   interbroker:
     name: INTERNAL
     containerPort: 9094
     protocol: PLAINTEXT
-    sslClientAuth: ""
 
   external:
     name: EXTERNAL
     containerPort: 9095
     protocol: PLAINTEXT
-    sslClientAuth: ""
 
 controller:
   minId: 0
@@ -49,6 +45,8 @@ externalAccess:
   controller:
     service:
       type: NodePort
+      ports:
+        external: 9092
       nodePorts:
         - 31094
         - 31095
@@ -62,6 +60,8 @@ externalAccess:
   broker:
     service:
       type: NodePort
+      ports:
+        external: 9092
       nodePorts:
         - 32094
         - 32095
