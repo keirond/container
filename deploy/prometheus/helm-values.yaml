@@ -1,0 +1,16 @@
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    pathType: Prefix
+    hostname: prometheus.167.254.190.2.nip.io
+
+  extraScrapeConfigs:
+    - job_name: 'kafka'
+      static_configs:
+        - targets: [ 'kafka-jmx-metrics.kafka:5556' ]
+
+  persistence:
+    enabled: true
+    storageClass: longhorn
+    size: 10Gi
