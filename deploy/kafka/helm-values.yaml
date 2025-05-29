@@ -57,6 +57,7 @@ externalAccess:
         - 167.254.190.2 # HOST_IP
         - 167.254.190.2 # HOST_IP
         - 167.254.190.2 # HOST_IP
+      useHostIPs: true
 
   broker:
     service:
@@ -69,6 +70,7 @@ externalAccess:
         - 167.254.190.2 # HOST_IP
         - 167.254.190.2 # HOST_IP
         - 167.254.190.2 # HOST_IP
+      useHostIPs: true
 
 metrics:
   jmx:
