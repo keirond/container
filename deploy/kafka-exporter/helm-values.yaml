@@ -1,0 +1,4 @@
+kafkaServer:
+  - kafka-broker-0.kafka-broker-headless.kafka:9092
+  - kafka-broker-1.kafka-broker-headless.kafka:9092
+  - kafka-broker-2.kafka-broker-headless.kafka:9092
