@@ -1,0 +1,15 @@
+admin:
+  user: "admin"
+  password: "admin"
+
+
+persistence:
+  enabled: true
+  storageClass: longhorn
+  size: 10Gi
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  pathType: Prefix
+  hostname: grafana.167.254.190.2.nip.io
