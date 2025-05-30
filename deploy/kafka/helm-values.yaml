@@ -30,7 +30,13 @@ controller:
     storageClass: longhorn
     size: 5Gi
     mountPath: /bitnami/kafka
-
+  resources:
+    requests:
+      cpu: 1
+      memory: 2Gi
+    limits:
+      cpu: 2
+      memory: 4Gi
 broker:
   minId: 100
   replicaCount: 3
