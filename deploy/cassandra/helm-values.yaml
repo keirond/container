@@ -5,6 +5,14 @@ dbUser:
 
 replicaCount: 3
 
+resources:
+  requests:
+    cpu: 2
+    memory: 8Gi
+  limits:
+    cpu: 3
+    memory: 16Gi
+
 persistence:
   enabled: true
   storageClass: longhorn
