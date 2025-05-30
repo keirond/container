@@ -14,7 +14,7 @@ server:
         - targets: [ 'kafka-exporter-prometheus-kafka-exporter.kafka:9308' ]
     - job_name: 'elasticsearch-exporter'
       static_configs:
-        - targets: [ 'elasticsearch.elastic:9114' ]
+        - targets: [ 'elasticsearch-metrics.elastic:9114' ]
     - job_name: 'cassandra-http-exporter'
       static_configs:
         - targets: [ 'cassandra.cassandra:8080' ]
