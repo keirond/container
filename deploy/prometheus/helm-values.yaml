@@ -6,9 +6,6 @@ server:
     hostname: prometheus.167.254.190.2.nip.io
 
   extraScrapeConfigs:
-    - job_name: 'kafka-jxm-exporter'
-      static_configs:
-        - targets: [ 'kafka-jmx-metrics.kafka:5556' ]
     - job_name: 'kafka-exporter'
       static_configs:
         - targets: [ 'kafka-exporter-prometheus-kafka-exporter.kafka:9308' ]

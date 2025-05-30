@@ -39,6 +39,13 @@ broker:
     storageClass: longhorn
     size: 20Gi
     mountPath: /bitnami/kafka
+  resources:
+    requests:
+       cpu: 1
+       memory: 2Gi
+    limits:
+       cpu: 2
+       memory: 4Gi
 
 externalAccess:
   enabled: true
