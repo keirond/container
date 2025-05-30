@@ -1,16 +1,10 @@
-kibanaEnabled: false
+#kibanaEnabled: false
 
 ingress:
   enabled: true
   ingressClassName: nginx
   pathType: Prefix
   hostname: elasticsearch.167.254.190.2.nip.io
-
-image:
-  registry: docker.io
-  repository: bitnami/elasticsearch
-  tag: 8.6.0
-  pullPolicy: IfNotPresent
 
 master:
   masterOnly: true
@@ -23,6 +17,10 @@ master:
     enabled: false
   readinessProbe:
     enabled: false
+  resources:
+    requests:
+      cpu: 25m
+      memory: 1Gi
 
 data:
   replicaCount: 3
