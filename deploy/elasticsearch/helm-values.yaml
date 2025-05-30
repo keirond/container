@@ -28,6 +28,13 @@ data:
     enabled: false
   readinessProbe:
     enabled: false
+  resources:
+    requests:
+      cpu: 2
+      memory: 8i
+    limits:
+      cpu: 3
+      memory: 16Gi
 
 coordinating:
   livenessProbe:
