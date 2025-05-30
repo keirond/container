@@ -12,6 +12,15 @@ server:
     - job_name: 'kafka-exporter'
       static_configs:
         - targets: [ 'kafka-exporter-prometheus-kafka-exporter.kafka:9308' ]
+    - job_name: 'elasticsearch-exporter'
+      static_configs:
+        - targets: [ 'elasticsearch.elastic:9114' ]
+    - job_name: 'cassandra-http-exporter'
+      static_configs:
+        - targets: [ 'cassandra.cassandra:8080' ]
+    - job_name: 'cassandra-jxm-exporter'
+      static_configs:
+        - targets: [ 'cassandra.cassandra:5555' ]
 
   persistence:
     enabled: true
