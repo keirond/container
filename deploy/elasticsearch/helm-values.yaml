@@ -31,7 +31,7 @@ data:
   resources:
     requests:
       cpu: 2
-      memory: 8i
+      memory: 8Gi
     limits:
       cpu: 3
       memory: 16Gi
