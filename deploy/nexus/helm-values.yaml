@@ -2,7 +2,7 @@ nexus:
   docker:
     enabled: true
     registries:
-      - host: nexus.167.254.190.2.nip.io
+      - host: vn-vta
         port: 5000
         secretName: registry-secret
   livenessProbe:
