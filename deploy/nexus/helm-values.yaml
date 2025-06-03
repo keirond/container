@@ -2,7 +2,7 @@ nexus:
   docker:
     enabled: true
     registries:
-      - host: vn-vta
+      - host: nexus.167.254.190.2.nip.io
         port: 5000
         secretName: registry-secret
   livenessProbe:
@@ -13,7 +13,7 @@ nexus:
 ingress:
   enabled: true
   ingressClassName: nginx
-  hostRepo: nexus.167.254.190.2.nip.io
+  hostRepo: nexus-ui.167.254.190.2.nip.io
 
 persistence:
   storageClass: longhorn
