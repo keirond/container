@@ -1,4 +1,10 @@
 nexus:
+  docker:
+    enabled: true
+    registries:
+      - host: chart.local
+        port: 5000
+        secretName: registry-secret
   livenessProbe:
     initialDelaySeconds: 120
   readinessProbe:
