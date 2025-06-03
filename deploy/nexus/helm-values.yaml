@@ -1,3 +1,9 @@
+nexus:
+  livenessProbe:
+    initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 120
+
 ingress:
   enabled: true
   ingressClassName: nginx
