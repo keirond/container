@@ -7,6 +7,7 @@ server:
 
   extraScrapeConfigs:
     - job_name: 'alarm-etl-job'
+      metrics_path: '/actuator/prometheus'
       static_configs:
         - targets: [ 'alarm-spk.ndl:8080' ]
     - job_name: 'kafka-jxm-exporter'
