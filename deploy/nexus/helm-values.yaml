@@ -17,4 +17,4 @@ ingress:
 
 persistence:
   storageClass: longhorn
-  storageSize: 8Gi
+  storageSize: 80Gi
