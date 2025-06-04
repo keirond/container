@@ -9,6 +9,12 @@ nexus:
     initialDelaySeconds: 120
   readinessProbe:
     initialDelaySeconds: 120
+  requests:
+     cpu: 4
+     memory: 8Gi
+  limits:
+     cpu: 4
+     memory: 8Gi
 
 ingress:
   enabled: true
@@ -18,3 +24,6 @@ ingress:
 persistence:
   storageClass: longhorn
   storageSize: 20Gi
+
+imagePullSecrets:
+  - name: registry-secret
