@@ -1,0 +1,10 @@
+{
+  "auths": {
+    "nexus.167.254.190.2.nip.io": {
+      "username": "vn",
+      "password": "vn",
+      "email": "vn@terralogic.com",
+      "auth": "dm46dm4="
+    }
+  }
+}
