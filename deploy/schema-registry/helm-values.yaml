@@ -9,11 +9,6 @@ ingress:
   pathType: Prefix
   hostname: schema-registry.167.254.190.2.nip.io
 
-livenessProbe:
-  enabled: false
-readinessProbe:
-  enabled: false
-
 externalKafka:
   brokers:
     - PLAINTEXT://kafka-broker-headless.kafka:9092
