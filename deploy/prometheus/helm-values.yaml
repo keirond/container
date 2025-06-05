@@ -4,6 +4,13 @@ server:
     ingressClassName: nginx
     pathType: Prefix
     hostname: prometheus.167.254.190.2.nip.io
+  resources:
+    requests:
+      cpu: 2
+      memory: 2Gi
+    limits:
+      cpu: 3
+      memory: 4Gi
 
   extraScrapeConfigs:
     - job_name: 'alarm-etl-job'
