@@ -23,22 +23,22 @@ master:
       memory: 1Gi
 
 data:
-  replicaCount: 3
+  replicaCount: 5
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 30Gi
+    size: 50Gi
   livenessProbe:
     enabled: false
   readinessProbe:
     enabled: false
   resources:
     requests:
-      cpu: 2
-      memory: 8Gi
-    limits:
-      cpu: 3
+      cpu: 4
       memory: 16Gi
+    limits:
+      cpu: 8
+      memory: 32Gi
 
 coordinating:
   livenessProbe:

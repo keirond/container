@@ -25,6 +25,10 @@ controller:
   minId: 0
   replicaCount: 3
   controllerOnly: true
+  persistentVolumeClaimRetentionPolicy:
+    enabled: true
+    whenScaled: Delete
+    whenDeleted: Delete
   persistence:
     enabled: true
     storageClass: longhorn
@@ -40,10 +44,14 @@ controller:
 broker:
   minId: 100
   replicaCount: 3
+  persistentVolumeClaimRetentionPolicy:
+    enabled: true
+    whenScaled: Delete
+    whenDeleted: Delete
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 30Gi
+    size: 80Gi
     mountPath: /bitnami/kafka
   resources:
     requests:
