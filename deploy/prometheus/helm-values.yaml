@@ -10,6 +10,9 @@ server:
       metrics_path: '/actuator/prometheus'
       static_configs:
         - targets: [ 'alarm-spk.ndl:8080' ]
+    - job_name: 'cadvisor'
+      static_configs:
+        - targets: [ 'cadvisor.monitor:8080' ]
     - job_name: 'kube-state-metrics'
       static_configs:
         - targets: [ 'kube-state-metrics.monitor:8080' ]

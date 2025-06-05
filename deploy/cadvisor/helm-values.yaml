@@ -1,0 +1,5 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  pathType: Prefix
+  hostname: cadvisor.167.254.190.2.nip.io
