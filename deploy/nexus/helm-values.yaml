@@ -23,7 +23,7 @@ ingress:
 
 persistence:
   storageClass: longhorn
-  storageSize: 20Gi
+  storageSize: 50Gi
 
 imagePullSecrets:
   - name: registry-secret
