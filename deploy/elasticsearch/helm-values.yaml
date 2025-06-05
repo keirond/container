@@ -19,8 +19,8 @@ master:
     enabled: false
   resources:
     requests:
-      cpu: 2
-      memory: 8Gi
+      cpu: 1
+      memory: 4Gi
 
 data:
   replicaCount: 5
@@ -34,10 +34,10 @@ data:
     enabled: false
   resources:
     requests:
-      cpu: 4
+      cpu: 2
       memory: 16Gi
     limits:
-      cpu: 8
+      cpu: 3
       memory: 32Gi
 
 coordinating:
