@@ -19,8 +19,8 @@ master:
     enabled: false
   resources:
     requests:
-      cpu: 25m
-      memory: 1Gi
+      cpu: 2
+      memory: 8Gi
 
 data:
   replicaCount: 5
