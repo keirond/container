@@ -10,6 +10,12 @@ server:
       metrics_path: '/actuator/prometheus'
       static_configs:
         - targets: [ 'alarm-spk.ndl:8080' ]
+    - job_name: 'kube-state-metrics'
+      static_configs:
+        - targets: [ 'kube-state-metrics.monitor:8080' ]
+    - job_name: 'node-exporters'
+      static_configs:
+        - targets: [ 'node-exporter-prometheus-node-exporter.monitor:9100' ]
     - job_name: 'kafka-jxm-exporter'
       static_configs:
         - targets: [ 'kafka-jmx-metrics.kafka:5556' ]
