@@ -1,0 +1,77 @@
+global:
+
+
+image:
+  repository: gcr.io/cadvisor/cadvisor
+  tag: v0.47.2
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ## Example:
+  ## pullSecrets:
+  ##   - myRegistryKeySecretName
+  ##
+  pullSecrets: []
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 20m
+    memory: 100Mi
+
+## @param annotations
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+##
+annotations: {}
+
+## @param podAnnotations Pod annotations
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+##
+podAnnotations: {}
+
+containerArgs:
+  - "--event_storage_event_limit=default=0"
+  - "--event_storage_age_limit=default=0"
+  - "--store_container_labels=false"
+  - "--whitelisted_container_labels=io.kubernetes.container.name,io.kubernetes.pod.name,io.kubernetes.pod.namespace"
+  - "--disable_metrics=percpu,sched,udp,disk,diskIO,process,cpu,cpuLoad,cpu_topology,cpuset,hugetlb,memory,memory_numa,oom_event,perf_event,referenced_memory,resctrl,app"
+  - "--v=1"
+#- "--containerd=/run/containerd/containerd.sock"
+
+
+volumes:
+  - name: rootfs
+    hostPath:
+      path: "/"
+      type: ""
+  - name: run
+    hostPath:
+      path: "/run"
+      type: ""
+  - name: sys
+    hostPath:
+      path: "/sys"
+      type: ""
+  - name: var
+    hostPath:
+      path: "/var"
+      type: ""
+volumeMounts:
+  - name: rootfs
+    mountPath: "/rootfs"
+    readOnly: true
+  - name: run
+    mountPath: "/run"
+    readOnly: true
+  - name: sys
+    mountPath: "/sys"
+    readOnly: true
+  - name: var
+    mountPath: "/var"
+    readOnly: true
+prometheus:
+  monitor:
+    enabled: true
+    release: "ks-monitor"
