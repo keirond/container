@@ -27,7 +27,7 @@ data:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 50Gi
+    size: 30Gi
   livenessProbe:
     enabled: false
   readinessProbe:
