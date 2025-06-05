@@ -51,7 +51,7 @@ broker:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 80Gi
+    size: 100Gi
     mountPath: /bitnami/kafka
   resources:
     requests:
