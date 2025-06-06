@@ -28,19 +28,19 @@ services:
     networks:
       - elk
 
-  logstash:
-    image: logstash:8.15.1
-    container_name: logstash
-    restart: always
-    environment:
-      xpack.monitoring.elasticsearch.hosts: "http://elasticsearch:9200"
-      LS_JAVA_OPTS: "-Xms256m -Xmx256m"
-    volumes:
-      - es_logstash_pipeline:/usr/share/logstash/pipeline
-    ports:
-      - "5044:5044"
-    networks:
-      - elk
+  # logstash:
+  #   image: logstash:8.15.1
+  #   container_name: logstash
+  #   restart: always
+  #   environment:
+  #     xpack.monitoring.elasticsearch.hosts: "http://elasticsearch:9200"
+  #     LS_JAVA_OPTS: "-Xms256m -Xmx256m"
+  #   volumes:
+  #     - es_logstash_pipeline:/usr/share/logstash/pipeline
+  #   ports:
+  #     - "5044:5044"
+  #   networks:
+  #     - elk
 
 volumes:
   es_data:
@@ -49,9 +49,9 @@ volumes:
   es_logs:
     name: es_logs
     driver: local
-  es_logstash_pipeline:
-    name: es_logstash_pipeline
-    driver: local
+  # es_logstash_pipeline:
+  #   name: es_logstash_pipeline
+  #   driver: local
 
 networks:
   elk:

@@ -4,7 +4,6 @@ services:
   cassandra:
     image: cassandra:5.0.0
     container_name: cassandra
-    restart: always
     volumes:
       - cassandra_data:/var/lib/cassandra
     ports:
