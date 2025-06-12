@@ -15,9 +15,12 @@ else
   exit 1
 fi
 
-# scan all templates under $SCRIPT_DIR
-find "$SCRIPT_DIR" -type f -name "__values.tpl" | while read -r template; do
-  output="${template%__values.tpl}values.yaml"
-  echo "Generating $output"
+echo "Using .env from: $ENV_FILE"
+
+find "$SCRIPT_DIR" -type f -name "__values.yaml" | while read -r template; do
+  output="${template%__values.yaml}values.yaml"
+  echo "Generating: $output"
   envsubst < "$template" > "$output"
 done
+
+echo "All templates rendered successfully."

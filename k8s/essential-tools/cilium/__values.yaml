@@ -1,4 +1,4 @@
-k8sServiceHost: 167.254.190.2
+k8sServiceHost: ${HOST_IP}
 k8sServicePort: 6443
 kubeProxyReplacement: true
 
