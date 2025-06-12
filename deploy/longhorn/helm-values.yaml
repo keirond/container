@@ -2,7 +2,8 @@ persistence:
   defaultClassReplicaCount: 1
 
 defaultSettings:
-  defaultDataPath: /export/longhorn
+  defaultDataPath: /var/lib/docker/longhorn
+  replicaAutoBalance: best-effort
 
 ingress:
   enabled: true
