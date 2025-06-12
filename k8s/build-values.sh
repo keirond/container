@@ -4,10 +4,11 @@ set -e
 
 SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
 SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
-ENV_FILE="$SCRIPT_DIR/.env"
+ENV_FILE="$SCRIPT_DIR/config/.env"
 
 if [ -f "$ENV_FILE" ]; then
   set -o allexport
+  # shellcheck disable=SC1090
   source "$ENV_FILE"
   set +o allexport
 else
