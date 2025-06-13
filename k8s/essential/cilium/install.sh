@@ -7,7 +7,7 @@ SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
 VALUE_FILE="$SCRIPT_DIR/values.yaml"
 
 if [ -f "$VALUE_FILE" ]; then
-	helm install cilium bitnami/cilium --version 3.0.2 \
+	helm install my-cilium cilium/cilium --version 1.18.0-pre.3 \
 		-f "$SCRIPT_DIR/values.yaml" \
 		-n cilium --create-namespace
 else

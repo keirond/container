@@ -1,4 +1,4 @@
 #!/bin/bash
 
-helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add cilium https://helm.cilium.io/
 helm repo update
