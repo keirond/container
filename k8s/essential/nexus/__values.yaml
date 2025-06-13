@@ -6,7 +6,6 @@ nexus:
     registries:
       - host: nexus.167.254.190.2.nip.io
         port: 5000
-        secretName: registry-secret
   livenessProbe:
     initialDelaySeconds: 120
   readinessProbe:
@@ -26,6 +25,3 @@ ingress:
 persistence:
   storageClass: longhorn
   storageSize: 100Gi
-
-imagePullSecrets:
-  - name: registry-secret
