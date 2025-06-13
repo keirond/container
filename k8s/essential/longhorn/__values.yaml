@@ -1,14 +1,78 @@
 # Longhorn: Longhorn
 
+image:
+  longhorn:
+    engine:
+      repository: longhornio/longhorn-engine
+      tag: v1.9.0
+    manager:
+      repository: longhornio/longhorn-manager
+      tag: v1.9.0
+    ui:
+      repository: longhornio/longhorn-ui
+      tag: v1.9.0
+    instanceManager:
+      repository: longhornio/longhorn-instance-manager
+      tag: v1.9.0
+    shareManager:
+      repository: longhornio/longhorn-share-manager
+      tag: v1.9.0
+    backingImageManager:
+      repository: longhornio/backing-image-manager
+      tag: v1.9.0
+    supportBundleKit:
+      repository: longhornio/support-bundle-kit
+      tag: v0.0.55
+  csi:
+    attacher:
+      repository: longhornio/csi-attacher
+      tag: v4.8.1
+    provisioner:
+      repository: longhornio/csi-provisioner
+      tag: v5.2.0
+    nodeDriverRegistrar:
+      repository: longhornio/csi-node-driver-registrar
+      tag: v2.13.0
+    resizer:
+      repository: longhornio/csi-resizer
+      tag: v1.13.2
+    snapshotter:
+      repository: longhornio/csi-snapshotter
+      tag: v8.2.0
+    livenessProbe:
+      repository: longhornio/livenessprobe
+      tag: v2.15.0
+  pullPolicy: IfNotPresent
+
+service:
+  ui:
+    type: ClusterIP
+  manager:
+    type: ClusterIP
+
 persistence:
-  defaultClassReplicaCount: 1
+  defaultClass: true
+  defaultFsType: ext4
+  defaultClassReplicaCount: 3
+  defaultDataLocality: best-effort
+  reclaimPolicy: Delete
 
 defaultSettings:
+  defaultReplicaCount: 3
   defaultDataPath: /var/lib/docker/longhorn
   replicaAutoBalance: best-effort
+  storageOverProvisioningPercentage: 100
+  storageMinimalAvailablePercentage: 10
+
+longhornDriver:
+  log:
+    format: plain
+
+longhornUI:
+  replicas: 3
 
 ingress:
   enabled: true
   ingressClassName: nginx
   pathType: Prefix
-  host: longhorn.167.254.190.2.nip.io
+  host: longhorn.${HOST_IP}.nip.io

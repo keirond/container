@@ -7,9 +7,9 @@ SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
 VALUE_FILE = "$SCRIPT_DIR/values.yaml"
 
 if [ -f "$VALUE_FILE" ]; then
-	helm install haproxy bitnami/haproxy --version 2.2.24 \
+	helm install longhorn longhorn/longhorn --version 1.9.0 \
 		-f "$SCRIPT_DIR/values.yaml" \
-		-n haproxy --create-namespace
+		-n storage-controller --create-namespace
 else
 	echo "Not found: $VALUE_FILE"
 	exit 1
