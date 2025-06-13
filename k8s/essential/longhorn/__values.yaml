@@ -59,6 +59,7 @@ persistence:
 
 defaultSettings:
   defaultReplicaCount: 1
+  kubeletRootDir: /var/lib/kubelet
   defaultDataPath: /var/lib/docker/longhorn
   replicaAutoBalance: best-effort
   storageOverProvisioningPercentage: 100
