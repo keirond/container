@@ -7,7 +7,7 @@ SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
 VALUE_FILE="$SCRIPT_DIR/values.yaml"
 
 if [ -f "$VALUE_FILE" ]; then
-	helm install my-nexus-repository-manager sonatype/nexus-repository-manager --version 64.2.0 \
+	helm install nexus-repository-manager sonatype/nexus-repository-manager --version 64.2.0 \
 		-f "$SCRIPT_DIR/values.yaml" \
 		-n registry --create-namespace
 else
