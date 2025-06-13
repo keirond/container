@@ -9,7 +9,7 @@ VALUE_FILE="$SCRIPT_DIR/values.yaml"
 if [ -f "$VALUE_FILE" ]; then
 	helm install cilium cilium/cilium --version 1.18.0-pre.3 \
 		-f "$SCRIPT_DIR/values.yaml" \
-		-n cilium --create-namespace
+		-n cni-plugin --create-namespace
 else
 	echo "Not found: $VALUE_FILE"
 	exit 1

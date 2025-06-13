@@ -20,7 +20,7 @@ networkPolicy:
 ingress:
   enabled: true
   pathType: Prefix
-  hostname: haproxy.${HOST_IP}.nip.io
+  hostname: haproxy.${API_SERVER_IP}.nip.io
   path: /
   ingressClassName: ""
 

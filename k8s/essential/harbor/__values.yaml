@@ -27,7 +27,7 @@ service:
 ingress:
   core:
     pathType: Prefix
-    hostname: harbor.${HOST_IP}.nip.io
+    hostname: harbor.${API_SERVER_IP}.nip.io
     ingressClassName: nginx
 
 persistence:
