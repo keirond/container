@@ -56,9 +56,11 @@ persistence:
   defaultClassReplicaCount: 1
   reclaimPolicy: Delete
 
+csi:
+  kubeletRootDir: /var/lib/kubelet
+
 defaultSettings:
   defaultReplicaCount: 1
-  kubeletRootDir: /var/lib/kubelet
   defaultDataPath: /var/lib/docker/longhorn
   replicaAutoBalance: best-effort
   storageOverProvisioningPercentage: 100
