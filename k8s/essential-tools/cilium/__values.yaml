@@ -1,46 +1,165 @@
 # Bitnami Cilium
 
+# <service-name>.<namespace>.svc.<clusterDomain>
+clusterDomain: cluster.local
+clusterName: default
+
+# Azure integration
+azure:
+  enabled: false
+
+# AWS integration
+aws:
+  enabled: false
+
+# GCP integration
+gcp:
+  enabled: false
+
+# Cilium Agent
 agent:
+  image:
+    registry: docker.io
+    repository: bitnami/cilium
+    tag: 1.17.4-debian-12-r6
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+
   containerPorts:
     health: 9879
     pprof: 6060
     hubblePeer: 4244
     metrics: 9962
     hubbleMetrics: 9965
+  extraContainerPorts: []
 
   livenessProbe:
     enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 30
-    timeoutSeconds: 5
-    failureThreshold: 10
-    successThreshold: 1
   readinessProbe:
     enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 30
-    timeoutSeconds: 5
-    failureThreshold: 3
-    successThreshold: 1
   startupProbe:
     enabled: false
-    initialDelaySeconds: 5
-    periodSeconds: 2
-    timeoutSeconds: 1
-    failureThreshold: 100
-    successThreshold: 1
 
   resourcesPreset: "micro"
+  resources: {}
+
+  bpf:
+    autoMount: true
+    hostRoot: /sys/fs/bpf
+
+  cgroup2:
+    autoMount: true
+    hostRoot: /run/cilium/cgroupv2
 
   cniPlugin:
     install: true
+    uninstall: false
 
+  networkPolicy:
+    enabled: true
+    allowExternal: true
+    allowExternalEgress: true
+    addExternalClientAccess: true
+    kubeAPIServerPorts: [443, 6443, 8443]
 
-k8sServiceHost: ${HOST_IP}
-k8sServicePort: 6443
-kubeProxyReplacement: true
+  metrics:
+    enabled: true
+    service:
+      port: 9962
 
-ipv4:
-  enabled: true
-ipv6:
-  enabled: false
+# Cilium Operator
+operator:
+  image:
+    registry: docker.io
+    repository: bitnami/cilium-operator
+    tag: 1.17.4-debian-12-r4
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+
+  replicaCount: 3
+
+  containerPorts:
+    api: 9234
+    pprof: 6061
+    metrics: 9963
+  extraContainerPorts: []
+  hostNetwork: true
+
+  livenessProbe:
+    enabled: true
+  readinessProbe:
+    enabled: true
+  startupProbe:
+    enabled: false
+
+  resourcesPreset: "micro"
+  resources: {}
+
+  networkPolicy:
+    enabled: true
+    allowExternal: true
+    allowExternalEgress: true
+    addExternalClientAccess: true
+    kubeAPIServerPorts: [ 443, 6443, 8443 ]
+
+  metrics:
+    enabled: true
+    service:
+      port: 9963
+
+# Cilium Envoy
+envoy:
+  useDaemonSet: false
+  image:
+    registry: docker.io
+    repository: bitnami/cilium-proxy
+    tag: 1.32.6-debian-12-r4
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+
+  containerPorts:
+    health: 9878
+    metrics: 9964
+  extraContainerPorts: []
+
+  livenessProbe:
+    enabled: true
+  readinessProbe:
+    enabled: true
+  startupProbe:
+    enabled: false
+
+  networkPolicy:
+    enabled: true
+    allowExternal: true
+    allowExternalEgress: true
+    addExternalClientAccess: true
+
+  metrics:
+    enabled: true
+    service:
+      port: 9964
+
+# Cilium Hubble
+hubble:
+  tls:
+    enabled: true
+
+  # Hubble Relay
+  peers:
+    service:
+      port: 4244
+    metrics:
+      service:
+        port: 9965
+
+  # Hubble Relay
+  relay:
+    enabled: false
+
+  # Hubble UI
+  ui:
+    enabled: false
