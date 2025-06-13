@@ -54,7 +54,6 @@ persistence:
   defaultClass: true
   defaultFsType: ext4
   defaultClassReplicaCount: 1
-  defaultDataLocality: best-effort
   reclaimPolicy: Delete
 
 defaultSettings:
@@ -67,7 +66,7 @@ defaultSettings:
   storageReservedPercentageForDefaultDisk: 10
 
 longhornUI:
-  replicas: 1
+  replicas: 2
 
 ingress:
   enabled: true
