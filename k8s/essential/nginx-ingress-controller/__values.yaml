@@ -33,8 +33,10 @@ resourcesPreset: "nano"
 resources: {}
 livenessProbe:
   enabled: true
+  initialDelaySeconds: 30
 readinessProbe:
   enabled: true
+  initialDelaySeconds: 30
 startupProbe:
   enabled: false
 
@@ -54,8 +56,10 @@ defaultBackend:
   resources: {}
   livenessProbe:
     enabled: true
+    initialDelaySeconds: 30
   readinessProbe:
     enabled: true
+    initialDelaySeconds: 30
   startupProbe:
     enabled: false
 
