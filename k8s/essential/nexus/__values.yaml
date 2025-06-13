@@ -1,105 +1,31 @@
-# Bitnami: Harbor
+# Sonatype: Nexus Repository Manager
 
-# <service-name>.<namespace>.svc.<clusterDomain>
-clusterDomain: cluster.local
-
-adminPassword: ${ADMIN_PASSWORD}
-
-ipFamily:
-  ipv6:
-    enabled: false
-  ipv4:
+nexus:
+  docker:
     enabled: true
-
-cache:
-  enabled: false
-  expireHours: 24
-database:
-  maxIdleConns: 100
-  maxOpenConns: 900
-
-service:
-  type: LoadBalancer
-  ports:
-    http: 80
-    https: 443
+    registries:
+      - host: nexus.167.254.190.2.nip.io
+        port: 5000
+        secretName: registry-secret
+  livenessProbe:
+    initialDelaySeconds: 120
+  readinessProbe:
+    initialDelaySeconds: 120
+  requests:
+    cpu: 4
+    memory: 8Gi
+  limits:
+    cpu: 4
+    memory: 8Gi
 
 ingress:
-  core:
-    pathType: Prefix
-    hostname: harbor.${HOST_IP}.nip.io
-    ingressClassName: nginx
+  enabled: true
+  ingressClassName: nginx
+  hostRepo: nexus-ui.167.254.190.2.nip.io
 
 persistence:
-  enabled: true
-  resourcePolicy: "keep"
-  persistentVolumeClaim:
-    registry:
-      accessModes:
-        - ReadWriteOnce
-      size: 100Gi
+  storageClass: longhorn
+  storageSize: 100Gi
 
-portal:
-  image:
-    registry: docker.io
-    repository: bitnami/harbor-portal
-    tag: 2.13.1-debian-12-r2
-    digest: ""
-    pullPolicy: IfNotPresent
-    pullSecrets: []
-    
-  replicaCount: 1
-  service:
-    ports:
-      http: 80
-      https: 443
-  containerPorts:
-    http: 8080
-    https: 8443
-
-  livenessProbe:
-    enabled: true
-  readinessProbe:
-    enabled: true
-  startupProbe:
-    enabled: false
-
-  resourcesPreset: "small"
-  resources: {}
-
-  networkPolicy:
-    enabled: true
-    allowExternal: true
-    allowExternalEgress: true
-
-core:
-  image:
-    registry: docker.io
-    repository: bitnami/harbor-core
-    tag: 2.13.1-debian-12-r7
-    digest: ""
-    pullPolicy: IfNotPresent
-    pullSecrets: []
-
-  replicaCount: 1
-  service:
-    ports:
-      http: 80
-      https: 443
-      metrics: 8001
-  containerPorts:
-    http: 8080
-    https: 8443
-    metrics: 8001
-
-  livenessProbe:
-    enabled: true
-  readinessProbe:
-    enabled: true
-  startupProbe:
-    enabled: false
-
-  resourcesPreset: "small"
-  resources: {}
-
-# TODO
+imagePullSecrets:
+  - name: registry-secret
