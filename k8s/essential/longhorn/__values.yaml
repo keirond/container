@@ -65,10 +65,6 @@ defaultSettings:
   storageMinimalAvailablePercentage: 10
   storageReservedPercentageForDefaultDisk: 10
 
-longhornDriver:
-  log:
-    format: plain
-
 longhornUI:
   replicas: 3
 
