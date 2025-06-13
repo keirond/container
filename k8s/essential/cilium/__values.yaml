@@ -1,4 +1,4 @@
-# Bitnami Cilium
+# Bitnami: Cilium
 
 # <service-name>.<namespace>.svc.<clusterDomain>
 clusterDomain: cluster.local

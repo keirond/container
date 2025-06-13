@@ -1,4 +1,4 @@
-# Bitnami HAProxy
+# Bitnami: HAProxy
 
 # <service-name>.<namespace>.svc.<clusterDomain>
 clusterDomain: cluster.local

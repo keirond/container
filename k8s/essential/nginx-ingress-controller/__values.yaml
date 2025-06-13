@@ -1,4 +1,4 @@
-# Bitnami NGINX Ingress Controller
+# Bitnami: NGINX Ingress Controller
 
 # <service-name>.<namespace>.svc.<clusterDomain>
 clusterDomain: cluster.local
