@@ -36,7 +36,7 @@ livenessProbe:
 readinessProbe:
   enabled: true
 startupProbe:
-  enabled: true
+  enabled: false
 
 defaultBackend:
   enabled: true
