@@ -67,7 +67,7 @@ defaultSettings:
   storageReservedPercentageForDefaultDisk: 10
 
 longhornUI:
-  replicas: 2
+  replicas: 1
 
 ingress:
   enabled: true
