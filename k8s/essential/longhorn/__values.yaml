@@ -58,11 +58,12 @@ persistence:
   reclaimPolicy: Delete
 
 defaultSettings:
-  defaultReplicaCount: 3
+  defaultReplicaCount: 1
   defaultDataPath: /var/lib/docker/longhorn
   replicaAutoBalance: best-effort
   storageOverProvisioningPercentage: 100
   storageMinimalAvailablePercentage: 10
+  storageReservedPercentageForDefaultDisk: 10
 
 longhornDriver:
   log:
