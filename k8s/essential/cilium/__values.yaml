@@ -26,6 +26,9 @@ cni:
   uninstall: false
   exclusive: true
 
+envoy:
+  enabled: false
+
 hubble:
   enabled: true
   metrics:
