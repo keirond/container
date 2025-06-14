@@ -20,6 +20,8 @@ resources:
 
 bgpControlPlane:
   enabled: true
+  secretsNamespace:
+    name: cni-plugin
 
 cni:
   install: true
