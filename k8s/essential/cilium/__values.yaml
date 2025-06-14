@@ -47,6 +47,10 @@ hubble:
   relay:
     enabled: true
     rollOutPods: true
+    replicas: 1
+    service:
+      type: ClusterIP
+      nodePort: 31234
   ui:
     enabled: true
     rollOutPods: true
