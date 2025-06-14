@@ -1,11 +1,78 @@
 # Cilium: Cilium
 
+kubeConfigPath: ""  # @default -- `"~/.kube/config"`
 kubeProxyReplacement: true
+
 k8sServiceHost: ${API_SERVER_IP}
 k8sServicePort: 6443
 
+agent: true
+name: cilium  # -- Agent daemonset name.
+rollOutCiliumPods: true
+
+resources:
+   limits:
+     cpu: 4
+     memory: 4Gi
+   requests:
+     cpu: 100m
+     memory: 512Mi
+
 bgpControlPlane:
   enabled: true
+
+cni:
+  install: true
+  uninstall: false
+  exclusive: true
+
+hubble:
+  enabled: true
+  metrics:
+    enabled:
+      - dns:query;ignoreAAAA
+      - drop
+      - tcp
+      - flow
+      - icmp
+      - http
+    enableOpenMetrics: true
+    port: 9965
+    dashboards:
+      enabled: true
+      label: cilium_grafana_dashboard
+  peerService:
+    targetPort: 4244
+    clusterDomain: cluster.local
+  ui:
+    enabled: true
+    rollOutPods: true
+    replicas: 1
+    service:
+      type: ClusterIP
+      nodePort: 31235
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+        - hubble.${API_SERVER_IP}.nip.io
+
+ipam:
+  operator:
+    clusterPoolIPv4PodCIDRList: ["10.0.0.0/16"] # must match with k8s pod_network_cidr value
+    clusterPoolIPv4MaskSize: 24
+
+prometheus:
+  enabled: true
+  port: 9962
+
+dashboards:
+  enabled: true
+  label: cilium_grafana_dashboard
+
+operator:
+  enabled: true
+  rollOutPods: true
 
 ipv4:
   enabled: true
