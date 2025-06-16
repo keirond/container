@@ -1,8 +1,0 @@
-controller:
-  hostNetwork: true
-  hostPort:
-    enabled: true
-  minReadySeconds: 10
-  progressDeadlineSeconds: 60
-  admissionWebhooks:
-    enabled: false
