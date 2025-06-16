@@ -19,6 +19,7 @@ sudo dnf install k6
 ```shell
 curl -LO https://go.dev/dl/go1.24.4.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.24.4.linux-amd64.tar.gz
+rm -rf go1.24.4.linux-amd64.tar.gz
 ```
 
 ### Install xk6
