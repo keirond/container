@@ -2,14 +2,9 @@
 
 set -e
 
-if [ $# -lt 2 ]; then
-  echo "Usage: $0 <RELEASE_NAME> <NAMESPACE> [VERSION]"
-  exit 1
+if [ -f "$1" ]; then
+  read -r RELEASE_NAME NAMESPACE VERSION < "$1"
 fi
-
-RELEASE_NAME="$1"
-NAMESPACE="$2"
-VERSION="$3"
 
 SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
 SCRIPT_DIR="$(dirname "$SCRIPT_PATH")"
