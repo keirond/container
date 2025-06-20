@@ -7,18 +7,18 @@ replicaCount: 3
 
 resources:
   requests:
-    cpu: 3
-    memory: 4Gi
+    cpu: 8
+    memory: 16Gi
   limits:
-    cpu: 4
-    memory: 8Gi
+    cpu: 16
+    memory: 32Gi
 
 persistence:
   enabled: true
   storageClass: longhorn
   commitStorageClass: longhorn
-  size: 40Gi
-  commitLogsize: 20Gi
+  size: 100Gi
+  commitLogsize: 30Gi
   mountPath: /bitnami/cassandra
 
 metrics:
