@@ -73,9 +73,9 @@ externalAccess:
         - 31095
         - 31096
       externalIPs:
-        - 167.254.190.2 # HOST_IP
-        - 167.254.190.2 # HOST_IP
-        - 167.254.190.2 # HOST_IP
+        - 167.254.190.2 # YOUR_HOST_IP
+        - 167.254.190.2 # YOUR_HOST_IP
+        - 167.254.190.2 # YOUR_HOST_IP
       useHostIPs: true
 
   broker:
@@ -88,9 +88,9 @@ externalAccess:
         - 32095
         - 32096
       externalIPs:
-        - 167.254.190.2 # HOST_IP
-        - 167.254.190.2 # HOST_IP
-        - 167.254.190.2 # HOST_IP
+        - 167.254.190.2 # YOUR_HOST_IP
+        - 167.254.190.2 # YOUR_HOST_IP
+        - 167.254.190.2 # YOUR_HOST_IP
       useHostIPs: true
 
 metrics:
