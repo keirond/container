@@ -36,11 +36,11 @@ controller:
     mountPath: /bitnami/kafka
   resources:
     requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
       cpu: 1
       memory: 2Gi
-    limits:
-      cpu: 2
-      memory: 4Gi
 broker:
   minId: 100
   replicaCount: 3
@@ -51,7 +51,7 @@ broker:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 80Gi
+    size: 100Gi
     mountPath: /bitnami/kafka
   resources:
     requests:
