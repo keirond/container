@@ -27,17 +27,17 @@ data:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 30Gi
+    size: 60Gi
   livenessProbe:
     enabled: false
   readinessProbe:
     enabled: false
   resources:
     requests:
-      cpu: 2
+      cpu: 8
       memory: 16Gi
     limits:
-      cpu: 3
+      cpu: 16
       memory: 32Gi
 
 coordinating:
