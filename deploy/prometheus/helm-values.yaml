@@ -16,7 +16,7 @@ server:
     - job_name: 'alarm-etl-job'
       metrics_path: '/actuator/prometheus'
       static_configs:
-        - targets: [ 'alarm-spk.ndl:8080' ]
+        - targets: [ 'alarm-spk.alarm-spk:8080' ]
     - job_name: 'cadvisor'
       static_configs:
         - targets: [ 'cadvisor.monitor:8080' ]
