@@ -12,6 +12,8 @@ server:
       cpu: 3
       memory: 4Gi
 
+  scrapeInterval: 15s
+  scrapeTimeout: 10s
   extraScrapeConfigs:
     - job_name: 'alarm-etl-job'
       metrics_path: '/actuator/prometheus'
