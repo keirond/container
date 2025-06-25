@@ -15,6 +15,10 @@ server:
   scrapeInterval: 15s
   scrapeTimeout: 10s
   extraScrapeConfigs:
+    - job_name: 'kafka-producer-performance-testing'
+      metrics_path: '/metrics'
+      static_configs:
+        - targets: [ '167.254.190.2:19080' ]
     - job_name: 'alarm-etl-job'
       metrics_path: '/actuator/prometheus'
       static_configs:
