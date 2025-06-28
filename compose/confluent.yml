@@ -116,6 +116,7 @@ services:
                   url: "http://connect:8083"
     networks:
       - kafka
+
 volumes:
   kafka_zookeeper_data:
     name: kafka_zookeeper_data
@@ -126,6 +127,7 @@ volumes:
   kafka_data:
     name: kafka_data
     driver: local
+
 networks:
   kafka:
     name: kafka
