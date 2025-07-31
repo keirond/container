@@ -41,6 +41,10 @@ controller:
     limits:
       cpu: 1
       memory: 2Gi
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
 broker:
   minId: 100
   replicaCount: 3
@@ -51,7 +55,7 @@ broker:
   persistence:
     enabled: true
     storageClass: longhorn
-    size: 100Gi
+    size: 30Gi
     mountPath: /bitnami/kafka
   resources:
     requests:
@@ -60,6 +64,10 @@ broker:
     limits:
        cpu: 2
        memory: 4Gi
+  livenessProbe:
+    enabled: false
+  readinessProbe:
+    enabled: false
 
 externalAccess:
   enabled: true
@@ -73,9 +81,9 @@ externalAccess:
         - 31095
         - 31096
       externalIPs:
-        - 167.254.190.2 # YOUR_HOST_IP
-        - 167.254.190.2 # YOUR_HOST_IP
-        - 167.254.190.2 # YOUR_HOST_IP
+        - 10.156.190.14 # YOUR_HOST_IP
+        - 10.156.190.14 # YOUR_HOST_IP
+        - 10.156.190.14 # YOUR_HOST_IP
       useHostIPs: true
 
   broker:
@@ -88,9 +96,9 @@ externalAccess:
         - 32095
         - 32096
       externalIPs:
-        - 167.254.190.2 # YOUR_HOST_IP
-        - 167.254.190.2 # YOUR_HOST_IP
-        - 167.254.190.2 # YOUR_HOST_IP
+        - 10.156.190.14 # YOUR_HOST_IP
+        - 10.156.190.14 # YOUR_HOST_IP
+        - 10.156.190.14 # YOUR_HOST_IP
       useHostIPs: true
 
 metrics:
