@@ -1,1 +1,0 @@
-An archive of composes & helm charts.
