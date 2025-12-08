@@ -1,6 +1,0 @@
-dependencies:
-- name: common
-  repository: https://keirond.github.io/helm-charts
-  version: 0.1.0
-digest: sha256:ccd8995a0fe5671d947a7c9d2e61f41ee147b52d5ba0745aae42b1ebf8b1d597
-generated: "2025-05-02T22:54:16.813407042+07:00"
