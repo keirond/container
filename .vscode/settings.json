@@ -1,0 +1,6 @@
+{
+  "yaml.schemas": {
+    "file:///home/baod/.vscode/extensions/atlassian.atlascode-4.0.9/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml",
+    "https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json": "file:///home/baod/keiron/keirond/container/compose/cero/otlp_collector.yaml"
+}
+}
