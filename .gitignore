@@ -1,8 +1,6 @@
 .idea/
+.vscode/
 .project
-
-.vscode/**
-!.vscode/settings.json
 
 *.tgz
 .DS_Store
