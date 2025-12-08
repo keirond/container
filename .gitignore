@@ -1,10 +1,7 @@
-*.iws
-*.iml
-*.ipr
 .idea/
-
 .vscode/
 .project
 
 *.tgz
 .DS_Store
+Thumbs.db
