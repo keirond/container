@@ -1,5 +1,0 @@
-{
-  "yaml.schemas": {
-    "https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json": "file:///home/baod/keiron/keirond/container/compose/cero/opentelemetry_collector.yaml"
-  }
-}
