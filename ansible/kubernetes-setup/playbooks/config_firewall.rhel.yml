@@ -2,7 +2,7 @@
 - name: Pre-check tasks
   hosts: all
   become: true
-  gather_facts: no
+  gather_facts: false
 
   tasks:
     # Check Firewall and Open Required Ports
@@ -10,12 +10,12 @@
     - name: Check if firewalld is installed
       shell: rpm -q firewalld
       register: firewalld_check
-      ignore_errors: yes
+      ignore_errors: true
 
     - name: Check if firewalld service is running
       shell: systemctl is-active firewalld
       register: firewalld_status
-      ignore_errors: yes
+      ignore_errors: true
       when: firewalld_check.rc == 0
 
     - name: Ensure required ports are open (only if firewall active)
