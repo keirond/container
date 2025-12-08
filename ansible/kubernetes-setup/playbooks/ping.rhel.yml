@@ -1,7 +1,7 @@
 ---
 - name: Ping & System Info
   hosts: all
-  gather_facts: no
+  gather_facts: false
 
   tasks:
     - name: Ping each host
