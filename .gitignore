@@ -5,3 +5,5 @@
 *.tgz
 .DS_Store
 Thumbs.db
+
+*.tmp.*
