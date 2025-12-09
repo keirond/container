@@ -6,14 +6,14 @@ services:
     image: ${REGISTRY:+$REGISTRY/}jaegertracing/jaeger-collector:${JAEGER_VERSION:-latest}
     container_name: jaeger-collector
     ports:
-      - "4317:4317" # OTLP gRPC
-      - "4318:4318" # OTLP HTTP
-      - "14267:14267" # Remote Sampling & Jaeger Thrift over HTTP
-      - "14268:14268" # Admin Health Check & Metrics HTTP
-      - "9411:9411" # Zipkin
-      - "14250:14250" # Jaeger gRPC
+      - "4317:4317"
+      - "4318:4318"
+      - "14267:14267"
+      - "14268:14268"
+      - "9411:9411"
+      - "14250:14250"
     environment:
-      - SPAN_STORAGE_TYPE=memory
+      - SPAN_STORAGE_TYPE=${SPAN_STORAGE_TYPE:-memory}
     networks:
       - jaeger-network
     restart: unless-stopped
@@ -22,9 +22,11 @@ services:
     image: ${REGISTRY:+$REGISTRY/}jaegertracing/jaeger-query:${JAEGER_VERSION:-latest}
     container_name: jaeger-query
     ports:
-      - "16685:16685" # QueryService gRPC
-      - "16686:16686" # Jaeger UI HTTP
-      - "16687:16687" # Admin Health Check & Metrics HTTP
+      - "16685:16685"
+      - "16686:16686"
+      - "16687:16687"
+    environment:
+      - SPAN_STORAGE_TYPE=${SPAN_STORAGE_TYPE:-memory}
     networks:
       - jaeger-network
     restart: unless-stopped
