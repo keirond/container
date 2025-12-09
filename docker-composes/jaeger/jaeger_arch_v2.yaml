@@ -1,0 +1,14 @@
+# otel-collector/instrumented-application --(otlp-grpc/otlp-http)--> jaeger-collector
+# --> kafka --> jaeger-ingester --> storage-backend --> jaeger-query & ui
+
+services:
+  jaeger-collector:
+    image: ${REGISTRY:+$REGISTRY/}jaegertracing/jaeger-collector:${JAEGER_VERSION:-latest}
+    container_name: jaeger-collector
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "14267:14267"
+      - "14268:14268"
+      - "9411:9411"
+      - "14250:14250"
