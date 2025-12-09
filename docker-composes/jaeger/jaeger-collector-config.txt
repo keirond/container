@@ -1,155 +1,172 @@
-      --admin.http.host-port string                               The host:port (e.g. 127.0.0.1:14269 or :14269) for the admin server, including health check, /metrics, etc. (default ":14269")
-      --admin.http.tls.cert string                                Path to a TLS Certificate file, used to identify this server to clients
-      --admin.http.tls.cipher-suites string                       Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
-      --admin.http.tls.client-ca string                           Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
-      --admin.http.tls.enabled                                    Enable TLS on the server
-      --admin.http.tls.key string                                 Path to a TLS Private Key file, used to identify this server to clients
-      --admin.http.tls.max-version string                         Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --admin.http.tls.min-version string                         Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --admin.http.tls.reload-interval duration                   The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+All command line options can be provided via environment variables by converting
+their names to upper case and replacing punctuation with underscores. For example:
 
-      --cassandra-archive.basic.allowed-authenticators string     The comma-separated list of allowed password authenticators for Cassandra.If none are specified, there is a default 'approved' list that is used (https://github.com/gocql/gocql/blob/34fdeebefcbf183ed7f916f931aa0586fdaa1b40/conn.go#L27). If a non-empty list is provided, only specified authenticators are allowed.
-      --cassandra-archive.connect-timeout duration                Timeout used for connections to Cassandra Servers (default 0s)
-      --cassandra-archive.connections-per-host int                The number of Cassandra connections from a single backend instance (default 2)
-      --cassandra-archive.consistency string                      The Cassandra consistency level, e.g. ANY, ONE, TWO, THREE, QUORUM, ALL, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE (default LOCAL_ONE)
-      --cassandra-archive.disable-compression                     Disables the use of the default Snappy Compression while connecting to the Cassandra Cluster if set to true. This is useful for connecting to Cassandra Clusters(like Azure Cosmos Db with Cassandra API) that do not support SnappyCompression
-      --cassandra-archive.enabled                                 Enable extra storage
-      --cassandra-archive.index.logs                              Controls log field indexing. Set to false to disable. (default true)
-      --cassandra-archive.index.process-tags                      Controls process tag indexing. Set to false to disable. (default true)
-      --cassandra-archive.index.tag-blacklist string              The comma-separated list of span tags to blacklist from being indexed. All other tags will be indexed. Mutually exclusive with the whitelist option.
-      --cassandra-archive.index.tag-whitelist string              The comma-separated list of span tags to whitelist for being indexed. All other tags will not be indexed. Mutually exclusive with the blacklist option.
-      --cassandra-archive.index.tags                              Controls tag indexing. Set to false to disable. (default true)
-      --cassandra-archive.keyspace string                         The Cassandra keyspace for Jaeger data (default "jaeger_dc1")
-      --cassandra-archive.local-dc string                         The name of the Cassandra local data center for DC Aware host selection
-      --cassandra-archive.max-retry-attempts int                  The number of attempts when reading from Cassandra (default 3)
-      --cassandra-archive.password string                         Password for password authentication for Cassandra
-      --cassandra-archive.port int                                The port for cassandra (default 9042)
-      --cassandra-archive.proto-version int                       The Cassandra protocol version (default 4)
-      --cassandra-archive.reconnect-interval duration             Reconnect interval to retry connecting to downed hosts (default 1m0s)
-      --cassandra-archive.servers string                          The comma-separated list of Cassandra servers (default "127.0.0.1")
-      --cassandra-archive.socket-keep-alive duration              Cassandra's keepalive period to use, enabled if > 0 (default 0s)
-      --cassandra-archive.span-store-write-cache-ttl duration     The duration to wait before rewriting an existing service or operation name (default 12h0m0s)
-      --cassandra-archive.timeout duration                        Timeout used for queries. A Timeout of zero means no timeout (default 0s)
-      --cassandra-archive.tls.ca string                           Path to a TLS CA (Certification Authority) file used to verify the remote server(s) (by default will use the system truststore)
-      --cassandra-archive.tls.cert string                         Path to a TLS Certificate file, used to identify this process to the remote server(s)
-      --cassandra-archive.tls.enabled                             Enable TLS when talking to the remote server(s)
-      --cassandra-archive.tls.key string                          Path to a TLS Private Key file, used to identify this process to the remote server(s)
-      --cassandra-archive.tls.server-name string                  Override the TLS server name we expect in the certificate of the remote server(s)
-      --cassandra-archive.tls.skip-host-verify                    (insecure) Skip server's certificate chain and host name verification
-      --cassandra-archive.username string                         Username for password authentication for Cassandra
+command line option                 environment variable
+------------------------------------------------------------------
+--cassandra.connections-per-host    CASSANDRA_CONNECTIONS_PER_HOST
+--metrics-backend                   METRICS_BACKEND
 
-      --cassandra.basic.allowed-authenticators string             The comma-separated list of allowed password authenticators for Cassandra.If none are specified, there is a default 'approved' list that is used (https://github.com/gocql/gocql/blob/34fdeebefcbf183ed7f916f931aa0586fdaa1b40/conn.go#L27). If a non-empty list is provided, only specified authenticators are allowed.
-      --cassandra.connect-timeout duration                        Timeout used for connections to Cassandra Servers (default 0s)
-      --cassandra.connections-per-host int                        The number of Cassandra connections from a single backend instance (default 2)
-      --cassandra.consistency string                              The Cassandra consistency level, e.g. ANY, ONE, TWO, THREE, QUORUM, ALL, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE (default LOCAL_ONE)
-      --cassandra.disable-compression                             Disables the use of the default Snappy Compression while connecting to the Cassandra Cluster if set to true. This is useful for connecting to Cassandra Clusters(like Azure Cosmos Db with Cassandra API) that do not support SnappyCompression
-      --cassandra.index.logs                                      Controls log field indexing. Set to false to disable. (default true)
-      --cassandra.index.process-tags                              Controls process tag indexing. Set to false to disable. (default true)
-      --cassandra.index.tag-blacklist string                      The comma-separated list of span tags to blacklist from being indexed. All other tags will be indexed. Mutually exclusive with the whitelist option.
-      --cassandra.index.tag-whitelist string                      The comma-separated list of span tags to whitelist for being indexed. All other tags will not be indexed. Mutually exclusive with the blacklist option.
-      --cassandra.index.tags                                      Controls tag indexing. Set to false to disable. (default true)
-      --cassandra.keyspace string                                 The Cassandra keyspace for Jaeger data (default "jaeger_dc1")
-      --cassandra.local-dc string                                 The name of the Cassandra local data center for DC Aware host selection
-      --cassandra.max-retry-attempts int                          The number of attempts when reading from Cassandra (default 3)
-      --cassandra.password string                                 Password for password authentication for Cassandra
-      --cassandra.port int                                        The port for cassandra (default 9042)
-      --cassandra.proto-version int                               The Cassandra protocol version (default 4)
-      --cassandra.reconnect-interval duration                     Reconnect interval to retry connecting to downed hosts (default 1m0s)
-      --cassandra.servers string                                  The comma-separated list of Cassandra servers (default "127.0.0.1")
-      --cassandra.socket-keep-alive duration                      Cassandra's keepalive period to use, enabled if > 0 (default 0s)
-      --cassandra.span-store-write-cache-ttl duration             The duration to wait before rewriting an existing service or operation name (default 12h0m0s)
-      --cassandra.timeout duration                                Timeout used for queries. A Timeout of zero means no timeout (default 0s)
-      --cassandra.tls.ca string                                   Path to a TLS CA (Certification Authority) file used to verify the remote server(s) (by default will use the system truststore)
-      --cassandra.tls.cert string                                 Path to a TLS Certificate file, used to identify this process to the remote server(s)
-      --cassandra.tls.enabled                                     Enable TLS when talking to the remote server(s)
-      --cassandra.tls.key string                                  Path to a TLS Private Key file, used to identify this process to the remote server(s)
-      --cassandra.tls.server-name string                          Override the TLS server name we expect in the certificate of the remote server(s)
-      --cassandra.tls.skip-host-verify                            (insecure) Skip server's certificate chain and host name verification
-      --cassandra.username string                                 Username for password authentication for Cassandra
+The following configuration options are only available via environment variables:
 
-      --collector.enable-span-size-metrics                        Enables metrics based on processed span size, which are more expensive to calculate.
-      --collector.grpc-server.host-port string                    The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's gRPC server (default ":14250")
-      --collector.grpc-server.max-connection-age duration         The maximum amount of time a connection may exist. Set this value to a few seconds or minutes on highly elastic environments, so that clients discover new collector nodes frequently. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
-      --collector.grpc-server.max-connection-age-grace duration   The additive period after MaxConnectionAge after which the connection will be forcibly closed. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
-      --collector.grpc-server.max-message-size int                The maximum receivable message size for the collector's gRPC server (default 4194304)
-      --collector.grpc.tls.cert string                            Path to a TLS Certificate file, used to identify this server to clients
-      --collector.grpc.tls.cipher-suites string                   Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
-      --collector.grpc.tls.client-ca string                       Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
-      --collector.grpc.tls.enabled                                Enable TLS on the server
-      --collector.grpc.tls.key string                             Path to a TLS Private Key file, used to identify this server to clients
-      --collector.grpc.tls.max-version string                     Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.grpc.tls.min-version string                     Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.grpc.tls.reload-interval duration               The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
-      --collector.http-server.host-port string                    The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's HTTP server (default ":14268")
-      --collector.http-server.idle-timeout duration               See https://pkg.go.dev/net/http#Server (default 0s)
-      --collector.http-server.read-header-timeout duration        See https://pkg.go.dev/net/http#Server (default 2s)
-      --collector.http-server.read-timeout duration               See https://pkg.go.dev/net/http#Server (default 0s)
-      --collector.http.tls.cert string                            Path to a TLS Certificate file, used to identify this server to clients
-      --collector.http.tls.cipher-suites string                   Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
-      --collector.http.tls.client-ca string                       Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
-      --collector.http.tls.enabled                                Enable TLS on the server
-      --collector.http.tls.key string                             Path to a TLS Private Key file, used to identify this server to clients
-      --collector.http.tls.max-version string                     Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.http.tls.min-version string                     Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.http.tls.reload-interval duration               The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
-      --collector.num-workers int                                 The number of workers pulling items from the queue (default 50)
-      --collector.otlp.enabled                                    Enables OpenTelemetry OTLP receiver on dedicated HTTP and gRPC ports (default true)
-      --collector.otlp.grpc.host-port string                      The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's gRPC server (default ":4317")
-      --collector.otlp.grpc.max-connection-age duration           The maximum amount of time a connection may exist. Set this value to a few seconds or minutes on highly elastic environments, so that clients discover new collector nodes frequently. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
-      --collector.otlp.grpc.max-connection-age-grace duration     The additive period after MaxConnectionAge after which the connection will be forcibly closed. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
-      --collector.otlp.grpc.max-message-size int                  The maximum receivable message size for the collector's gRPC server (default 4194304)
-      --collector.otlp.grpc.tls.cert string                       Path to a TLS Certificate file, used to identify this server to clients
-      --collector.otlp.grpc.tls.cipher-suites string              Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
-      --collector.otlp.grpc.tls.client-ca string                  Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
-      --collector.otlp.grpc.tls.enabled                           Enable TLS on the server
-      --collector.otlp.grpc.tls.key string                        Path to a TLS Private Key file, used to identify this server to clients
-      --collector.otlp.grpc.tls.max-version string                Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.otlp.grpc.tls.min-version string                Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.otlp.grpc.tls.reload-interval duration          The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
-      --collector.otlp.http.cors.allowed-headers string           Comma-separated CORS allowed headers. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
-      --collector.otlp.http.cors.allowed-origins string           Comma-separated CORS allowed origins. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
-      --collector.otlp.http.host-port string                      The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's HTTP server (default ":4318")
-      --collector.otlp.http.idle-timeout duration                 See https://pkg.go.dev/net/http#Server (default 0s)
-      --collector.otlp.http.read-header-timeout duration          See https://pkg.go.dev/net/http#Server (default 2s)
-      --collector.otlp.http.read-timeout duration                 See https://pkg.go.dev/net/http#Server (default 0s)
-      --collector.otlp.http.tls.cert string                       Path to a TLS Certificate file, used to identify this server to clients
-      --collector.otlp.http.tls.cipher-suites string              Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
-      --collector.otlp.http.tls.client-ca string                  Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
-      --collector.otlp.http.tls.enabled                           Enable TLS on the server
-      --collector.otlp.http.tls.key string                        Path to a TLS Private Key file, used to identify this server to clients
-      --collector.otlp.http.tls.max-version string                Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.otlp.http.tls.min-version string                Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.otlp.http.tls.reload-interval duration          The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
-      --collector.queue-size int                                  The queue size of the collector (default 2000)
-      --collector.queue-size-memory uint                          (experimental) The max memory size in MiB to use for the dynamic queue.
-      --collector.tags string                                     One or more tags to be added to the Process tags of all spans passing through this collector. Ex: key1=value1,key2=${envVar:defaultValue}
-      --collector.zipkin.cors.allowed-headers string              Comma-separated CORS allowed headers. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
-      --collector.zipkin.cors.allowed-origins string              Comma-separated CORS allowed origins. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
-      --collector.zipkin.host-port string                         The host:port (e.g. 127.0.0.1:9411 or :9411) of the collector's Zipkin server (disabled by default)
-      --collector.zipkin.keep-alive                               KeepAlive configures allow Keep-Alive for Zipkin HTTP server (enabled by default) (default true)
-      --collector.zipkin.tls.cert string                          Path to a TLS Certificate file, used to identify this server to clients
-      --collector.zipkin.tls.cipher-suites string                 Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
-      --collector.zipkin.tls.client-ca string                     Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
-      --collector.zipkin.tls.enabled                              Enable TLS on the server
-      --collector.zipkin.tls.key string                           Path to a TLS Private Key file, used to identify this server to clients
-      --collector.zipkin.tls.max-version string                   Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.zipkin.tls.min-version string                   Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
-      --collector.zipkin.tls.reload-interval duration             The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+SPAN_STORAGE_TYPE string         The type of backend [cassandra, opensearch, elasticsearch, memory, kafka, badger, blackhole, grpc] used for trace storage. Multiple backends can be specified as comma-separated list, e.g. "cassandra,elasticsearch" (currently only for writing spans). Note that "kafka" is only valid in jaeger-collector; it is not a replacement for a proper storage backend, and only used as a buffer for spans when Jaeger is deployed in the collector+ingester configuration.  (default "cassandra")
+DEPENDENCY_STORAGE_TYPE string   The type of backend used for service dependencies storage. (default "${SPAN_STORAGE_TYPE}")
+SAMPLING_CONFIG_TYPE string      The method [file, adaptive] used for determining the sampling rates served to clients configured with remote sampling enabled. "file" uses a periodically reloaded file and "adaptive" dynamically adjusts sampling rates based on current traffic.  (default "file")
+SAMPLING_STORAGE_TYPE string     The type of backend [cassandra, memory, badger] used for adaptive sampling storage when adaptive sampling is enabled via SAMPLING_CONFIG_TYPE.
+METRICS_STORAGE_TYPE string      The type of backend [prometheus] used as a metrics store with Service Performance Monitoring (https://www.jaegertracing.io/docs/latest/spm/).
 
-      --config-file string                                        Configuration file in JSON, TOML, YAML, HCL, or Java properties formats (default none). See spf13/viper for precedence.
-      --downsampling.hashsalt string                              Salt used when hashing trace id for downsampling.
-      --downsampling.ratio float                                  Ratio of spans passed to storage after downsampling (between 0 and 1), e.g ratio = 0.3 means we are keeping 30% of spans and dropping 70% of spans; ratio = 1.0 disables downsampling. (default 1)
-      --feature-gates flag                                        Comma-delimited list of feature gate identifiers. Prefix with '-' to disable the feature. '+' or no prefix will enable the feature. (default confighttp.framedSnappy,configoptional.AddEnabledField,-confmap.enableMergeAppendOption,exporter.PersistRequestContext,jaeger.es.disableLegacyId,otelcol.printInitialConfig,pdata.enableRefCounting,pdata.useCustomProtoEncoding,-pdata.useProtoPooling,-receiverhelper.newReceiverMetrics,-service.AllowNoPipelines,-service.profilesSupport,-telemetry.disableHighCardinalityMetrics,-telemetry.newPipelineTelemetry)
-  -h, --help                                                      help for jaeger-collector
-      --log-encoding string                                       Log encoding. Supported values are 'json' and 'console'. (default "json")
-      --log-level string                                          Minimal allowed log Level. For more levels see https://github.com/uber-go/zap (default "info")
-      --metrics-backend string                                    Defines which metrics backend to use for metrics reporting: prometheus or none (default "prometheus")
-      --metrics-http-route string                                 Defines the route of HTTP endpoint for metrics backends that support scraping (default "/metrics")
-      --multi-tenancy.enabled                                     Enable tenancy header when receiving or querying
-      --multi-tenancy.header string                               HTTP header carrying tenant (default "x-tenant")
-      --multi-tenancy.tenants string                              comma-separated list of allowed values for --multi-tenancy.header header.  (If not supplied, tenants are not restricted)
-      --sampling.default-sampling-probability float               Sampling probability used by the Strategy Store for static sampling. Value must be between 0 and 1. (default 0.001)
-      --sampling.strategies-file string                           The path for the sampling strategies file in JSON format. See sampling documentation to see format of the file
-      --sampling.strategies-reload-interval duration              Reload interval to check and reload sampling strategies file. Zero value means no reloading (default 0s)
-      --span-storage.type string                                  (deprecated) please use SPAN_STORAGE_TYPE environment variable. Run this binary with the 'env' command for help.
+Commands:
 
+--admin.http.host-port string                               The host:port (e.g. 127.0.0.1:14269 or :14269) for the admin server, including health check, /metrics, etc. (default ":14269")
+--admin.http.tls.cert string                                Path to a TLS Certificate file, used to identify this server to clients
+--admin.http.tls.cipher-suites string                       Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
+--admin.http.tls.client-ca string                           Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
+--admin.http.tls.enabled                                    Enable TLS on the server
+--admin.http.tls.key string                                 Path to a TLS Private Key file, used to identify this server to clients
+--admin.http.tls.max-version string                         Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--admin.http.tls.min-version string                         Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--admin.http.tls.reload-interval duration                   The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+
+--cassandra-archive.basic.allowed-authenticators string     The comma-separated list of allowed password authenticators for Cassandra.If none are specified, there is a default 'approved' list that is used (https://github.com/gocql/gocql/blob/34fdeebefcbf183ed7f916f931aa0586fdaa1b40/conn.go#L27). If a non-empty list is provided, only specified authenticators are allowed.
+--cassandra-archive.connect-timeout duration                Timeout used for connections to Cassandra Servers (default 0s)
+--cassandra-archive.connections-per-host int                The number of Cassandra connections from a single backend instance (default 2)
+--cassandra-archive.consistency string                      The Cassandra consistency level, e.g. ANY, ONE, TWO, THREE, QUORUM, ALL, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE (default LOCAL_ONE)
+--cassandra-archive.disable-compression                     Disables the use of the default Snappy Compression while connecting to the Cassandra Cluster if set to true. This is useful for connecting to Cassandra Clusters(like Azure Cosmos Db with Cassandra API) that do not support SnappyCompression
+--cassandra-archive.enabled                                 Enable extra storage
+--cassandra-archive.index.logs                              Controls log field indexing. Set to false to disable. (default true)
+--cassandra-archive.index.process-tags                      Controls process tag indexing. Set to false to disable. (default true)
+--cassandra-archive.index.tag-blacklist string              The comma-separated list of span tags to blacklist from being indexed. All other tags will be indexed. Mutually exclusive with the whitelist option.
+--cassandra-archive.index.tag-whitelist string              The comma-separated list of span tags to whitelist for being indexed. All other tags will not be indexed. Mutually exclusive with the blacklist option.
+--cassandra-archive.index.tags                              Controls tag indexing. Set to false to disable. (default true)
+--cassandra-archive.keyspace string                         The Cassandra keyspace for Jaeger data (default "jaeger_dc1")
+--cassandra-archive.local-dc string                         The name of the Cassandra local data center for DC Aware host selection
+--cassandra-archive.max-retry-attempts int                  The number of attempts when reading from Cassandra (default 3)
+--cassandra-archive.password string                         Password for password authentication for Cassandra
+--cassandra-archive.port int                                The port for cassandra (default 9042)
+--cassandra-archive.proto-version int                       The Cassandra protocol version (default 4)
+--cassandra-archive.reconnect-interval duration             Reconnect interval to retry connecting to downed hosts (default 1m0s)
+--cassandra-archive.servers string                          The comma-separated list of Cassandra servers (default "127.0.0.1")
+--cassandra-archive.socket-keep-alive duration              Cassandra's keepalive period to use, enabled if > 0 (default 0s)
+--cassandra-archive.span-store-write-cache-ttl duration     The duration to wait before rewriting an existing service or operation name (default 12h0m0s)
+--cassandra-archive.timeout duration                        Timeout used for queries. A Timeout of zero means no timeout (default 0s)
+--cassandra-archive.tls.ca string                           Path to a TLS CA (Certification Authority) file used to verify the remote server(s) (by default will use the system truststore)
+--cassandra-archive.tls.cert string                         Path to a TLS Certificate file, used to identify this process to the remote server(s)
+--cassandra-archive.tls.enabled                             Enable TLS when talking to the remote server(s)
+--cassandra-archive.tls.key string                          Path to a TLS Private Key file, used to identify this process to the remote server(s)
+--cassandra-archive.tls.server-name string                  Override the TLS server name we expect in the certificate of the remote server(s)
+--cassandra-archive.tls.skip-host-verify                    (insecure) Skip server's certificate chain and host name verification
+--cassandra-archive.username string                         Username for password authentication for Cassandra
+
+--cassandra.basic.allowed-authenticators string             The comma-separated list of allowed password authenticators for Cassandra.If none are specified, there is a default 'approved' list that is used (https://github.com/gocql/gocql/blob/34fdeebefcbf183ed7f916f931aa0586fdaa1b40/conn.go#L27). If a non-empty list is provided, only specified authenticators are allowed.
+--cassandra.connect-timeout duration                        Timeout used for connections to Cassandra Servers (default 0s)
+--cassandra.connections-per-host int                        The number of Cassandra connections from a single backend instance (default 2)
+--cassandra.consistency string                              The Cassandra consistency level, e.g. ANY, ONE, TWO, THREE, QUORUM, ALL, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE (default LOCAL_ONE)
+--cassandra.disable-compression                             Disables the use of the default Snappy Compression while connecting to the Cassandra Cluster if set to true. This is useful for connecting to Cassandra Clusters(like Azure Cosmos Db with Cassandra API) that do not support SnappyCompression
+--cassandra.index.logs                                      Controls log field indexing. Set to false to disable. (default true)
+--cassandra.index.process-tags                              Controls process tag indexing. Set to false to disable. (default true)
+--cassandra.index.tag-blacklist string                      The comma-separated list of span tags to blacklist from being indexed. All other tags will be indexed. Mutually exclusive with the whitelist option.
+--cassandra.index.tag-whitelist string                      The comma-separated list of span tags to whitelist for being indexed. All other tags will not be indexed. Mutually exclusive with the blacklist option.
+--cassandra.index.tags                                      Controls tag indexing. Set to false to disable. (default true)
+--cassandra.keyspace string                                 The Cassandra keyspace for Jaeger data (default "jaeger_dc1")
+--cassandra.local-dc string                                 The name of the Cassandra local data center for DC Aware host selection
+--cassandra.max-retry-attempts int                          The number of attempts when reading from Cassandra (default 3)
+--cassandra.password string                                 Password for password authentication for Cassandra
+--cassandra.port int                                        The port for cassandra (default 9042)
+--cassandra.proto-version int                               The Cassandra protocol version (default 4)
+--cassandra.reconnect-interval duration                     Reconnect interval to retry connecting to downed hosts (default 1m0s)
+--cassandra.servers string                                  The comma-separated list of Cassandra servers (default "127.0.0.1")
+--cassandra.socket-keep-alive duration                      Cassandra's keepalive period to use, enabled if > 0 (default 0s)
+--cassandra.span-store-write-cache-ttl duration             The duration to wait before rewriting an existing service or operation name (default 12h0m0s)
+--cassandra.timeout duration                                Timeout used for queries. A Timeout of zero means no timeout (default 0s)
+--cassandra.tls.ca string                                   Path to a TLS CA (Certification Authority) file used to verify the remote server(s) (by default will use the system truststore)
+--cassandra.tls.cert string                                 Path to a TLS Certificate file, used to identify this process to the remote server(s)
+--cassandra.tls.enabled                                     Enable TLS when talking to the remote server(s)
+--cassandra.tls.key string                                  Path to a TLS Private Key file, used to identify this process to the remote server(s)
+--cassandra.tls.server-name string                          Override the TLS server name we expect in the certificate of the remote server(s)
+--cassandra.tls.skip-host-verify                            (insecure) Skip server's certificate chain and host name verification
+--cassandra.username string                                 Username for password authentication for Cassandra
+
+--collector.enable-span-size-metrics                        Enables metrics based on processed span size, which are more expensive to calculate.
+--collector.grpc-server.host-port string                    The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's gRPC server (default ":14250")
+--collector.grpc-server.max-connection-age duration         The maximum amount of time a connection may exist. Set this value to a few seconds or minutes on highly elastic environments, so that clients discover new collector nodes frequently. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
+--collector.grpc-server.max-connection-age-grace duration   The additive period after MaxConnectionAge after which the connection will be forcibly closed. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
+--collector.grpc-server.max-message-size int                The maximum receivable message size for the collector's gRPC server (default 4194304)
+--collector.grpc.tls.cert string                            Path to a TLS Certificate file, used to identify this server to clients
+--collector.grpc.tls.cipher-suites string                   Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
+--collector.grpc.tls.client-ca string                       Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
+--collector.grpc.tls.enabled                                Enable TLS on the server
+--collector.grpc.tls.key string                             Path to a TLS Private Key file, used to identify this server to clients
+--collector.grpc.tls.max-version string                     Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.grpc.tls.min-version string                     Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.grpc.tls.reload-interval duration               The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+--collector.http-server.host-port string                    The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's HTTP server (default ":14268")
+--collector.http-server.idle-timeout duration               See https://pkg.go.dev/net/http#Server (default 0s)
+--collector.http-server.read-header-timeout duration        See https://pkg.go.dev/net/http#Server (default 2s)
+--collector.http-server.read-timeout duration               See https://pkg.go.dev/net/http#Server (default 0s)
+--collector.http.tls.cert string                            Path to a TLS Certificate file, used to identify this server to clients
+--collector.http.tls.cipher-suites string                   Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
+--collector.http.tls.client-ca string                       Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
+--collector.http.tls.enabled                                Enable TLS on the server
+--collector.http.tls.key string                             Path to a TLS Private Key file, used to identify this server to clients
+--collector.http.tls.max-version string                     Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.http.tls.min-version string                     Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.http.tls.reload-interval duration               The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+--collector.num-workers int                                 The number of workers pulling items from the queue (default 50)
+--collector.otlp.enabled                                    Enables OpenTelemetry OTLP receiver on dedicated HTTP and gRPC ports (default true)
+--collector.otlp.grpc.host-port string                      The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's gRPC server (default ":4317")
+--collector.otlp.grpc.max-connection-age duration           The maximum amount of time a connection may exist. Set this value to a few seconds or minutes on highly elastic environments, so that clients discover new collector nodes frequently. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
+--collector.otlp.grpc.max-connection-age-grace duration     The additive period after MaxConnectionAge after which the connection will be forcibly closed. See https://pkg.go.dev/google.golang.org/grpc/keepalive#ServerParameters (default 0s)
+--collector.otlp.grpc.max-message-size int                  The maximum receivable message size for the collector's gRPC server (default 4194304)
+--collector.otlp.grpc.tls.cert string                       Path to a TLS Certificate file, used to identify this server to clients
+--collector.otlp.grpc.tls.cipher-suites string              Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
+--collector.otlp.grpc.tls.client-ca string                  Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
+--collector.otlp.grpc.tls.enabled                           Enable TLS on the server
+--collector.otlp.grpc.tls.key string                        Path to a TLS Private Key file, used to identify this server to clients
+--collector.otlp.grpc.tls.max-version string                Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.otlp.grpc.tls.min-version string                Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.otlp.grpc.tls.reload-interval duration          The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+--collector.otlp.http.cors.allowed-headers string           Comma-separated CORS allowed headers. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
+--collector.otlp.http.cors.allowed-origins string           Comma-separated CORS allowed origins. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+--collector.otlp.http.host-port string                      The host:port (e.g. 127.0.0.1:12345 or :12345) of the collector's HTTP server (default ":4318")
+--collector.otlp.http.idle-timeout duration                 See https://pkg.go.dev/net/http#Server (default 0s)
+--collector.otlp.http.read-header-timeout duration          See https://pkg.go.dev/net/http#Server (default 2s)
+--collector.otlp.http.read-timeout duration                 See https://pkg.go.dev/net/http#Server (default 0s)
+--collector.otlp.http.tls.cert string                       Path to a TLS Certificate file, used to identify this server to clients
+--collector.otlp.http.tls.cipher-suites string              Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
+--collector.otlp.http.tls.client-ca string                  Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
+--collector.otlp.http.tls.enabled                           Enable TLS on the server
+--collector.otlp.http.tls.key string                        Path to a TLS Private Key file, used to identify this server to clients
+--collector.otlp.http.tls.max-version string                Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.otlp.http.tls.min-version string                Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.otlp.http.tls.reload-interval duration          The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+--collector.queue-size int                                  The queue size of the collector (default 2000)
+--collector.queue-size-memory uint                          (experimental) The max memory size in MiB to use for the dynamic queue.
+--collector.tags string                                     One or more tags to be added to the Process tags of all spans passing through this collector. Ex: key1=value1,key2=${envVar:defaultValue}
+--collector.zipkin.cors.allowed-headers string              Comma-separated CORS allowed headers. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
+--collector.zipkin.cors.allowed-origins string              Comma-separated CORS allowed origins. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+--collector.zipkin.host-port string                         The host:port (e.g. 127.0.0.1:9411 or :9411) of the collector's Zipkin server (disabled by default)
+--collector.zipkin.keep-alive                               KeepAlive configures allow Keep-Alive for Zipkin HTTP server (enabled by default) (default true)
+--collector.zipkin.tls.cert string                          Path to a TLS Certificate file, used to identify this server to clients
+--collector.zipkin.tls.cipher-suites string                 Comma-separated list of cipher suites for the server, values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants).
+--collector.zipkin.tls.client-ca string                     Path to a TLS CA (Certification Authority) file used to verify certificates presented by clients (if unset, all clients are permitted)
+--collector.zipkin.tls.enabled                              Enable TLS on the server
+--collector.zipkin.tls.key string                           Path to a TLS Private Key file, used to identify this server to clients
+--collector.zipkin.tls.max-version string                   Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.zipkin.tls.min-version string                   Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
+--collector.zipkin.tls.reload-interval duration             The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+
+--config-file string                                        Configuration file in JSON, TOML, YAML, HCL, or Java properties formats (default none). See spf13/viper for precedence.
+--downsampling.hashsalt string                              Salt used when hashing trace id for downsampling.
+--downsampling.ratio float                                  Ratio of spans passed to storage after downsampling (between 0 and 1), e.g ratio = 0.3 means we are keeping 30% of spans and dropping 70% of spans; ratio = 1.0 disables downsampling. (default 1)
+--feature-gates flag                                        Comma-delimited list of feature gate identifiers. Prefix with '-' to disable the feature. '+' or no prefix will enable the feature. (default confighttp.framedSnappy,configoptional.AddEnabledField,-confmap.enableMergeAppendOption,exporter.PersistRequestContext,jaeger.es.disableLegacyId,otelcol.printInitialConfig,pdata.enableRefCounting,pdata.useCustomProtoEncoding,-pdata.useProtoPooling,-receiverhelper.newReceiverMetrics,-service.AllowNoPipelines,-service.profilesSupport,-telemetry.disableHighCardinalityMetrics,-telemetry.newPipelineTelemetry)
+-h, --help                                                      help for jaeger-collector
+--log-encoding string                                       Log encoding. Supported values are 'json' and 'console'. (default "json")
+--log-level string                                          Minimal allowed log Level. For more levels see https://github.com/uber-go/zap (default "info")
+--metrics-backend string                                    Defines which metrics backend to use for metrics reporting: prometheus or none (default "prometheus")
+--metrics-http-route string                                 Defines the route of HTTP endpoint for metrics backends that support scraping (default "/metrics")
+--multi-tenancy.enabled                                     Enable tenancy header when receiving or querying
+--multi-tenancy.header string                               HTTP header carrying tenant (default "x-tenant")
+--multi-tenancy.tenants string                              comma-separated list of allowed values for --multi-tenancy.header header.  (If not supplied, tenants are not restricted)
+--sampling.default-sampling-probability float               Sampling probability used by the Strategy Store for static sampling. Value must be between 0 and 1. (default 0.001)
+--sampling.strategies-file string                           The path for the sampling strategies file in JSON format. See sampling documentation to see format of the file
+--sampling.strategies-reload-interval duration              Reload interval to check and reload sampling strategies file. Zero value means no reloading (default 0s)
+--span-storage.type string                                  (deprecated) please use SPAN_STORAGE_TYPE environment variable. Run this binary with the 'env' command for help.
