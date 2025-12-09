@@ -14,6 +14,11 @@ services:
       - "14250:14250"
     environment:
       - SPAN_STORAGE_TYPE=${SPAN_STORAGE_TYPE:-memory}
+    command:
+      - "--sampling.strategies-file=/etc/jaeger/sampling_strategies.json"
+      - "--sampling.strategies-reload-interval=1m"
+    volumes:
+      - "./sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro"
     networks:
       - jaeger-network
     restart: unless-stopped
