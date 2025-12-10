@@ -13,9 +13,11 @@ services:
       - "9411:9411"
       - "14250:14250"
     environment:
-      - SPAN_STORAGE_TYPE=${SPAN_STORAGE_TYPE:-memory}
+      - SPAN_STORAGE_TYPE=memory
     command:
-      - "--sampling.strategies-file=/etc/jaeger/sampling_strategies.json"
+      - "--collector.otlp.enabled=true"
+      - '--collector.tags="jaeger-collector=true"'
+      - '--sampling.strategies-file="/etc/jaeger/sampling_strategies.json"'
       - "--sampling.strategies-reload-interval=1m"
     volumes:
       - "./sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro"
@@ -31,7 +33,7 @@ services:
       - "16686:16686"
       - "16687:16687"
     environment:
-      - SPAN_STORAGE_TYPE=${SPAN_STORAGE_TYPE:-memory}
+      - SPAN_STORAGE_TYPE=memory
     networks:
       - jaeger-network
     restart: unless-stopped
