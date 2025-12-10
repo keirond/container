@@ -1,0 +1,44 @@
+services:
+  cassandra:
+    image: ${REGISTRY:-}cassandra:${CASSANDRA_VERSION:-latest}
+    ports:
+      - "9042:9042"
+      - "7199:7199"
+      - "7000:7000"
+      - "7001:7001"
+    command:
+      - "-Dcassandra.config=/etc/cassandra/cassandra.yaml"
+    configs:
+      - source: cassandra-config
+        target: /etc/cassandra/cassandra.yaml
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          cpus: "0.5"
+          memory: 512M
+        limits:
+          cpus: "1"
+          memory: 1G
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
+    networks:
+      - cassandra-network
+
+configs:
+  cassandra-config:
+    file: ./cassandra_properties.yaml
+
+networks:
+  cassandra-network:
+    driver: overlay
