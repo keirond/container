@@ -16,12 +16,19 @@ services:
       - "--collector.tags=jaeger-collector=true"
       - "--sampling.strategies-file=/etc/jaeger/sampling_strategies.json"
       - "--sampling.strategies-reload-interval=1m"
-    volumes:
-      - "./sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro"
+    configs:
+      - source: jaeger-sampling-strategies
+        target: /etc/jaeger/sampling_strategies.json
     networks:
       - jaeger-network
     restart: unless-stopped
 
+configs:
+  jaeger-sampling-strategies:
+    name: jaeger-sampling-strategies
+    file: ./sampling_strategies.json
+
 networks:
   jaeger-network:
+    name: jaeger-network
     driver: bridge
