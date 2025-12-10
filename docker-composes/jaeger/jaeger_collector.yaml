@@ -1,7 +1,6 @@
 services:
   jaeger-collector:
     image: ${REGISTRY:-}jaegertracing/jaeger-collector:${JAEGER_VERSION:-latest}
-    container_name: jaeger-collector
     ports:
       - "4317:4317"
       - "4318:4318"
@@ -30,5 +29,4 @@ configs:
 
 networks:
   jaeger-network:
-    name: jaeger-network
     driver: overlay

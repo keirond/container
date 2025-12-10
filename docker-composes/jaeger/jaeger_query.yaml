@@ -1,7 +1,6 @@
 services:
   jaeger-query:
     image: ${REGISTRY:-}jaegertracing/jaeger-query:${JAEGER_VERSION:-latest}
-    container_name: jaeger-query
     ports:
       - "16685:16685"
       - "16686:16686"
