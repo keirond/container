@@ -20,7 +20,6 @@ services:
         target: /etc/jaeger/sampling_strategies.json
     networks:
       - jaeger-network
-    restart: unless-stopped
 
 configs:
   jaeger-sampling-strategies:
