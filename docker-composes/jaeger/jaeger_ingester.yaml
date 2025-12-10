@@ -1,6 +1,3 @@
-# otel-collector/instrumented-application --> jaeger-collector
-# --> kafka --> jaeger-ingester --> storage-backend --> jaeger-query & ui
-
 services:
   jaeger-ingester:
     image: ${REGISTRY:-}jaegertracing/jaeger-ingester:${JAEGER_VERSION:-latest}

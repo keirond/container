@@ -23,7 +23,6 @@ services:
 
 configs:
   jaeger-sampling-strategies:
-    name: jaeger-sampling-strategies
     file: ./sampling_strategies.json
 
 networks:
