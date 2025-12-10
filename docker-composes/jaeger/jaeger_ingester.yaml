@@ -16,4 +16,4 @@ services:
 networks:
   jaeger-network:
     name: jaeger-network
-    driver: bridge
+    driver: overlay
