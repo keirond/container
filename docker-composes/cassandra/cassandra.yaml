@@ -34,7 +34,7 @@ services:
 
 volumes:
   cassandra-data:
-    driver: overlay
+    driver: local
 
 networks:
   cassandra-network:
