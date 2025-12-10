@@ -11,10 +11,10 @@ services:
       resources:
         reservations:
           cpus: "0.5"
-          memory: 512M
+          memory: 1.5G
         limits:
-          cpus: "1"
-          memory: 1G
+          cpus: "2"
+          memory: 3G
       update_config:
         parallelism: 1
         delay: 10s
