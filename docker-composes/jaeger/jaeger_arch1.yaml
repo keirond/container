@@ -16,8 +16,8 @@ services:
       - SPAN_STORAGE_TYPE=memory
     command:
       - "--collector.otlp.enabled=true"
-      - '--collector.tags="jaeger-collector=true"'
-      - '--sampling.strategies-file="/etc/jaeger/sampling_strategies.json"'
+      - "--collector.tags=jaeger-collector=true"
+      - "--sampling.strategies-file=/etc/jaeger/sampling_strategies.json"
       - "--sampling.strategies-reload-interval=1m"
     volumes:
       - "./sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro"
