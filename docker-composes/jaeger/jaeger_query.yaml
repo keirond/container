@@ -6,15 +6,17 @@ services:
       - "16686:16686"
       - "16687:16687"
     environment:
-      - SPAN_STORAGE_TYPE=memory
+      - SPAN_STORAGE_TYPE=cassandra
+    command:
+      - "--cassandra.servers=${CASSANDRA_SERVERS:-127.0.0.1}"
     deploy:
       replicas: 1
       resources:
         reservations:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
         limits:
-          cpus: '1'
+          cpus: "1"
           memory: 1G
       update_config:
         parallelism: 1
