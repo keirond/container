@@ -1,6 +1,3 @@
-# otel-collector/instrumented-application --> jaeger-collector
-# --> kafka --> jaeger-ingester --> storage-backend --> jaeger-query & ui
-
 services:
   jaeger-collector:
     image: ${REGISTRY:-}jaegertracing/jaeger-collector:${JAEGER_VERSION:-latest}
@@ -21,30 +18,6 @@ services:
       - "--sampling.strategies-reload-interval=1m"
     volumes:
       - "./sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro"
-    networks:
-      - jaeger-network
-    restart: unless-stopped
-
-  jaeger-ingester:
-    image: ${REGISTRY:-}jaegertracing/jaeger-ingester:${JAEGER_VERSION:-latest}
-    container_name: jaeger-ingester
-    ports:
-      - "14270:14270"
-    environment:
-      - SPAN_STORAGE_TYPE=memory
-    networks:
-      - jaeger-network
-    restart: unless-stopped
-
-  jaeger-query:
-    image: ${REGISTRY:-}jaegertracing/jaeger-query:${JAEGER_VERSION:-latest}
-    container_name: jaeger-query
-    ports:
-      - "16685:16685"
-      - "16686:16686"
-      - "16687:16687"
-    environment:
-      - SPAN_STORAGE_TYPE=memory
     networks:
       - jaeger-network
     restart: unless-stopped

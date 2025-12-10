@@ -1,0 +1,18 @@
+# otel-collector/instrumented-application --> jaeger-collector
+# --> kafka --> jaeger-ingester --> storage-backend --> jaeger-query & ui
+
+services:
+  jaeger-ingester:
+    image: ${REGISTRY:-}jaegertracing/jaeger-ingester:${JAEGER_VERSION:-latest}
+    container_name: jaeger-ingester
+    ports:
+      - "14270:14270"
+    environment:
+      - SPAN_STORAGE_TYPE=memory
+    networks:
+      - jaeger-network
+    restart: unless-stopped
+
+networks:
+  jaeger-network:
+    driver: bridge
