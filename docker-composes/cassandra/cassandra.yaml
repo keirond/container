@@ -6,12 +6,6 @@ services:
       - "7199:7199"
       - "7000:7000"
       - "7001:7001"
-    command:
-      - "-Dcassandra.config=/etc/cassandra/cassandra.yaml"
-    configs:
-      - source: cassandra-yaml
-        target: /etc/cassandra/cassandra.yaml
-        mode: 0777
     deploy:
       replicas: 1
       resources:
@@ -35,10 +29,6 @@ services:
         order: start-first
     networks:
       - cassandra-network
-
-configs:
-  cassandra-yaml:
-    file: ./cassandra_properties.yaml
 
 networks:
   cassandra-network:
