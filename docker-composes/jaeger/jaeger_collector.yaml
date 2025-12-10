@@ -18,6 +18,15 @@ services:
     configs:
       - source: jaeger-sampling-strategies
         target: /etc/jaeger/sampling_strategies.json
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
     networks:
       - jaeger-network
 
