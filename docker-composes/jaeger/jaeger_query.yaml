@@ -9,7 +9,6 @@ services:
       - SPAN_STORAGE_TYPE=memory
     networks:
       - jaeger-network
-    restart: unless-stopped
 
 networks:
   jaeger-network:
