@@ -27,8 +27,14 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
+    volumes:
+      - cassandra-data:/var/lib/cassandra
     networks:
       - cassandra-network
+
+volumes:
+  cassandra-data:
+    driver: overlay
 
 networks:
   cassandra-network:
