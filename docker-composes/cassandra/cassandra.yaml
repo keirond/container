@@ -9,8 +9,9 @@ services:
     command:
       - "-Dcassandra.config=/etc/cassandra/cassandra.yaml"
     configs:
-      - source: cassandra-config
+      - source: cassandra-yaml
         target: /etc/cassandra/cassandra.yaml
+        mode: 0777
     deploy:
       replicas: 1
       resources:
@@ -36,7 +37,7 @@ services:
       - cassandra-network
 
 configs:
-  cassandra-config:
+  cassandra-yaml:
     file: ./cassandra_properties.yaml
 
 networks:
