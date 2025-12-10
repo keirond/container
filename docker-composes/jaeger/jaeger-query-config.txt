@@ -25,6 +25,7 @@ Commands:
 --admin.http.tls.max-version string                       Maximum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
 --admin.http.tls.min-version string                       Minimum TLS version supported (Possible values: 1.0, 1.1, 1.2, 1.3)
 --admin.http.tls.reload-interval duration                 The duration after which the certificate will be reloaded (0s means will not be reloaded) (default 0s)
+
 --cassandra-archive.basic.allowed-authenticators string   The comma-separated list of allowed password authenticators for Cassandra.If none are specified, there is a default 'approved' list that is used (https://github.com/gocql/gocql/blob/34fdeebefcbf183ed7f916f931aa0586fdaa1b40/conn.go#L27). If a non-empty list is provided, only specified authenticators are allowed.
 --cassandra-archive.connect-timeout duration              Timeout used for connections to Cassandra Servers (default 0s)
 --cassandra-archive.connections-per-host int              The number of Cassandra connections from a single backend instance (default 2)
@@ -54,6 +55,7 @@ Commands:
 --cassandra-archive.tls.server-name string                Override the TLS server name we expect in the certificate of the remote server(s)
 --cassandra-archive.tls.skip-host-verify                  (insecure) Skip server's certificate chain and host name verification
 --cassandra-archive.username string                       Username for password authentication for Cassandra
+
 --cassandra.basic.allowed-authenticators string           The comma-separated list of allowed password authenticators for Cassandra.If none are specified, there is a default 'approved' list that is used (https://github.com/gocql/gocql/blob/34fdeebefcbf183ed7f916f931aa0586fdaa1b40/conn.go#L27). If a non-empty list is provided, only specified authenticators are allowed.
 --cassandra.connect-timeout duration                      Timeout used for connections to Cassandra Servers (default 0s)
 --cassandra.connections-per-host int                      The number of Cassandra connections from a single backend instance (default 2)
@@ -83,6 +85,7 @@ Commands:
 --cassandra.tls.skip-host-verify                          (insecure) Skip server's certificate chain and host name verification
 --cassandra.username string                               Username for password authentication for Cassandra
 --config-file string                                      Configuration file in JSON, TOML, YAML, HCL, or Java properties formats (default none). See spf13/viper for precedence.
+
 --feature-gates flag                                      Comma-delimited list of feature gate identifiers. Prefix with '-' to disable the feature. '+' or no prefix will enable the feature. (default confighttp.framedSnappy,configoptional.AddEnabledField,-confmap.enableMergeAppendOption,exporter.PersistRequestContext,jaeger.es.disableLegacyId,otelcol.printInitialConfig,pdata.enableRefCounting,pdata.useCustomProtoEncoding,-pdata.useProtoPooling,-service.AllowNoPipelines,-service.profilesSupport,-telemetry.disableHighCardinalityMetrics,-telemetry.newPipelineTelemetry)
 -h, --help                                                    help for jaeger-query
 --log-encoding string                                     Log encoding. Supported values are 'json' and 'console'. (default "json")
@@ -92,6 +95,7 @@ Commands:
 --multi-tenancy.enabled                                   Enable tenancy header when receiving or querying
 --multi-tenancy.header string                             HTTP header carrying tenant (default "x-tenant")
 --multi-tenancy.tenants string                            comma-separated list of allowed values for --multi-tenancy.header header.  (If not supplied, tenants are not restricted)
+
 --query.additional-headers strings                        Additional HTTP response headers.  Can be specified multiple times.  Format: "Key: Value" (default [])
 --query.base-path string                                  The base path for all HTTP routes, e.g. /jaeger; useful when running behind a reverse proxy. See https://github.com/jaegertracing/jaeger/blob/main/examples/reverse-proxy/README.md (default "/")
 --query.bearer-token-propagation                          Allow propagation of bearer token to be used by storage plugins
