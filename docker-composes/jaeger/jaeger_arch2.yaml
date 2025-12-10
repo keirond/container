@@ -1,4 +1,4 @@
-# otel-collector/instrumented-application --(otlp-grpc/otlp-http)--> jaeger-collector
+# otel-collector/instrumented-application --> jaeger-collector
 # --> kafka --> jaeger-ingester --> storage-backend --> jaeger-query & ui
 
 services:
