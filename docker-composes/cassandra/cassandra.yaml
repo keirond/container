@@ -10,11 +10,11 @@ services:
       replicas: 1
       resources:
         reservations:
-          cpus: "0.5"
-          memory: 2G
+          cpus: "1"
+          memory: 4G
         limits:
           cpus: "2"
-          memory: 4G
+          memory: 8G
       update_config:
         parallelism: 1
         delay: 10s
