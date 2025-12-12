@@ -28,9 +28,10 @@ services:
         max_failure_ratio: 0.25
         order: start-first
     networks:
-      - jaeger-network
+      - tracing-network
 
 networks:
-  jaeger-network:
-    name: jaeger-network
+  tracing-network:
+    name: tracing-network
     driver: bridge
+    external: true

@@ -39,3 +39,4 @@ networks:
   cassandra-network:
     name: cassandra-network
     driver: bridge
+    external: true
