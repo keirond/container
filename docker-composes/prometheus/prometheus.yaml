@@ -1,0 +1,47 @@
+services:
+  prometheus:
+    image: ${REGISTRY:-}prom/prometheus:${PROMETHEUS_VERSION:-latest}
+    ports:
+      - "19090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--config.auto-reload-interval=30s"
+      - "--web.listen-address=:9090"
+      - "--web.enable-otlp-receiver"
+      - "--storage.tsdb.path=/prometheus/data"
+    configs:
+      - source: prometheus-cfg
+        target: /etc/prometheus/prometheus.yml
+    volumes:
+      - prometheus-data:/prometheus/data
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          cpus: "0.5"
+          memory: 1G
+        limits:
+          cpus: "1"
+          memory: 2G
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
+    networks:
+      - monitoring-network
+
+configs:
+  prometheus-cfg:
+    file: ./prometheus_cfg.yaml
+
+networks:
+  monitoring-network:
+    driver: overlay
