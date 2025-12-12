@@ -13,6 +13,24 @@ services:
       - GF_DASHBOARD_CLEAN_UP_INTERVAL=10s
     volumes:
       - grafana-data:/var/lib/grafana
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2G
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
     networks:
       - monitoring-network
 
