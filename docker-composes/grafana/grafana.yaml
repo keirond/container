@@ -1,0 +1,27 @@
+services:
+  grafana:
+    image: ${REGISTRY:-}grafana/grafana:${GRAFANA_VERSION:-latest}
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_PATHS_DATA=/var/lib/grafana
+      - GF_SERVER_HTTP_PORT=3000
+      - GF_SERVER_ENABLE_GZIP=true
+      - GF_SERCURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-grafana}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-grafana}
+      - GF_DASHBOARD_CLEAN_UP_INTERVAL=10s
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - monitoring-network
+
+volumes:
+  grafana_data:
+    name: grafana_data
+    driver: local
+
+networks:
+  monitoring-network:
+    name: monitoring-network
+    driver: bridge
