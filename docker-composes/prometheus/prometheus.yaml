@@ -9,6 +9,7 @@ services:
       - "--web.listen-address=:9090"
       - "--web.enable-otlp-receiver"
       - "--storage.tsdb.path=/prometheus/data"
+      - "--log.format=json"
     configs:
       - source: prometheus-cfg
         target: /etc/prometheus/prometheus.yml
