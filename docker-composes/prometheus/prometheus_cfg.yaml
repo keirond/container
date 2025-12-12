@@ -1,5 +1,16 @@
-global:
-  scrape_interval: 15s
+scrape_configs:
+  - job_name: "k6"
+    scrape_interval: 15s
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+          - "10.176.112.178:6565"
+          - "10.176.112.74:6565"
+          - "10.176.112.151:6565"
+          - "10.176.112.139:6565"
+          - "10.176.112.10:6565"
+        labels:
+          group: "k6"
 
 storage:
   tsdb:
