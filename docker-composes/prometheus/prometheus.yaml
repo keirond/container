@@ -2,6 +2,7 @@ services:
   prometheus:
     image: ${REGISTRY:-}prom/prometheus:${PROMETHEUS_VERSION:-latest}
     container_name: prometheus
+    user: "65534:65534"
     ports:
       - "19090:9090"
     command:
