@@ -1,3 +1,9 @@
+Configuration:
+
+    https://prometheus.io/docs/prometheus/latest/configuration/configuration
+
+Commands:
+
 --[no-]version             Show application version.
 --config.file="prometheus.yml"
                             Prometheus configuration file path.
