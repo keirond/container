@@ -1,6 +1,7 @@
 services:
   cassandra:
     image: ${REGISTRY:-}cassandra:${CASSANDRA_VERSION:-latest}
+    container_name: cassandra
     ports:
       - "9042:9042"
       - "7199:7199"
@@ -34,8 +35,10 @@ services:
 
 volumes:
   cassandra-data:
+    name: cassandra-data
     driver: local
 
 networks:
   cassandra-network:
+    name: cassandra-network
     driver: bridge

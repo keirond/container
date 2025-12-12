@@ -1,6 +1,7 @@
 services:
   prometheus:
     image: ${REGISTRY:-}prom/prometheus:${PROMETHEUS_VERSION:-latest}
+    container_name: prometheus
     ports:
       - "19090:9090"
     command:
@@ -10,10 +11,8 @@ services:
       - "--web.enable-otlp-receiver"
       - "--storage.tsdb.path=/prometheus/data"
       - "--log.format=json"
-    configs:
-      - source: prometheus-cfg
-        target: /etc/prometheus/prometheus.yml
     volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus/data
     deploy:
       replicas: 1
@@ -39,10 +38,12 @@ services:
     networks:
       - monitoring-network
 
-configs:
-  prometheus-cfg:
-    file: ./prometheus_cfg.yaml
+volumes:
+  prometheus-data:
+    name: prometheus-data
+    driver: local
 
 networks:
   monitoring-network:
-    driver: overlay
+    name: monitoring-network
+    driver: bridge

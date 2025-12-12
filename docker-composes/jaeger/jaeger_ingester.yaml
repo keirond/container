@@ -1,6 +1,7 @@
 services:
   jaeger-ingester:
     image: ${REGISTRY:-}jaegertracing/jaeger-ingester:${JAEGER_VERSION:-latest}
+    container_name: jaeger-ingester
     ports:
       - "14270:14270"
     environment:
@@ -34,4 +35,5 @@ services:
 
 networks:
   jaeger-network:
-    driver: overlay
+    name: jaeger-network
+    driver: bridge
