@@ -44,3 +44,4 @@ networks:
   monitoring-network:
     name: monitoring-network
     driver: bridge
+    external: true
