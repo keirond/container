@@ -38,4 +38,4 @@ volumes:
 
 networks:
   cassandra-network:
-    driver: overlay
+    driver: bridge

@@ -16,9 +16,8 @@ services:
       - "--sampling.strategies-file=/etc/jaeger/sampling_strategies.json"
       - "--sampling.strategies-reload-interval=1m"
       - "--cassandra.servers=${CASSANDRA_SERVERS:-127.0.0.1}"
-    configs:
-      - source: jaeger-sampling-strategies
-        target: /etc/jaeger/sampling_strategies.json
+    volumes:
+      - ./sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro
     deploy:
       replicas: 1
       resources:
@@ -43,10 +42,6 @@ services:
     networks:
       - jaeger-network
 
-configs:
-  jaeger-sampling-strategies:
-    file: ./sampling_strategies.json
-
 networks:
   jaeger-network:
-    driver: overlay
+    driver: bridge
