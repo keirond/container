@@ -12,13 +12,13 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-grafana}
       - GF_DASHBOARD_CLEAN_UP_INTERVAL=10s
     volumes:
-      - grafana_data:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     networks:
       - monitoring-network
 
 volumes:
-  grafana_data:
-    name: grafana_data
+  grafana-data:
+    name: grafana-data
     driver: local
 
 networks:
