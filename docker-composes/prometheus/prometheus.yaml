@@ -14,7 +14,7 @@ services:
       - "--log.format=json"
     volumes:
       - ./prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
-      - prometheus-data:/prometheus/data
+      - prometheus-data:/prometheus
     deploy:
       replicas: 1
       resources:
