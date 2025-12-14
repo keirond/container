@@ -1,0 +1,34 @@
+services:
+  victoria-metrics:
+    image: ${REGISTRY:-}victoriametrics/victoria-metrics:${VICTORIA_METRICS_VERSION:-latest}
+    container_name: victoria-metrics
+    user: "65534:65534"
+    ports:
+      - "19091:8428"
+    command:
+      - "--storageDataPath=/victoria-metrics-data"
+      - "--retentionPeriod=1"
+      - "--httpListenAddr=:8428"
+      - "--log.format=json"
+    volumes:
+      - victoria-metrics-data:/victoria-metrics-data
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "4"
+          memory: 6G
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
+    networks:
+      - monitoring-network
