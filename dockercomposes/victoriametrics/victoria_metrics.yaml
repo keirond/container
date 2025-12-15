@@ -10,8 +10,10 @@ services:
       - "-storageDataPath=victoria-metrics-data"
       - "-enableMetadata"
       - "-loggerFormat=json"
+      - "-promscrape.config=/etc/prometheus/prometheus.yaml"
     volumes:
       - victoriametrics-data:/victoria-metrics-data
+      - ./prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
     deploy:
       replicas: 1
       resources:
