@@ -5,12 +5,12 @@ services:
     ports:
       - "18428:8428"
     command:
-      - "--storageDataPath=/victoria-metrics-data"
-      - "--retentionPeriod=1"
-      - "--httpListenAddr=:8428"
-      - "--log.format=json"
+      - "-httpListenAddr=:8428"
+      - "-retentionPeriod=1"
+      - "-storageDataPath=victoria-metrics-data"
+      - "-loggerFormat=json"
     volumes:
-      - victoria-metrics-data:/victoria-metrics-data
+      - victoriametrics-data:/victoria-metrics-data
     deploy:
       replicas: 1
       resources:
@@ -31,3 +31,13 @@ services:
         order: start-first
     networks:
       - monitoring-network
+
+volumes:
+  victoriametrics-data:
+    name: victoriametrics-data
+    driver: local
+networks:
+  monitoring-network:
+    name: monitoring-network
+    driver: bridge
+    external: true
