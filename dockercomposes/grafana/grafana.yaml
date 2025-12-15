@@ -11,6 +11,7 @@ services:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-grafana}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-grafana}
       - GF_DASHBOARD_CLEAN_UP_INTERVAL=10s
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=victoriametrics-metrics-datasource
     volumes:
       - grafana-data:/var/lib/grafana
     deploy:
