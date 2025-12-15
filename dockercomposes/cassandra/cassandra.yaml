@@ -3,10 +3,10 @@ services:
     image: ${REGISTRY:-}cassandra:${CASSANDRA_VERSION:-latest}
     container_name: cassandra
     ports:
-      - "9042:9042"
-      - "7199:7199"
-      - "7000:7000"
-      - "7001:7001"
+      - "19042:9042"
+      - "17199:7199"
+      - "17000:7000"
+      - "17001:7001"
     deploy:
       replicas: 1
       resources:

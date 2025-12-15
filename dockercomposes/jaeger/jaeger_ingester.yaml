@@ -3,7 +3,7 @@ services:
     image: ${REGISTRY:-}jaegertracing/jaeger-ingester:${JAEGER_VERSION:-latest}
     container_name: jaeger-ingester
     ports:
-      - "14270:14270"
+      - "24270:14270"
     environment:
       - SPAN_STORAGE_TYPE=cassandra
     command:
