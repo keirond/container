@@ -8,6 +8,7 @@ services:
       - "-httpListenAddr=:8428"
       - "-retentionPeriod=1"
       - "-storageDataPath=victoria-metrics-data"
+      - "-enableMetadata"
       - "-loggerFormat=json"
     volumes:
       - victoriametrics-data:/victoria-metrics-data
