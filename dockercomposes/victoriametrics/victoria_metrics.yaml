@@ -2,9 +2,8 @@ services:
   victoria-metrics:
     image: ${REGISTRY:-}victoriametrics/victoria-metrics:${VICTORIA_METRICS_VERSION:-latest}
     container_name: victoria-metrics
-    user: "65534:65534"
     ports:
-      - "19091:8428"
+      - "18428:8428"
     command:
       - "--storageDataPath=/victoria-metrics-data"
       - "--retentionPeriod=1"

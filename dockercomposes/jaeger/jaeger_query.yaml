@@ -3,9 +3,9 @@ services:
     image: ${REGISTRY:-}jaegertracing/jaeger-query:${JAEGER_VERSION:-latest}
     container_name: jaeger-query
     ports:
-      - "16685:16685"
-      - "16686:16686"
-      - "16687:16687"
+      - "26685:16685"
+      - "26686:16686"
+      - "26687:16687"
     environment:
       - SPAN_STORAGE_TYPE=cassandra
     command:

@@ -3,12 +3,12 @@ services:
     image: ${REGISTRY:-}jaegertracing/jaeger-collector:${JAEGER_VERSION:-latest}
     container_name: jaeger-collector
     ports:
-      - "4317:4317"
-      - "4318:4318"
-      - "14267:14267"
-      - "14268:14268"
-      - "9411:9411"
-      - "14250:14250"
+      - "14317:4317"
+      - "14318:4318"
+      - "24267:14267"
+      - "24268:14268"
+      - "19411:9411"
+      - "24250:14250"
     environment:
       - SPAN_STORAGE_TYPE=cassandra
     command:
