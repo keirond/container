@@ -1,8 +1,10 @@
-Usage:
-  otelcol [flags]
-  otelcol [command]
+Configuration
 
-Available Commands:
+  https://opentelemetry.io/docs/collector/configuration
+
+
+Commands:
+
   completion   Generate the autocompletion script for the specified shell
   components   Outputs available components in this collector distribution
   featuregate  Display feature gates information

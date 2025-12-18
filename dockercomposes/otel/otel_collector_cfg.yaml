@@ -1,0 +1,63 @@
+receivers:
+  hostmetrics:
+    collection_interval: 15s
+    root_path: "/"
+    scrapers:
+      cpu: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/cpuscraper/documentation.md
+        metrics:
+          system.cpu.time:
+            enabled: true
+          system.cpu.utilization:
+            enabled: true
+          # system.cpu.frequency:
+          #   enabled: true
+          # system.cpu.logical.count:
+          #   enabled: true
+          # system.cpu.physical.count:
+          #   enabled: true
+
+
+# processors:
+
+exporters:
+  prometheusremotewrite:
+    endpoint: "http://victoria-metrics:8428/api/v1/write"
+    insecure: true
+    external_labels:
+      exporter: "otel-collector"
+    namespace: "otel"
+    add_metric_suffixes: true
+    remote_write_queue:
+      enabled: true
+      queue_size: 20000
+    resource_to_telemetry_conversion:
+      enabled: true
+      exclude_service_attributes: true
+    target_info:
+      enabled: false
+
+# connectors:
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+service:
+  extensions:
+    - health_check
+    - pprof
+    - zpages
+  pipelines:
+    # traces:
+    metrics:
+      receivers: ["hostmetrics"]
+      exporters: ["prometheusremotewrite"]
+    # logs:
+  # telemetry:
+    # metrics:
+    # logs:
+
