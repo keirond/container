@@ -5,16 +5,50 @@ receivers:
     scrapers:
       cpu: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/cpuscraper/documentation.md
         metrics:
-          system.cpu.time:
+          # system.cpu.time: default enabled
+          system.cpu.frequency:
+            enabled: true
+          system.cpu.logical.count:
+            enabled: true
+          system.cpu.physical.count:
             enabled: true
           system.cpu.utilization:
             enabled: true
-          # system.cpu.frequency:
-          #   enabled: true
-          # system.cpu.logical.count:
-          #   enabled: true
-          # system.cpu.physical.count:
-          #   enabled: true
+      disk: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
+        metrics:
+          # system.disk.io: default enabled
+          # system.disk.io_time: default enabled
+          # system.disk.merged: default enabled
+          # system.disk.operation_time: default enabled
+          # system.disk.operations: default enabled
+          # system.disk.pending_operations: default enabled
+          # system.disk.weighted_io_time: default enabled
+      load: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/loadscraper/documentation.md
+        metrics:
+          # system.cpu.load_average.15m: default enabled
+          # system.cpu.load_average.1m: default enabled
+          # system.cpu.load_average.5m: default enabled
+      filesystem: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/filesystemscraper/documentation.md
+        metrics:
+          # system.filesystem.inodes.usage: default enabled
+          # system.filesystem.usage: default enabled
+          system.filesystem.utilization:
+            enabled: true
+      memory: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/memoryscraper/documentation.md
+        metrics:
+          # system.memory.usage: default enabled
+          system.linux.memory.available:
+            enabled: true
+          system.linux.memory.dirty:
+            enabled: true
+          system.memory.limit:
+            enabled: true
+          system.memory.page_size:
+            enabled: true
+          system.memory.utilization:
+            enabled: true
+
+
 
 
 # processors:
