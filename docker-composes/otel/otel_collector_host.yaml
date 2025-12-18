@@ -2,22 +2,10 @@ services:
   otel-collector:
     image: ${REGISTRY:-}otel/opentelemetry-collector:${OPENTELEMETRY_COLLECTOR_VERSION:-latest}
     container_name: otel-collector-host
-    network_mode: host
-    pid: host
-    privileged: true
-    # cap_add:
-    #   - SYS_PTRACE
-    #   - DAC_READ_SEARCH
-    #   - NET_ADMIN
-    security_opt:
-      - label=disable
     command:
       - "--config=/etc/otel/collector.yaml"
     volumes:
       - /:/hostfs:ro
-      - /proc:/hostfs/proc:ro
-      - /sys:/hostfs/sys:ro
-      - /etc:/hostfs/etc:ro
       - ./otel_collector_host_cfg.yaml:/etc/otel/collector.yaml:ro
     deploy:
       replicas: 1
@@ -37,3 +25,11 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
+    networks:
+      - observability-network
+
+networks:
+  observability-network:
+    name: observability-network
+    driver: bridge
+    external: true

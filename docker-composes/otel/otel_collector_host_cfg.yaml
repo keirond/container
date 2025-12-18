@@ -1,20 +1,20 @@
 receivers:
   hostmetrics:
-    collection_interval: 15s
+    collection_interval: 1m
     root_path: "/hostfs"
     scrapers:
       cpu: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/cpuscraper/documentation.md
-        metrics:
+        # metrics:
           # system.cpu.time: default enabled
-          system.cpu.frequency:
-            enabled: true
-          system.cpu.logical.count:
-            enabled: true
-          system.cpu.physical.count:
-            enabled: true
-          system.cpu.utilization:
-            enabled: true
-      # disk: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
+          # system.cpu.frequency:
+          #   enabled: true
+          # system.cpu.logical.count:
+          #   enabled: true
+          # system.cpu.physical.count:
+          #   enabled: true
+          # system.cpu.utilization:
+          #   enabled: true
+      disk: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
         # metrics:
           # system.disk.io: default enabled
           # system.disk.io_time: default enabled
@@ -23,42 +23,42 @@ receivers:
           # system.disk.operations: default enabled
           # system.disk.pending_operations: default enabled
           # system.disk.weighted_io_time: default enabled
-      # load: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/loadscraper/documentation.md
+      load: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/loadscraper/documentation.md
         # metrics:
           # system.cpu.load_average.15m: default enabled
           # system.cpu.load_average.1m: default enabled
           # system.cpu.load_average.5m: default enabled
       filesystem: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/filesystemscraper/documentation.md
-        metrics:
+        # metrics:
           # system.filesystem.inodes.usage: default enabled
           # system.filesystem.usage: default enabled
-          system.filesystem.utilization:
-            enabled: true
+          # system.filesystem.utilization:
+          #   enabled: true
       memory: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/memoryscraper/documentation.md
-        metrics:
+        # metrics:
           # system.memory.usage: default enabled
-          system.linux.memory.available:
-            enabled: true
-          system.linux.memory.dirty:
-            enabled: true
-          system.memory.limit:
-            enabled: true
-          system.memory.page_size:
-            enabled: true
-          system.memory.utilization:
-            enabled: true
+          # system.linux.memory.available:
+          #   enabled: true
+          # system.linux.memory.dirty:
+          #   enabled: true
+          # system.memory.limit:
+          #   enabled: true
+          # system.memory.page_size:
+          #   enabled: true
+          # system.memory.utilization:
+          #   enabled: true
       network: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/networkscraper/documentation.md
-        metrics:
+        # metrics:
           # system.network.connections: default enabled
           # system.network.dropped: default enabled
           # system.network.errors: default enabled
           # system.network.io: default enabled
           # system.network.packets: default enabled
-          system.network.conntrack.count:
-            enabled: true
-          system.network.conntrack.max:
-            enabled: true
-      # nfs: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
+          # system.network.conntrack.count:
+          #   enabled: true
+          # system.network.conntrack.max:
+          #   enabled: true
+      nfs: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
         # metrics:
           # nfs.client.net.count: default enabled
           # nfs.client.net.tcp.connection.accepted: default enabled
@@ -77,17 +77,17 @@ receivers:
           # nfs.server.rpc.count: default enabled
           # nfs.server.thread.count: default enabled
       paging: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/pagingscraper/documentation.md
-        metrics:
+        # metrics:
           # system.paging.faults: default enabled
           # system.paging.operations: default enabled
           # system.paging.usage: default enabled
-          system.paging.utilization:
-            enabled: true
-      # processes: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processesscraper/documentation.md
+          # system.paging.utilization:
+          #   enabled: true
+      processes: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processesscraper/documentation.md
         # metrics:
           # system.processes.count: default enabled
           # system.processes.created: default enabled
-      # process: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md
+      process: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md
         # metrics:
           # process.cpu.time: default enabled
           # process.disk.io: default enabled
@@ -113,7 +113,7 @@ receivers:
           #   enabled: true
           # process.uptime:
           #   enabled: true
-      # system: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/systemscraper/documentation.md
+      system: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/systemscraper/documentation.md
         # metrics:
           # system.uptime: default enabled
 
@@ -125,7 +125,7 @@ processors:
 
 exporters:
   prometheusremotewrite:
-    endpoint: "http://localhost:8428/api/v1/write"
+    endpoint: "http://victoria-metrics:8428/api/v1/write"
     tls:
       insecure: true
     external_labels:
