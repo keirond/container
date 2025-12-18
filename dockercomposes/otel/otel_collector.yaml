@@ -1,0 +1,39 @@
+services:
+  otel-collector:
+    image: ${REGISTRY:-}otel/opentelemetry-collector:${OPENTELEMETRY_COLLECTOR_VERSION:-latest}
+    container_name: otel-collector
+    ports:
+      - "4317:4317"
+    command:
+      - "validate"
+      - "--config=/etc/otel/collector.yaml"
+    volumes:
+      - ./otel_collector_cfg.yaml:/etc/otel/collector.yaml:ro
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "2"
+          memory: 4G
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
+    networks:
+      - observability-network
+
+networks:
+  observability-network:
+    name: observability-network
+    driver: bridge
+    external: true
+
+

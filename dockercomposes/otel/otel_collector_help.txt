@@ -1,0 +1,18 @@
+Usage:
+  otelcol [flags]
+  otelcol [command]
+
+Available Commands:
+  completion   Generate the autocompletion script for the specified shell
+  components   Outputs available components in this collector distribution
+  featuregate  Display feature gates information
+  help         Help about any command
+  print-config Prints the Collector's configuration in the specified mode
+  validate     Validates the config without running the collector
+
+Flags:
+      --config --config=file:/path/to/first --config=file:path/to/second   Locations to the config file(s), note that only a single location can be set per flag entry e.g. --config=file:/path/to/first --config=file:path/to/second. (default [])
+      --feature-gates flag                                                 Comma-delimited list of feature gate identifiers. Prefix with '-' to disable the feature. '+' or no prefix will enable the feature. (default confighttp.framedSnappy,configoptional.AddEnabledField,-confmap.enableMergeAppendOption,exporter.PersistRequestContext,exporter.kafkaexporter.UseFranzGo,-exporter.prometheusexporter.DisableAddMetricSuffixes,-exporter.prometheusremotewritexporter.EnableMultipleWorkers,-exporter.prometheusremotewritexporter.RetryOn429,-exporter.prometheusremotewritexporter.enableSendingRW2,-extension.healthcheck.useComponentStatus,-filter.filterlog.useOTTLBridge,-filter.filtermetric.useOTTLBridge,-filter.filterspan.useOTTLBridge,hostmetrics.process.bootTimeCache,otelcol.printInitialConfig,ottl.PanicDuplicateName,pdata.enableRefCounting,pdata.useCustomProtoEncoding,-pdata.useProtoPooling,pkg.translator.prometheus.NormalizeName,-pkg.translator.prometheus.PermissiveLabelSanitization,receiver.hostmetricsreceiver.UseLinuxMemAvailable,receiver.jaeger.DisableRemoteSampling,receiver.kafkareceiver.UseFranzGo,-receiver.prometheusreceiver.EnableCreatedTimestampZeroIngestion,receiver.prometheusreceiver.EnableNativeHistograms,-receiver.prometheusreceiver.EnableReportExtraScrapeMetrics,receiver.prometheusreceiver.RemoveLegacyResourceAttributes,receiver.prometheusreceiver.RemoveStartTimeAdjustment,-receiver.prometheusreceiver.UseCreatedMetric,-receiverhelper.newReceiverMetrics,-service.AllowNoPipelines,-service.noopTracerProvider,-service.profilesSupport,telemetry.UseLocalHostAsDefaultMetricsAddress,-telemetry.disableHighCardinalityMetrics,-telemetry.newPipelineTelemetry)
+  -h, --help                                                               help for otelcol
+      --set value                                                          Set arbitrary component config property. The component has to be defined in the config file and the flag has a higher precedence. Array config properties are overridden and maps are joined. Example --set=processors.batch.timeout=2s
+  -v, --version                                                            version for otelcol
