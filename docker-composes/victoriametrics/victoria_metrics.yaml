@@ -4,6 +4,9 @@ services:
     container_name: victoria-metrics
     ports:
       - "8428:8428"
+    volumes:
+      - victoriametrics-data:/victoria-metrics-data
+      - ./prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
     command:
       - "-httpListenAddr=:8428"
       - "-retentionPeriod=1"
@@ -11,9 +14,6 @@ services:
       - "-enableMetadata"
       - "-loggerFormat=json"
       - "-promscrape.config=/etc/prometheus/prometheus.yaml"
-    volumes:
-      - victoriametrics-data:/victoria-metrics-data
-      - ./prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
     deploy:
       replicas: 1
       resources:
