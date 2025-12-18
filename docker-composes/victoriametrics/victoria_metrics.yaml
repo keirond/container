@@ -3,7 +3,7 @@ services:
     image: ${REGISTRY:-}victoriametrics/victoria-metrics:${VICTORIA_METRICS_VERSION:-latest}
     container_name: victoria-metrics
     ports:
-      - "18428:8428"
+      - "8428:8428"
     command:
       - "-httpListenAddr=:8428"
       - "-retentionPeriod=1"
