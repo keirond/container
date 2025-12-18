@@ -2,8 +2,8 @@ services:
   cadvisor:
     image: ${REGISTRY:-}gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION:-latest}
     container_name: cadvisor
-    ports:
-      - "18080:8080"
+    # ports:
+      # - "8080:8080"
     command:
       - "-port=8080"
       - "-listen_ip=0.0.0.0"
