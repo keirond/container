@@ -1,7 +1,7 @@
 services:
   otel-collector:
     image: ${REGISTRY:-}otel/opentelemetry-collector:${OPENTELEMETRY_COLLECTOR_VERSION:-latest}
-    container_name: otel-collector/host
+    container_name: otel-collector-host
     network_mode: host
     pid: host
     cap_add:
