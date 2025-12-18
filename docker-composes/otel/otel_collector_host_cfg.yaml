@@ -14,8 +14,8 @@ receivers:
             enabled: true
           system.cpu.utilization:
             enabled: true
-      disk: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
-        metrics:
+      disk: null # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
+        # metrics:
           # system.disk.io: default enabled
           # system.disk.io_time: default enabled
           # system.disk.merged: default enabled
@@ -23,8 +23,8 @@ receivers:
           # system.disk.operations: default enabled
           # system.disk.pending_operations: default enabled
           # system.disk.weighted_io_time: default enabled
-      load: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/loadscraper/documentation.md
-        metrics:
+      # load: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/loadscraper/documentation.md
+        # metrics:
           # system.cpu.load_average.15m: default enabled
           # system.cpu.load_average.1m: default enabled
           # system.cpu.load_average.5m: default enabled
@@ -58,8 +58,8 @@ receivers:
             enabled: true
           system.network.conntrack.max:
             enabled: true
-      nfs: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
-        metrics:
+      nfs: null # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
+        # metrics:
           # nfs.client.net.count: default enabled
           # nfs.client.net.tcp.connection.accepted: default enabled
           # nfs.client.operation.count: default enabled
@@ -83,8 +83,8 @@ receivers:
           # system.paging.usage: default enabled
           system.paging.utilization:
             enabled: true
-      processes: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processesscraper/documentation.md
-        metrics:
+      # processes: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processesscraper/documentation.md
+        # metrics:
           # system.processes.count: default enabled
           # system.processes.created: default enabled
       process: null # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md
@@ -113,8 +113,8 @@ receivers:
           #   enabled: true
           # process.uptime:
           #   enabled: true
-      system: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/systemscraper/documentation.md
-        metrics:
+      # system: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/systemscraper/documentation.md
+        # metrics:
           # system.uptime: default enabled
 
 processors:
