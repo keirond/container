@@ -126,7 +126,8 @@ processors:
 exporters:
   prometheusremotewrite:
     endpoint: "http://victoria-metrics:8428/api/v1/write"
-    insecure: true
+    tls:
+      insecure: true
     external_labels:
       exporter: "otel-collector"
     namespace: "otel"
