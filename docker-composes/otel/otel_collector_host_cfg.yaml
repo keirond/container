@@ -1,7 +1,7 @@
 receivers:
   hostmetrics:
     collection_interval: 15s
-    root_path: "/"
+    root_path: "/hostfs"
     scrapers:
       cpu: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/cpuscraper/documentation.md
         metrics:
