@@ -37,5 +37,3 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
-
-
