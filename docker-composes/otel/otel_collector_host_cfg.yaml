@@ -14,7 +14,7 @@ receivers:
             enabled: true
           system.cpu.utilization:
             enabled: true
-      disk: null # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
+      # disk: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/diskscraper/documentation.md
         # metrics:
           # system.disk.io: default enabled
           # system.disk.io_time: default enabled
@@ -58,7 +58,7 @@ receivers:
             enabled: true
           system.network.conntrack.max:
             enabled: true
-      nfs: null # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
+      # nfs: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
         # metrics:
           # nfs.client.net.count: default enabled
           # nfs.client.net.tcp.connection.accepted: default enabled
@@ -87,7 +87,7 @@ receivers:
         # metrics:
           # system.processes.count: default enabled
           # system.processes.created: default enabled
-      process: null # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md
+      # process: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md
         # metrics:
           # process.cpu.time: default enabled
           # process.disk.io: default enabled
