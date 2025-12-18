@@ -29,10 +29,10 @@ services:
         max_failure_ratio: 0.25
         order: start-first
     networks:
-      - tracing-network
+      - observability-network
 
 networks:
-  tracing-network:
-    name: tracing-network
+  observability-network:
+    name: observability-network
     driver: bridge
     external: true

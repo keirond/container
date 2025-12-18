@@ -1,0 +1,4 @@
+services:
+  opentelemetry-collector:
+    image: ${REGISTRY:-}otel/opentelemetry-collector-contrib:${OPENTELEMETRY_COLLECTOR_VERSION:-latest}
+    container_name: opentelemetry-collector

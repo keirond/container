@@ -34,10 +34,10 @@ services:
         max_failure_ratio: 0.25
         order: start-first
     networks:
-      - monitoring-network
+      - observability-network
 
 networks:
-  monitoring-network:
-    name: monitoring-network
+  observability-network:
+    name: observability-network
     driver: bridge
     external: true
