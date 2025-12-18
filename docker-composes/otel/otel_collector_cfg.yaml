@@ -117,9 +117,6 @@ receivers:
         metrics:
           # system.uptime: default enabled
 
-
-
-
 # processors:
 
 exporters:
