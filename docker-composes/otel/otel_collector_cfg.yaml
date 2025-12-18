@@ -47,6 +47,75 @@ receivers:
             enabled: true
           system.memory.utilization:
             enabled: true
+      network: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/networkscraper/documentation.md
+        metrics:
+          # system.network.connections: default enabled
+          # system.network.dropped: default enabled
+          # system.network.errors: default enabled
+          # system.network.io: default enabled
+          # system.network.packets: default enabled
+          system.network.conntrack.count:
+            enabled: true
+          system.network.conntrack.max:
+            enabled: true
+      nfs: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/nfsscraper/documentation.md
+        metrics:
+          # nfs.client.net.count: default enabled
+          # nfs.client.net.tcp.connection.accepted: default enabled
+          # nfs.client.operation.count: default enabled
+          # nfs.client.procedure.count: default enabled
+          # nfs.client.rpc.authrefresh.count: default enabled
+          # nfs.client.rpc.count: default enabled
+          # nfs.client.rpc.retransmit.count: default enabled
+          # nfs.server.fh.stale.count: default enabled
+          # nfs.server.io: default enabled
+          # nfs.server.net.count: default enabled
+          # nfs.server.net.tcp.connection.accepted: default enabled
+          # nfs.server.operation.count: default enabled
+          # nfs.server.procedure.count: default enabled
+          # nfs.server.repcache.requests: default enabled
+          # nfs.server.rpc.count: default enabled
+          # nfs.server.thread.count: default enabled
+      paging: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/pagingscraper/documentation.md
+        metrics:
+          # system.paging.faults: default enabled
+          # system.paging.operations: default enabled
+          # system.paging.usage: default enabled
+          system.paging.utilization:
+            enabled: true
+      processes: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processesscraper/documentation.md
+        metrics:
+          # system.processes.count: default enabled
+          # system.processes.created: default enabled
+      process: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md
+        metrics:
+          # process.cpu.time: default enabled
+          # process.disk.io: default enabled
+          # process.memory.usage: default enabled
+          # process.memory.virtual: default enabled
+          process.context_switches:
+            enabled: true
+          process.cpu.utilization:
+            enabled: true
+          process.disk.operations:
+            enabled: true
+          process.handles:
+            enabled: true
+          process.memory.utilization:
+            enabled: true
+          process.open_file_descriptors:
+            enabled: true
+          process.paging.faults:
+            enabled: true
+          process.signals_pending:
+            enabled: true
+          process.threads:
+            enabled: true
+          process.uptime:
+            enabled: true
+      system: # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/systemscraper/documentation.md
+        metrics:
+          # system.uptime: default enabled
 
 
 
