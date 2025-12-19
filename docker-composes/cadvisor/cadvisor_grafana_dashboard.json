@@ -55,13 +55,12 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -116,16 +115,16 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${data_source}"
+          },
           "editorMode": "code",
-          "expr": "time() - container_start_time_seconds{id!=\"/\", name=~\".*\"}",
+          "expr": "time() - container_start_time_seconds{id!=\"/\", name=~\"${container_name}\"}",
           "format": "time_series",
           "legendFormat": "{{name}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          "refId": "A"
         }
       ],
       "title": "Container Uptime",
@@ -220,16 +219,16 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(container_cpu_usage_seconds_total{id!=\"/\", name=~\".*\"}[1m])",
-          "format": "time_series",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A",
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
             "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          },
+          "editorMode": "code",
+          "expr": "rate(container_cpu_usage_seconds_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
+          "format": "time_series",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "CPU Utilization",
@@ -324,17 +323,17 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "victoriametrics-metrics-datasource",
+            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+          },
           "editorMode": "code",
-          "expr": "container_memory_usage_bytes{id!=\"/\", name=~\".*\"}",
+          "expr": "container_memory_usage_bytes{id!=\"/\", name=~\"${container_name}\"}",
           "format": "time_series",
           "hide": false,
           "legendFormat": "{{name}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          "refId": "A"
         }
       ],
       "title": "Memory Usage",
@@ -429,16 +428,16 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(container_network_receive_bytes_total{id!=\"/\", name=~\".*\"}[1m])",
-          "format": "time_series",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A",
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
             "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          },
+          "editorMode": "code",
+          "expr": "rate(container_network_receive_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
+          "format": "time_series",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Network Receive Rate",
@@ -533,16 +532,16 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(container_network_transmit_bytes_total{id!=\"/\", name=~\".*\"}[1m])",
-          "format": "time_series",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A",
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
             "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          },
+          "editorMode": "code",
+          "expr": "rate(container_network_transmit_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
+          "format": "time_series",
+          "legendFormat": "{{name}}",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Network Transmit Rate",
@@ -626,7 +625,9 @@
           ],
           "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Name",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -637,16 +638,17 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(container_fs_reads_bytes_total{id!=\"/\", name=~\".*\"}[1m])",
-          "format": "time_series",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A",
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
             "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          },
+          "editorMode": "code",
+          "expr": "rate(container_fs_reads_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
+          "format": "time_series",
+          "hide": false,
+          "legendFormat": "{{name}} - {{device}}",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Disk Read Rate",
@@ -741,16 +743,16 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(container_fs_writes_bytes_total{id!=\"/\", name=~\".*\"}[1m])",
-          "format": "time_series",
-          "legendFormat": "{{name}}",
-          "range": true,
-          "refId": "A",
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
             "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
-          }
+          },
+          "editorMode": "code",
+          "expr": "rate(container_fs_writes_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
+          "format": "time_series",
+          "legendFormat": "{{name}} - {{device}}",
+          "range": true,
+          "refId": "A"
         }
       ],
       "title": "Disk Write Rate",
@@ -758,10 +760,48 @@
     }
   ],
   "preload": false,
+  "refresh": "auto",
   "schemaVersion": 42,
-  "tags": [],
+  "tags": [
+    "cadvisor",
+    "host-metrics"
+  ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": "",
+          "value": "${DS_VICTORIA-METRICS-DATASOURCE}",
+          "selected": true
+        },
+        "includeAll": false,
+        "name": "data_source",
+        "options": [],
+        "query": "victoriametrics-metrics-datasource",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "definition": "label_values(container_start_time_seconds,name)",
+        "includeAll": false,
+        "multi": true,
+        "name": "container_name",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(container_start_time_seconds,name)",
+          "refId": "VariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -769,8 +809,9 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "CAdvisor 10.20.3.110",
+  "title": "CAdvisor 192.168.0.211",
   "uid": "grdfrhl",
   "version": 9,
-  "weekStart": ""
+  "weekStart": "",
+  "id": null
 }
