@@ -1,6 +1,6 @@
 services:
   cadvisor:
-    image: ${REGISTRY:-}gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION:-latest}
+    image: ${REGISTRY:-}gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION:-v0.52.0}
     container_name: cadvisor
     # ports:
       # - "8080:8080"
