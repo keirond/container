@@ -1,0 +1,30 @@
+services:
+  node-exporter:
+    image: ${REGISTRY:-}quay.io/prometheus/node-exporter:${NODE_EXPORTER_VERSION:-latest}
+    container_name: node-exporter
+    command:
+      - "--web.listen-address=:9100"
+      - "--log.format=json"
+      - "--path.rootfs=/host"
+    network_mode: host
+    pid: host
+    volumes:
+      - /:/host:ro,rslave
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
