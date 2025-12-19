@@ -2,7 +2,7 @@ apiVersion: dashboard.grafana.app/v2beta1
 kind: Dashboard
 metadata:
   name: grdfrhl
-  generation: 8
+  generation: 9
   creationTimestamp: '2025-12-19T07:30:45Z'
   labels: {}
   annotations: {}
@@ -51,7 +51,7 @@ spec:
         description: ''
         id: 1
         links: []
-        title: CPU Usage (Per Core)
+        title: CPU Utilization
         vizConfig:
           group: timeseries
           kind: VizConfig
@@ -692,7 +692,7 @@ spec:
   preload: false
   tags: []
   timeSettings:
-    autoRefresh: ''
+    autoRefresh: auto
     autoRefreshIntervals:
       - 5s
       - 10s
