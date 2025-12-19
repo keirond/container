@@ -133,7 +133,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -221,7 +221,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "uid": "${data_source}"
           },
           "editorMode": "code",
           "expr": "rate(container_cpu_usage_seconds_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
@@ -237,7 +237,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -325,7 +325,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "uid": "${data_source}"
           },
           "editorMode": "code",
           "expr": "container_memory_usage_bytes{id!=\"/\", name=~\"${container_name}\"}",
@@ -342,7 +342,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -430,7 +430,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "uid": "${data_source}"
           },
           "editorMode": "code",
           "expr": "rate(container_network_receive_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
@@ -446,7 +446,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -534,7 +534,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "uid": "${data_source}"
           },
           "editorMode": "code",
           "expr": "rate(container_network_transmit_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
@@ -550,7 +550,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -640,7 +640,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "uid": "${data_source}"
           },
           "editorMode": "code",
           "expr": "rate(container_fs_reads_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
@@ -657,7 +657,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "uid": "${data_source}"
       },
       "fieldConfig": {
         "defaults": {
@@ -745,7 +745,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "uid": "${data_source}"
           },
           "editorMode": "code",
           "expr": "rate(container_fs_writes_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
@@ -811,7 +811,7 @@
   "timezone": "browser",
   "title": "CAdvisor 192.168.0.211",
   "uid": "grdfrhl",
-  "version": 9,
+  "version": 10,
   "weekStart": "",
   "id": null
 }
