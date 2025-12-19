@@ -12,9 +12,6 @@ services:
       - "-store_container_labels=true"
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
     deploy:
       replicas: 1
       resources:
