@@ -1,0 +1,374 @@
+Commands:
+  -h, --[no-]help                Show context-sensitive help (also try
+                                 --help-long and --help-man).
+      --collector.arp.device-include=COLLECTOR.ARP.DEVICE-INCLUDE
+                                 Regexp of arp devices to include (mutually
+                                 exclusive to device-exclude).
+      --collector.arp.device-exclude=COLLECTOR.ARP.DEVICE-EXCLUDE
+                                 Regexp of arp devices to exclude (mutually
+                                 exclusive to device-include).
+      --[no-]collector.arp.netlink
+                                 Use netlink to gather stats instead of
+                                 /proc/net/arp.
+      --[no-]collector.bcache.priorityStats
+                                 Expose expensive priority stats.
+      --[no-]collector.cpu.guest
+                                 Enables metric node_cpu_guest_seconds_total
+      --[no-]collector.cpu.info  Enables metric cpu_info
+      --collector.cpu.info.flags-include=COLLECTOR.CPU.INFO.FLAGS-INCLUDE
+                                 Filter the `flags` field in cpuInfo with a
+                                 value that must be a regular expression
+      --collector.cpu.info.bugs-include=COLLECTOR.CPU.INFO.BUGS-INCLUDE
+                                 Filter the `bugs` field in cpuInfo with a value
+                                 that must be a regular expression
+      --collector.diskstats.device-exclude="^(z?ram|loop|fd|(h|s|v|xv)d[a-z]|nvme\\d+n\\d+p)\\d+$"
+                                 Regexp of diskstats devices to exclude
+                                 (mutually exclusive to device-include).
+      --collector.diskstats.device-include=COLLECTOR.DISKSTATS.DEVICE-INCLUDE
+                                 Regexp of diskstats devices to include
+                                 (mutually exclusive to device-exclude).
+      --collector.ethtool.device-include=COLLECTOR.ETHTOOL.DEVICE-INCLUDE
+                                 Regexp of ethtool devices to include (mutually
+                                 exclusive to device-exclude).
+      --collector.ethtool.device-exclude=COLLECTOR.ETHTOOL.DEVICE-EXCLUDE
+                                 Regexp of ethtool devices to exclude (mutually
+                                 exclusive to device-include).
+      --collector.ethtool.metrics-include=".*"
+                                 Regexp of ethtool stats to include.
+      --collector.filesystem.mount-points-exclude="^/(dev|proc|run/credentials/.+|sys|var/lib/docker/.+|var/lib/containers/storage/.+)($|/)"
+                                 Regexp of mount points to exclude for
+                                 filesystem collector. (mutually exclusive to
+                                 mount-points-include)
+      --collector.filesystem.mount-points-include=COLLECTOR.FILESYSTEM.MOUNT-POINTS-INCLUDE
+                                 Regexp of mount points to include for
+                                 filesystem collector. (mutually exclusive to
+                                 mount-points-exclude)
+      --collector.filesystem.fs-types-exclude="^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|erofs|sysfs|tracefs)$"
+                                 Regexp of filesystem types to exclude for
+                                 filesystem collector. (mutually exclusive to
+                                 fs-types-include)
+      --collector.filesystem.fs-types-include=COLLECTOR.FILESYSTEM.FS-TYPES-INCLUDE
+                                 Regexp of filesystem types to exclude for
+                                 filesystem collector. (mutually exclusive to
+                                 fs-types-exclude)
+      --collector.hwmon.chip-include=COLLECTOR.HWMON.CHIP-INCLUDE
+                                 Regexp of hwmon chip to include (mutually
+                                 exclusive to device-exclude).
+      --collector.hwmon.chip-exclude=COLLECTOR.HWMON.CHIP-EXCLUDE
+                                 Regexp of hwmon chip to exclude (mutually
+                                 exclusive to device-include).
+      --collector.hwmon.sensor-include=COLLECTOR.HWMON.SENSOR-INCLUDE
+                                 Regexp of hwmon sensor to include (mutually
+                                 exclusive to sensor-exclude).
+      --collector.hwmon.sensor-exclude=COLLECTOR.HWMON.SENSOR-EXCLUDE
+                                 Regexp of hwmon sensor to exclude (mutually
+                                 exclusive to sensor-include).
+      --collector.interrupts.name-include=COLLECTOR.INTERRUPTS.NAME-INCLUDE
+                                 Regexp of interrupts name to
+                                 include (mutually exclusive to
+                                 --collector.interrupts.name-exclude).
+      --collector.interrupts.name-exclude=COLLECTOR.INTERRUPTS.NAME-EXCLUDE
+                                 Regexp of interrupts name to
+                                 exclude (mutually exclusive to
+                                 --collector.interrupts.name-include).
+      --[no-]collector.interrupts.include-zeros
+                                 Include interrupts that have a zero value
+      --collector.ipvs.backend-labels="local_address,local_port,remote_address,remote_port,proto,local_mark"
+                                 Comma separated list for IPVS backend stats
+                                 labels.
+      --collector.netclass.ignored-devices="^$"
+                                 Regexp of net devices to ignore for netclass
+                                 collector.
+      --[no-]collector.netclass.ignore-invalid-speed
+                                 Ignore devices where the speed is invalid.
+                                 This will be the default behavior in 2.x.
+      --[no-]collector.netclass.netlink
+                                 Use netlink to gather stats instead of
+                                 /proc/net/dev.
+      --[no-]collector.netclass_rtnl.with-stats
+                                 Expose the statistics for each network device,
+                                 replacing netdev collector.
+      --collector.netdev.device-include=COLLECTOR.NETDEV.DEVICE-INCLUDE
+                                 Regexp of net devices to include (mutually
+                                 exclusive to device-exclude).
+      --collector.netdev.device-exclude=COLLECTOR.NETDEV.DEVICE-EXCLUDE
+                                 Regexp of net devices to exclude (mutually
+                                 exclusive to device-include).
+      --[no-]collector.netdev.address-info
+                                 Collect address-info for every device
+      --[no-]collector.netdev.enable-detailed-metrics
+                                 Use (incompatible) metric names that provide
+                                 more detailed stats on Linux
+      --[no-]collector.netdev.netlink
+                                 Use netlink to gather stats instead of
+                                 /proc/net/dev.
+      --[no-]collector.netdev.label-ifalias
+                                 Add ifAlias label
+      --collector.netstat.fields="^(.*_(InErrors|InErrs)|Ip_Forwarding|Ip(6|Ext)_(InOctets|OutOctets)|Icmp6?_(InMsgs|OutMsgs)|TcpExt_(Listen.*|Syncookies.*|TCPSynRetrans|TCPTimeouts|TCPOFOQueue|TCPRcvQDrop)|Tcp_(ActiveOpens|InSegs|OutSegs|OutRsts|PassiveOpens|RetransSegs|CurrEstab)|Udp6?_(InDatagrams|OutDatagrams|NoPorts|RcvbufErrors|SndbufErrors))$"
+                                 Regexp of fields to return for netstat
+                                 collector.
+      --collector.ntp.server="127.0.0.1"
+                                 NTP server to use for ntp collector
+      --collector.ntp.server-port=123
+                                 UDP port number to connect to on NTP server
+      --collector.ntp.protocol-version=4
+                                 NTP protocol version
+      --[no-]collector.ntp.server-is-local
+                                 Certify that collector.ntp.server address is
+                                 not a public ntp server
+      --collector.ntp.ip-ttl=1   IP TTL to use while sending NTP query
+      --collector.ntp.max-distance=3.46608s
+                                 Max accumulated distance to the root
+      --collector.ntp.local-offset-tolerance=1ms
+                                 Offset between local clock and local ntpd time
+                                 to tolerate
+      --path.procfs="/proc"      procfs mountpoint.
+      --path.sysfs="/sys"        sysfs mountpoint.
+      --path.rootfs="/"          rootfs mountpoint.
+      --path.udev.data="/run/udev/data"
+                                 udev data path.
+      --collector.pcidevice.idsfile=COLLECTOR.PCIDEVICE.IDSFILE
+                                 Path to pci.ids file to use for PCI device
+                                 identification.
+      --[no-]collector.pcidevice.names
+                                 Enable PCI device name resolution (requires
+                                 pci.ids file).
+      --collector.perf.cpus=""   List of CPUs from which perf metrics should be
+                                 collected
+      --collector.perf.tracepoint=COLLECTOR.PERF.TRACEPOINT ...
+                                 perf tracepoint that should be collected
+      --[no-]collector.perf.disable-hardware-profilers
+                                 disable perf hardware profilers
+      --collector.perf.hardware-profilers=COLLECTOR.PERF.HARDWARE-PROFILERS ...
+                                 perf hardware profilers that should be
+                                 collected
+      --[no-]collector.perf.disable-software-profilers
+                                 disable perf software profilers
+      --collector.perf.software-profilers=COLLECTOR.PERF.SOFTWARE-PROFILERS ...
+                                 perf software profilers that should be
+                                 collected
+      --[no-]collector.perf.disable-cache-profilers
+                                 disable perf cache profilers
+      --collector.perf.cache-profilers=COLLECTOR.PERF.CACHE-PROFILERS ...
+                                 perf cache profilers that should be collected
+      --collector.powersupply.ignored-supplies="^$"
+                                 Regexp of power supplies to ignore for
+                                 powersupplyclass collector.
+      --collector.qdisc.fixtures=""
+                                 test fixtures to use for qdisc collector
+                                 end-to-end testing
+      --collector.qdisc.device-include=COLLECTOR.QDISC.DEVICE-INCLUDE
+                                 Regexp of qdisc devices to include (mutually
+                                 exclusive to device-exclude).
+      --collector.qdisc.device-exclude=COLLECTOR.QDISC.DEVICE-EXCLUDE
+                                 Regexp of qdisc devices to exclude (mutually
+                                 exclusive to device-include).
+      --[no-]collector.rapl.enable-zone-label
+                                 Enables service unit metric
+                                 unit_start_time_seconds
+      --collector.runit.servicedir="/etc/service"
+                                 Path to runit service directory.
+      --collector.slabinfo.slabs-include=".*"
+                                 Regexp of slabs to include in slabinfo
+                                 collector.
+      --collector.slabinfo.slabs-exclude=""
+                                 Regexp of slabs to exclude in slabinfo
+                                 collector.
+      --[no-]collector.stat.softirq
+                                 Export softirq calls per vector
+      --collector.supervisord.url="http://localhost:9001/RPC2"
+                                 XML RPC endpoint. ($SUPERVISORD_URL)
+      --collector.sysctl.include=COLLECTOR.SYSCTL.INCLUDE ...
+                                 Select sysctl metrics to include
+      --collector.sysctl.include-info=COLLECTOR.SYSCTL.INCLUDE-INFO ...
+                                 Select sysctl metrics to include as info
+                                 metrics
+      --collector.systemd.unit-include=".+"
+                                 Regexp of systemd units to include. Units must
+                                 both match include and not match exclude to be
+                                 included.
+      --collector.systemd.unit-exclude=".+\\.(automount|device|mount|scope|slice)"
+                                 Regexp of systemd units to exclude. Units must
+                                 both match include and not match exclude to be
+                                 included.
+      --[no-]collector.systemd.enable-task-metrics
+                                 Enables service unit tasks metrics
+                                 unit_tasks_current and unit_tasks_max
+      --[no-]collector.systemd.enable-restarts-metrics
+                                 Enables service unit metric
+                                 service_restart_total
+      --[no-]collector.systemd.enable-start-time-metrics
+                                 Enables service unit metric
+                                 unit_start_time_seconds
+      --collector.tapestats.ignored-devices="^$"
+                                 Regexp of devices to ignore for tapestats.
+      --collector.textfile.directory= ...
+                                 Directory to read text files with metrics from,
+                                 supports glob matching. (repeatable)
+      --collector.vmstat.fields="^(oom_kill|pgpg|pswp|pg.*fault).*"
+                                 Regexp of fields to return for vmstat
+                                 collector.
+      --collector.wifi.fixtures=""
+                                 test fixtures to use for wifi collector metrics
+      --[no-]collector.arp       Enable the arp collector (default: enabled).
+      --[no-]collector.bcache    Enable the bcache collector (default: enabled).
+      --[no-]collector.bonding   Enable the bonding collector (default:
+                                 enabled).
+      --[no-]collector.btrfs     Enable the btrfs collector (default: enabled).
+      --[no-]collector.buddyinfo
+                                 Enable the buddyinfo collector (default:
+                                 disabled).
+      --[no-]collector.cgroups   Enable the cgroups collector (default:
+                                 disabled).
+      --[no-]collector.conntrack
+                                 Enable the conntrack collector (default:
+                                 enabled).
+      --[no-]collector.cpu       Enable the cpu collector (default: enabled).
+      --[no-]collector.cpu_vulnerabilities
+                                 Enable the cpu_vulnerabilities collector
+                                 (default: disabled).
+      --[no-]collector.cpufreq   Enable the cpufreq collector (default:
+                                 enabled).
+      --[no-]collector.diskstats
+                                 Enable the diskstats collector (default:
+                                 enabled).
+      --[no-]collector.dmi       Enable the dmi collector (default: enabled).
+      --[no-]collector.drbd      Enable the drbd collector (default: disabled).
+      --[no-]collector.drm       Enable the drm collector (default: disabled).
+      --[no-]collector.edac      Enable the edac collector (default: enabled).
+      --[no-]collector.entropy   Enable the entropy collector (default:
+                                 enabled).
+      --[no-]collector.ethtool   Enable the ethtool collector (default:
+                                 disabled).
+      --[no-]collector.fibrechannel
+                                 Enable the fibrechannel collector (default:
+                                 enabled).
+      --[no-]collector.filefd    Enable the filefd collector (default: enabled).
+      --[no-]collector.filesystem
+                                 Enable the filesystem collector (default:
+                                 enabled).
+      --[no-]collector.hwmon     Enable the hwmon collector (default: enabled).
+      --[no-]collector.infiniband
+                                 Enable the infiniband collector (default:
+                                 enabled).
+      --[no-]collector.interrupts
+                                 Enable the interrupts collector (default:
+                                 disabled).
+      --[no-]collector.ipvs      Enable the ipvs collector (default: enabled).
+      --[no-]collector.ksmd      Enable the ksmd collector (default: disabled).
+      --[no-]collector.lnstat    Enable the lnstat collector (default:
+                                 disabled).
+      --[no-]collector.loadavg   Enable the loadavg collector (default:
+                                 enabled).
+      --[no-]collector.logind    Enable the logind collector (default:
+                                 disabled).
+      --[no-]collector.mdadm     Enable the mdadm collector (default: enabled).
+      --[no-]collector.meminfo   Enable the meminfo collector (default:
+                                 enabled).
+      --[no-]collector.meminfo_numa
+                                 Enable the meminfo_numa collector (default:
+                                 disabled).
+      --[no-]collector.mountstats
+                                 Enable the mountstats collector (default:
+                                 disabled).
+      --[no-]collector.netclass  Enable the netclass collector (default:
+                                 enabled).
+      --[no-]collector.netdev    Enable the netdev collector (default: enabled).
+      --[no-]collector.netstat   Enable the netstat collector (default:
+                                 enabled).
+      --[no-]collector.network_route
+                                 Enable the network_route collector (default:
+                                 disabled).
+      --[no-]collector.nfs       Enable the nfs collector (default: enabled).
+      --[no-]collector.nfsd      Enable the nfsd collector (default: enabled).
+      --[no-]collector.ntp       Enable the ntp collector (default: disabled).
+      --[no-]collector.nvme      Enable the nvme collector (default: enabled).
+      --[no-]collector.os        Enable the os collector (default: enabled).
+      --[no-]collector.pcidevice
+                                 Enable the pcidevice collector (default:
+                                 disabled).
+      --[no-]collector.perf      Enable the perf collector (default: disabled).
+      --[no-]collector.powersupplyclass
+                                 Enable the powersupplyclass collector (default:
+                                 enabled).
+      --[no-]collector.pressure  Enable the pressure collector (default:
+                                 enabled).
+      --[no-]collector.processes
+                                 Enable the processes collector (default:
+                                 disabled).
+      --[no-]collector.qdisc     Enable the qdisc collector (default: disabled).
+      --[no-]collector.rapl      Enable the rapl collector (default: enabled).
+      --[no-]collector.runit     Enable the runit collector (default: disabled).
+      --[no-]collector.schedstat
+                                 Enable the schedstat collector (default:
+                                 enabled).
+      --[no-]collector.selinux   Enable the selinux collector (default:
+                                 enabled).
+      --[no-]collector.slabinfo  Enable the slabinfo collector (default:
+                                 disabled).
+      --[no-]collector.sockstat  Enable the sockstat collector (default:
+                                 enabled).
+      --[no-]collector.softirqs  Enable the softirqs collector (default:
+                                 disabled).
+      --[no-]collector.softnet   Enable the softnet collector (default:
+                                 enabled).
+      --[no-]collector.stat      Enable the stat collector (default: enabled).
+      --[no-]collector.supervisord
+                                 Enable the supervisord collector (default:
+                                 disabled).
+      --[no-]collector.swap      Enable the swap collector (default: disabled).
+      --[no-]collector.sysctl    Enable the sysctl collector (default:
+                                 disabled).
+      --[no-]collector.systemd   Enable the systemd collector (default:
+                                 disabled).
+      --[no-]collector.tapestats
+                                 Enable the tapestats collector (default:
+                                 enabled).
+      --[no-]collector.tcpstat   Enable the tcpstat collector (default:
+                                 disabled).
+      --[no-]collector.textfile  Enable the textfile collector (default:
+                                 enabled).
+      --[no-]collector.thermal_zone
+                                 Enable the thermal_zone collector (default:
+                                 enabled).
+      --[no-]collector.time      Enable the time collector (default: enabled).
+      --[no-]collector.timex     Enable the timex collector (default: enabled).
+      --[no-]collector.udp_queues
+                                 Enable the udp_queues collector (default:
+                                 enabled).
+      --[no-]collector.uname     Enable the uname collector (default: enabled).
+      --[no-]collector.vmstat    Enable the vmstat collector (default: enabled).
+      --[no-]collector.watchdog  Enable the watchdog collector (default:
+                                 enabled).
+      --[no-]collector.wifi      Enable the wifi collector (default: disabled).
+      --[no-]collector.xfrm      Enable the xfrm collector (default: disabled).
+      --[no-]collector.xfs       Enable the xfs collector (default: enabled).
+      --[no-]collector.zfs       Enable the zfs collector (default: enabled).
+      --[no-]collector.zoneinfo  Enable the zoneinfo collector (default:
+                                 disabled).
+      --web.telemetry-path="/metrics"
+                                 Path under which to expose metrics.
+      --[no-]web.disable-exporter-metrics
+                                 Exclude metrics about the exporter itself
+                                 (promhttp_*, process_*, go_*).
+      --web.max-requests=40      Maximum number of parallel scrape requests.
+                                 Use 0 to disable.
+      --[no-]collector.disable-defaults
+                                 Set all collectors to disabled by default.
+      --runtime.gomaxprocs=1     The target number of CPUs Go will run on
+                                 (GOMAXPROCS) ($GOMAXPROCS)
+      --[no-]web.systemd-socket  Use systemd socket activation listeners instead
+                                 of port listeners (Linux only).
+      --web.listen-address=:9100 ...
+                                 Addresses on which to expose metrics and web
+                                 interface. Repeatable for multiple addresses.
+                                 Examples: `:9100` or `[::1]:9100` for http,
+                                 `vsock://:9100` for vsock
+      --web.config.file=""       Path to configuration file that can
+                                 enable TLS or authentication. See:
+                                 https://github.com/prometheus/exporter-toolkit/blob/master/docs/web-configuration.md
+      --log.level=info           Only log messages with the given severity or
+                                 above. One of: [debug, info, warn, error]
+      --log.format=logfmt        Output format of log messages. One of: [logfmt,
+                                 json]
+      --[no-]version             Show application version.
