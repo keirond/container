@@ -2,8 +2,6 @@ services:
   cadvisor:
     image: ${REGISTRY:-}ghcr.io/google/cadvisor:${CADVISOR_VERSION:-latest}
     container_name: cadvisor
-    # ports:
-      # - "8080:8080"
     command:
       - "-port=8080"
       - "-listen_ip=0.0.0.0"
@@ -16,7 +14,7 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
-    devices: ["/dev/kmsg"]
+      - /cgroup:/cgroup:ro
     privileged: true
     deploy:
       replicas: 1
