@@ -1,6 +1,6 @@
 services:
   cadvisor:
-    image: ${REGISTRY:-}gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION:-v0.52.0}
+    image: ${REGISTRY:-}ghcr.io/cadvisor/cadvisor:${CADVISOR_VERSION:lastest}
     container_name: cadvisor
     # ports:
       # - "8080:8080"
@@ -12,6 +12,12 @@ services:
       - "-store_container_labels=true"
     volumes:
       - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices: ["/dev/kmsg"]
+    privileged: true
     deploy:
       replicas: 1
       resources:
