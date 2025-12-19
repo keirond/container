@@ -1,3 +1,4 @@
+# prefer using victoria-metrics if possible
 services:
   prometheus:
     image: ${REGISTRY:-}prom/prometheus:${PROMETHEUS_VERSION:-latest}
