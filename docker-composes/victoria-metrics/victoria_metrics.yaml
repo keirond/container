@@ -34,6 +34,8 @@ services:
         order: start-first
     networks:
       - observability-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   victoriametrics-data:
