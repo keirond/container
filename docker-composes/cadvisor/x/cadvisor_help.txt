@@ -1,4 +1,5 @@
-Usage of /usr/bin/cadvisor:
+Commands:
+
   -add_dir_header
         If true, adds the file directory to the header of the log messages
   -allow_dynamic_housekeeping

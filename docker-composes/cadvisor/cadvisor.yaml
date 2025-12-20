@@ -4,7 +4,6 @@ services:
     container_name: cadvisor
     command:
       - "-port=8080"
-      - "-listen_ip=0.0.0.0"
       - "-docker_only"
     volumes:
       - /:/rootfs:ro
@@ -13,13 +12,16 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
       - /cgroup:/cgroup:ro
-    privileged: true
+    privileged: true # TODO: remove this if possible
+    networks:
+      - observability-network
     deploy:
-      replicas: 1
       resources:
         limits:
           cpus: "0.5"
           memory: 512M
+
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -32,8 +34,6 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
-    networks:
-      - observability-network
 
 networks:
   observability-network:

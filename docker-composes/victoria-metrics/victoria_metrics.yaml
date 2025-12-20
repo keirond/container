@@ -4,22 +4,27 @@ services:
     container_name: victoria-metrics
     ports:
       - "8428:8428"
-    volumes:
-      - victoriametrics-data:/victoria-metrics-data
-      - ./prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
     command:
       - "-httpListenAddr=:8428"
       - "-retentionPeriod=1"
+      - "-promscrape.config=/etc/prometheus/prometheus.yaml"
       - "-storageDataPath=victoria-metrics-data"
       - "-enableMetadata"
       - "-loggerFormat=json"
-      - "-promscrape.config=/etc/prometheus/prometheus.yaml"
+    volumes:
+      - victoriametrics-data:/victoria-metrics-data
+      - ./prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
+    networks:
+      - observability-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     deploy:
-      replicas: 1
       resources:
         limits:
           cpus: "4"
           memory: 6G
+
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -32,10 +37,6 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
-    networks:
-      - observability-network
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
 volumes:
   victoriametrics-data:

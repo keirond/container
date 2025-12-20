@@ -3,16 +3,18 @@ services:
     image: ${REGISTRY:-}cassandra:${CASSANDRA_VERSION:-latest}
     container_name: cassandra
     ports:
-      - "19042:9042"
-      - "17199:7199"
-      - "17000:7000"
-      - "17001:7001"
+      - "9042:9042"
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+    networks:
+      - cassandra-network
     deploy:
-      replicas: 1
       resources:
         limits:
           cpus: "2"
           memory: 8G
+
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -25,10 +27,6 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
-    volumes:
-      - cassandra-data:/var/lib/cassandra
-    networks:
-      - cassandra-network
 
 volumes:
   cassandra-data:

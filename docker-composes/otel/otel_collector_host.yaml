@@ -6,13 +6,16 @@ services:
       - "--config=/etc/otel/collector.yaml"
     volumes:
       - /:/hostfs:ro
-      - ./otel_collector_host_cfg.yaml:/etc/otel/collector.yaml:ro
+      - x/otel_collector_host_cfg.yaml:/etc/otel/collector.yaml:ro
+    networks:
+      - observability-network
     deploy:
-      replicas: 1
       resources:
         limits:
           cpus: "2"
           memory: 4G
+
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -25,8 +28,6 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
-    networks:
-      - observability-network
 
 networks:
   observability-network:
