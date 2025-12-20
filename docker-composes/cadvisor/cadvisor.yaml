@@ -5,7 +5,7 @@ services:
     command:
       - "-port=8080"
       - "-docker_only"
-      - "-enable_metrics=process"
+      - "-enable_metrics=cpu,cpuLoad,memory,network,process,tcp,udp,disk,diskIO"
     volumes:
       - /:/rootfs:ro,rslave
       - /sys:/sys:ro,rslave
