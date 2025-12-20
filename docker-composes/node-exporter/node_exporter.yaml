@@ -5,11 +5,11 @@ services:
     command:
       - "--web.listen-address=:9100"
       - "--log.format=json"
-      - "--path.rootfs=/host"
+      - "--path.rootfs=/hostfs"
     network_mode: host
     pid: host
     volumes:
-      - /:/host:ro,rslave
+      - /:/hostfs:ro,rslave
     deploy:
       replicas: 1
       resources:
