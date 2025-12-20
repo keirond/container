@@ -7,10 +7,10 @@ services:
       - "-docker_only"
     volumes:
       - /:/rootfs:ro,rslave
-      # - /sys:/sys:ro,rslave
-      # - /var/run:/var/run:ro,rslave
-      # - /var/lib/docker/:/var/lib/docker:ro,rslave
-      # - /dev/disk/:/dev/disk:ro
+      - /sys:/sys:ro,rslave
+      - /var/run:/var/run:ro,rslave
+      - /var/lib/docker/:/var/lib/docker:ro,rslave
+      - /dev/disk/:/dev/disk:ro,rslave
       - /cgroup:/cgroup:ro,rslave
     privileged: true # TODO: remove this if possible
     networks:
