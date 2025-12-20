@@ -13,6 +13,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro,rslave
       - /dev/disk/:/dev/disk:ro,rslave
       - /cgroup:/cgroup:ro,rslave
+      - /proc:/proc:ro,rslave
     privileged: true
     networks:
       - observability-network
