@@ -827,7 +827,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "container_memory_usage_bytes{id!=\"/\", name=~\"${container_name}\"}",
+          "expr": "rate(container_memory_usage_bytes{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
           "hide": false,
           "legendFormat": "{{name}}",
@@ -1599,7 +1599,7 @@
           "editorMode": "code",
           "expr": "rate(container_network_receive_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} - {{interface}}",
           "range": true,
           "refId": "A"
         }
@@ -1705,7 +1705,7 @@
           "editorMode": "code",
           "expr": "rate(container_network_transmit_bytes_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} - {{interface}}",
           "range": true,
           "refId": "A"
         }
@@ -1811,7 +1811,7 @@
           "editorMode": "code",
           "expr": "rate(container_network_receive_errors_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} - {{interface}}",
           "range": true,
           "refId": "A"
         }
@@ -1917,7 +1917,7 @@
           "editorMode": "code",
           "expr": "rate(container_network_transmit_errors_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} - {{interface}}",
           "range": true,
           "refId": "A"
         }
@@ -2023,7 +2023,7 @@
           "editorMode": "code",
           "expr": "rate(container_network_receive_packets_dropped_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} - {{interface}}",
           "range": true,
           "refId": "A"
         }
@@ -2129,7 +2129,7 @@
           "editorMode": "code",
           "expr": "rate(container_network_transmit_packets_dropped_total{id!=\"/\", name=~\"${container_name}\"}[1m])",
           "format": "time_series",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{name}} - {{interface}}",
           "range": true,
           "refId": "A"
         }
@@ -2815,6 +2815,10 @@
       {
         "allowCustomValue": false,
         "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(container_start_time_seconds,name)",
         "includeAll": false,
         "multi": true,
@@ -2823,7 +2827,7 @@
         "query": {
           "qryType": 1,
           "query": "label_values(container_start_time_seconds,name)",
-          "refId": "VariableQueryEditor-VariableQuery"
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -2833,14 +2837,14 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "container metrics",
   "uid": "grdfrhl",
-  "version": 24,
+  "version": 31,
   "weekStart": "",
   "id": null
 }
