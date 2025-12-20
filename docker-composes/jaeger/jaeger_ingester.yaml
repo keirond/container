@@ -3,18 +3,23 @@ services:
     image: ${REGISTRY:-}jaegertracing/jaeger-ingester:${JAEGER_VERSION:-latest}
     container_name: jaeger-ingester
     ports:
-      - "24270:14270"
+      - "14270:14270"
     environment:
       - SPAN_STORAGE_TYPE=cassandra
     command:
-      - "--kafka.consumer.brokers=${KAFKA_BROKERS:-127.0.0.1:9092}"
-      - "--cassandra.servers=${CASSANDRA_SERVERS:-127.0.0.1}"
+      - "--kafka.consumer.brokers=${KAFKA_BROKERS:-host.docker.internal:9092}"
+      - "--cassandra.servers=${CASSANDRA_SERVERS:-host.docker.internal:9042}"
+    networks:
+      - observability-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     deploy:
-      replicas: 1
       resources:
         limits:
           cpus: "1"
           memory: 1G
+
+      replicas: 1
       update_config:
         parallelism: 1
         delay: 10s
@@ -27,8 +32,6 @@ services:
         failure_action: pause
         max_failure_ratio: 0.25
         order: start-first
-    networks:
-      - observability-network
 
 networks:
   observability-network:

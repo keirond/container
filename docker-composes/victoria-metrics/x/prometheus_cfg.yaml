@@ -6,6 +6,7 @@ scrape_configs:
     static_configs:
       - targets:
           - "cadvisor:8080"
+
   - job_name: "node-exporter"
     scrape_interval: 30s
     scrape_timeout: 10s
