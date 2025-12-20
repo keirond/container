@@ -54,9 +54,23 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
+  "graphTooltip": 2,
+  "id": null,
   "links": [],
   "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "panels": [],
+      "title": "overview",
+      "type": "row"
+    },
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
@@ -65,8 +79,10 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
           },
+          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -85,7 +101,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 7,
       "options": {
@@ -110,7 +126,7 @@
         },
         "showUnfilled": true,
         "sizing": "auto",
-        "valueMode": "color"
+        "valueMode": "text"
       },
       "pluginVersion": "12.3.1",
       "targets": [
@@ -127,7 +143,7 @@
           "refId": "A"
         }
       ],
-      "title": "Container Uptime",
+      "title": "container uptime",
       "type": "bargauge"
     },
     {
@@ -196,7 +212,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 1,
       "options": {
@@ -231,7 +247,7 @@
           "refId": "A"
         }
       ],
-      "title": "CPU Utilization",
+      "title": "cpu utilization",
       "type": "timeseries"
     },
     {
@@ -300,7 +316,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 9
       },
       "id": 2,
       "options": {
@@ -336,7 +352,7 @@
           "refId": "A"
         }
       ],
-      "title": "Memory Usage",
+      "title": "memory usage",
       "type": "timeseries"
     },
     {
@@ -405,7 +421,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 3,
       "options": {
@@ -440,7 +456,7 @@
           "refId": "A"
         }
       ],
-      "title": "Network Receive Rate",
+      "title": "network receive rate",
       "type": "timeseries"
     },
     {
@@ -509,7 +525,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 17
       },
       "id": 4,
       "options": {
@@ -544,7 +560,7 @@
           "refId": "A"
         }
       ],
-      "title": "Network Transmit Rate",
+      "title": "network transmit rate",
       "type": "timeseries"
     },
     {
@@ -613,7 +629,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 25
       },
       "id": 5,
       "options": {
@@ -651,7 +667,7 @@
           "refId": "A"
         }
       ],
-      "title": "Disk Read Rate",
+      "title": "fs reads rate",
       "type": "timeseries"
     },
     {
@@ -720,7 +736,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 24
+        "y": 25
       },
       "id": 6,
       "options": {
@@ -755,7 +771,7 @@
           "refId": "A"
         }
       ],
-      "title": "Disk Write Rate",
+      "title": "fs writes rate",
       "type": "timeseries"
     }
   ],
@@ -764,7 +780,7 @@
   "schemaVersion": 42,
   "tags": [
     "cadvisor",
-    "host-metrics"
+    "container-metrics"
   ],
   "templating": {
     "list": [
@@ -809,9 +825,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "CAdvisor 192.168.0.211",
+  "title": "container metrics",
   "uid": "grdfrhl",
-  "version": 10,
-  "weekStart": "",
-  "id": null
+  "version": 12,
+  "weekStart": ""
 }
