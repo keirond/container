@@ -8,10 +8,10 @@ services:
     volumes:
       - /:/rootfs:ro,rslave
       # - /sys:/sys:ro,rslave
-      - /var/run:/var/run:ro,rslave
+      # - /var/run:/var/run:ro,rslave
       # - /var/lib/docker/:/var/lib/docker:ro,rslave
       # - /dev/disk/:/dev/disk:ro
-      # - /cgroup:/cgroup:ro
+      - /cgroup:/cgroup:ro,rslave
     privileged: true # TODO: remove this if possible
     networks:
       - observability-network
