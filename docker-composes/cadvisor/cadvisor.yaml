@@ -12,7 +12,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro,rslave
       - /dev/disk/:/dev/disk:ro,rslave
       - /cgroup:/cgroup:ro,rslave
-    privileged: true # TODO: remove this if possible
+    # privileged: true # TODO: remove this if possible
     networks:
       - observability-network
     deploy:
