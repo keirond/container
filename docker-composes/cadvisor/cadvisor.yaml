@@ -7,11 +7,6 @@ services:
       - "-docker_only"
     volumes:
       - /:/rootfs:ro,rslave
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
-      - /cgroup:/cgroup:ro
     privileged: true # TODO: remove this if possible
     networks:
       - observability-network
