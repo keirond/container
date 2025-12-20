@@ -1,0 +1,31 @@
+services:
+  process-exporter:
+    image: ${REGISTRY:-}ncabatoff/process-exporter:${PROCESS_EXPORTER_VERSION:-latest}
+    container_name: process-exporter
+    command:
+      - "-config.path=/etc/process-exporter/config.yml"
+      - "-procfs=/hostfs/proc"
+      - "-web.listen-address=:9256"
+    network_mode: host
+    pid: host
+    volumes:
+      - ./process_exporter_cfg.yaml:/etc/process-exporter/config.yml:ro
+      - /proc:/hostfs/proc:ro,rslave
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+      update_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: rollback
+        max_failure_ratio: 0.25
+        order: start-first
+      rollback_config:
+        parallelism: 1
+        delay: 10s
+        failure_action: pause
+        max_failure_ratio: 0.25
+        order: start-first
