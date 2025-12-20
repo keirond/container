@@ -1,12 +1,12 @@
 {
   "__inputs": [
     {
-      "name": "DS_VICTORIA-METRICS-DATASOURCE",
-      "label": "victoria-metrics-datasource",
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
       "description": "",
       "type": "datasource",
-      "pluginId": "victoriametrics-metrics-datasource",
-      "pluginName": "VictoriaMetrics"
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
     }
   ],
   "__elements": {},
@@ -24,16 +24,16 @@
       "version": "12.3.1"
     },
     {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
       "type": "panel",
       "id": "timeseries",
       "name": "Time series",
       "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "victoriametrics-metrics-datasource",
-      "name": "VictoriaMetrics",
-      "version": "0.19.7"
     }
   ],
   "annotations": {
@@ -72,8 +72,8 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-metrics-datasource",
-        "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+        "type": "prometheus",
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -160,13 +160,13 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-metrics-datasource",
-            "uid": "${DS_VICTORIA-METRICS-DATASOURCE}"
+            "type": "prometheus",
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_cpu_seconds_total{}[1m])",
-          "format": "time_series",
-          "legendFormat": "{{cpu}} {{mode}}",
+          "instant": false,
+          "legendFormat": "{{cpu}} - {{mode}}",
           "range": true,
           "refId": "A"
         }
@@ -190,7 +190,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -253,7 +253,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "node_network_up{device=~\"${network_interface}\"}",
@@ -270,7 +270,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -358,7 +358,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_network_receive_bytes_total{device=~\"${network_interface}\"}[1m]) / on(device) node_network_speed_bytes{device=~\"${network_interface}\"}",
@@ -375,7 +375,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -463,7 +463,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_network_transmit_bytes_total{device=~\"${network_interface}\"}[1m]) / on(device) node_network_speed_bytes{device=~\"${network_interface}\"}",
@@ -480,7 +480,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -568,7 +568,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_network_receive_errs_total{device=~\"${network_interface}\"}[1m])",
@@ -585,7 +585,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -673,7 +673,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_network_transmit_drop_total{device=~\"${network_interface}\"}[1m])",
@@ -690,7 +690,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -778,7 +778,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_network_receive_bytes_total{device=~\"${network_interface}\"}[1m])",
@@ -795,7 +795,7 @@
     {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -883,7 +883,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "rate(node_network_transmit_bytes_total{device=~\"${network_interface}\"}[1m])",
@@ -898,9 +898,22 @@
       "type": "timeseries"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Row title",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "victoriametrics-metrics-datasource",
-        "uid": "${data_source}"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -963,7 +976,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 42
+        "y": 43
       },
       "id": 12,
       "options": {
@@ -988,7 +1001,7 @@
         {
           "datasource": {
             "type": "victoriametrics-metrics-datasource",
-            "uid": "${data_source}"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "node_filefd_allocated / on(instance) node_filefd_maximum",
@@ -1001,19 +1014,6 @@
       ],
       "title": "FD Utilization",
       "type": "timeseries"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 50
-      },
-      "id": 9,
-      "panels": [],
-      "title": "Row title",
-      "type": "row"
     }
   ],
   "preload": false,
@@ -1026,12 +1026,12 @@
         "allowCustomValue": false,
         "current": {
           "text": "",
-          "value": "${DS_VICTORIA-METRICS-DATASOURCE}",
+          "value": "${DS_PROMETHEUS}",
           "selected": true
         },
-        "name": "data_source",
+        "name": "datasource",
         "options": [],
-        "query": "victoriametrics-metrics-datasource",
+        "query": "prometheus",
         "refresh": 1,
         "regex": "",
         "type": "datasource"
@@ -1039,6 +1039,10 @@
       {
         "allowCustomValue": false,
         "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(node_network_up,device)",
         "multi": true,
         "name": "network_interface",
@@ -1046,7 +1050,7 @@
         "query": {
           "qryType": 1,
           "query": "label_values(node_network_up,device)",
-          "refId": "VariableQueryEditor-VariableQuery"
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -1060,9 +1064,9 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Node Exporter 192.168.0.211",
+  "title": "host metrics",
   "uid": "grb74x7",
-  "version": 5,
+  "version": 11,
   "weekStart": "",
   "id": null
 }
