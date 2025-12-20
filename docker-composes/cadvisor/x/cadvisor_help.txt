@@ -1,3 +1,7 @@
+Metrics:
+
+      https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md
+
 Commands:
 
   -add_dir_header
@@ -35,7 +39,9 @@ Commands:
   -crio_client_timeout duration
         CRI-O client timeout. Default is no timeout.
   -disable_metrics metrics
-        comma-separated list of metrics to be disabled. Options are advtcp,app,cpu,cpuLoad,cpu_topology,cpuset,disk,diskIO,hugetlb,memory,memory_numa,network,oom_event,percpu,perf_event,process,referenced_memory,resctrl,sched,tcp,udp. (default advtcp,cpu_topology,cpuset,hugetlb,memory_numa,process,referenced_memory,resctrl,sched,tcp,udp)
+        comma-separated list of metrics to be disabled.
+        Options are advtcp,app,cpu,cpuLoad,cpu_topology,cpuset,disk,diskIO,hugetlb,memory,memory_numa,network,oom_event,percpu,perf_event,process,referenced_memory,resctrl,sched,tcp,udp.
+        (default advtcp,cpu_topology,cpuset,hugetlb,memory_numa,process,referenced_memory,resctrl,sched,tcp,udp)
   -disable_root_cgroup_stats
         Disable collecting root Cgroup stats
   -docker string
@@ -57,7 +63,8 @@ Commands:
   -enable_load_reader
         Whether to enable cpu load reader
   -enable_metrics metrics
-        comma-separated list of metrics to be enabled. If set, overrides 'disable_metrics'. Options are advtcp,app,cpu,cpuLoad,cpu_topology,cpuset,disk,diskIO,hugetlb,memory,memory_numa,network,oom_event,percpu,perf_event,process,referenced_memory,resctrl,sched,tcp,udp.
+        comma-separated list of metrics to be enabled. If set, overrides 'disable_metrics'.
+        Options are advtcp,app,cpu,cpuLoad,cpu_topology,cpuset,disk,diskIO,hugetlb,memory,memory_numa,network,oom_event,percpu,perf_event,process,referenced_memory,resctrl,sched,tcp,udp.
   -env_metadata_whitelist string
         a comma-separated list of environment variable keys matched with specified prefix that needs to be collected for containers, only support containerd and docker runtime for now.
   -event_storage_age_limit string
