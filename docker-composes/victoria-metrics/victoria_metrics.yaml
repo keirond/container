@@ -12,7 +12,7 @@ services:
       - "-enableMetadata"
       - "-loggerFormat=json"
     volumes:
-      - victoriametrics-data:/victoria-metrics-data
+      - victoria-metrics-data:/victoria-metrics-data
       - x/prometheus_cfg.yaml:/etc/prometheus/prometheus.yaml:ro
     networks:
       - observability-network
@@ -39,8 +39,8 @@ services:
         order: start-first
 
 volumes:
-  victoriametrics-data:
-    name: victoriametrics-data
+  victoria-metrics-data:
+    name: victoria-metrics-data
     driver: local
 
 networks:
