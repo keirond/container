@@ -14,7 +14,7 @@ services:
       - "--sampling.strategies-reload-interval=1m"
       - "--cassandra.servers=${CASSANDRA_SERVERS:-127.0.0.1}"
     volumes:
-      - x/sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro
+      - ./x/sampling_strategies.json:/etc/jaeger/sampling_strategies.json:ro
     networks:
       - observability-network
     deploy:
