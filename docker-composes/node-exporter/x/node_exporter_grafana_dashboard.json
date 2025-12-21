@@ -1052,7 +1052,7 @@
           "query": "label_values(node_network_up,device)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "type": "query"
       }
@@ -1066,7 +1066,7 @@
   "timezone": "browser",
   "title": "host metrics",
   "uid": "grb74x7",
-  "version": 11,
+  "version": 12,
   "weekStart": "",
   "id": null
 }
