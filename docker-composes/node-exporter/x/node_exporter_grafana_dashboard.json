@@ -55,6 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": null,
   "links": [],
   "panels": [
     {
@@ -1017,7 +1018,7 @@
     }
   ],
   "preload": false,
-  "refresh": "auto",
+  "refresh": "",
   "schemaVersion": 42,
   "tags": [],
   "templating": {
@@ -1067,6 +1068,5 @@
   "title": "host metrics",
   "uid": "grb74x7",
   "version": 12,
-  "weekStart": "",
-  "id": null
+  "weekStart": ""
 }
