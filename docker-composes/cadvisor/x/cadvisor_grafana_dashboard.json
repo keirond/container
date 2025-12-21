@@ -2829,7 +2829,7 @@
           "query": "label_values(container_start_time_seconds,name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "sort": 1,
         "type": "query"
@@ -2844,7 +2844,7 @@
   "timezone": "browser",
   "title": "container metrics",
   "uid": "grdfrhl",
-  "version": 31,
+  "version": 32,
   "weekStart": "",
   "id": null
 }
