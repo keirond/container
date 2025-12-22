@@ -19,8 +19,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1"
-          memory: 2G
+          cpus: "2"
+          memory: 4G
 
       replicas: 1
       update_config:
