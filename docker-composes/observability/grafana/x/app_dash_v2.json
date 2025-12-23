@@ -82,7 +82,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL-PROMETHEUS}"
+        "uid": "${prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -166,6 +166,10 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
           "editorMode": "code",
           "exemplar": false,
           "expr": "rate(http_server_requests_seconds_count{instance=~\"$instances\"}[1m])",
@@ -174,11 +178,7 @@
           "interval": "",
           "legendFormat": "{{method}} & {{instance}} & {{uri}} - {{status}} & {{outcome}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "http request rate",
@@ -187,7 +187,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL-PROMETHEUS}"
+        "uid": "${prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -271,6 +271,10 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
           "editorMode": "code",
           "exemplar": false,
           "expr": "system_cpu_usage{instance=~\"$instances\"}",
@@ -279,11 +283,7 @@
           "interval": "",
           "legendFormat": "{{instance}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "system cpu usage",
@@ -292,7 +292,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL-PROMETHEUS}"
+        "uid": "${prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -376,6 +376,10 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
           "editorMode": "code",
           "exemplar": false,
           "expr": "process_cpu_usage{instance=~\"$instances\"}",
@@ -384,11 +388,7 @@
           "interval": "",
           "legendFormat": "{{instance}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "process cpu usage",
@@ -397,7 +397,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_LOCAL-PROMETHEUS}"
+        "uid": "${prometheus}"
       },
       "fieldConfig": {
         "defaults": {
@@ -481,6 +481,10 @@
       "pluginVersion": "12.3.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${prometheus}"
+          },
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum(jvm_memory_used_bytes{instance=~\"$instances\", area=\"heap\"}) by (instance)",
@@ -490,11 +494,7 @@
           "interval": "",
           "legendFormat": "{{instance}}",
           "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
-          }
+          "refId": "A"
         }
       ],
       "title": "jvm memory usage",
@@ -513,7 +513,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
+            "uid": "${prometheus}"
           },
           "fieldConfig": {
             "defaults": {
@@ -564,7 +564,7 @@
                   }
                 ]
               },
-              "unit": "percentunit"
+              "unit": "short"
             },
             "overrides": []
           },
@@ -597,6 +597,10 @@
           "pluginVersion": "12.3.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${prometheus}"
+              },
               "editorMode": "code",
               "exemplar": false,
               "expr": "rate(sched_bounded_elastic_scheduler_tasks_active_seconds_count{instance=~\"$instances\"}[1m])",
@@ -605,11 +609,7 @@
               "interval": "",
               "legendFormat": "{{instance}}",
               "range": true,
-              "refId": "A",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_LOCAL-PROMETHEUS}"
-              }
+              "refId": "A"
             }
           ],
           "title": "sched_bounded_elastic_scheduler_tasks_active_seconds_count",
@@ -618,7 +618,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
+            "uid": "${prometheus}"
           },
           "fieldConfig": {
             "defaults": {
@@ -669,7 +669,7 @@
                   }
                 ]
               },
-              "unit": "percentunit"
+              "unit": "short"
             },
             "overrides": []
           },
@@ -702,6 +702,10 @@
           "pluginVersion": "12.3.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${prometheus}"
+              },
               "editorMode": "code",
               "exemplar": false,
               "expr": "rate(sched_bounded_elastic_scheduler_tasks_pending_seconds_count{instance=~\"$instances\"}[1m])",
@@ -710,11 +714,7 @@
               "interval": "",
               "legendFormat": "{{instance}}",
               "range": true,
-              "refId": "A",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_LOCAL-PROMETHEUS}"
-              }
+              "refId": "A"
             }
           ],
           "title": "sched_bounded_elastic_scheduler_tasks_pending_seconds_count",
@@ -723,7 +723,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
+            "uid": "${prometheus}"
           },
           "fieldConfig": {
             "defaults": {
@@ -774,7 +774,7 @@
                   }
                 ]
               },
-              "unit": "percentunit"
+              "unit": "short"
             },
             "overrides": []
           },
@@ -807,6 +807,10 @@
           "pluginVersion": "12.3.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${prometheus}"
+              },
               "editorMode": "code",
               "exemplar": false,
               "expr": "rate(sched_parallel_scheduler_tasks_active_seconds_count{instance=~\"$instances\"}[1m])",
@@ -815,11 +819,7 @@
               "interval": "",
               "legendFormat": "{{instance}}",
               "range": true,
-              "refId": "A",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_LOCAL-PROMETHEUS}"
-              }
+              "refId": "A"
             }
           ],
           "title": "sched_parallel_scheduler_tasks_active_seconds_count",
@@ -828,7 +828,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_LOCAL-PROMETHEUS}"
+            "uid": "${prometheus}"
           },
           "fieldConfig": {
             "defaults": {
@@ -879,7 +879,7 @@
                   }
                 ]
               },
-              "unit": "percentunit"
+              "unit": "short"
             },
             "overrides": []
           },
@@ -912,6 +912,10 @@
           "pluginVersion": "12.3.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${prometheus}"
+              },
               "editorMode": "code",
               "exemplar": false,
               "expr": "rate(sched_parallel_scheduler_tasks_pending_seconds_count{instance=~\"$instances\"}[1m])",
@@ -920,11 +924,7 @@
               "interval": "",
               "legendFormat": "{{instance}}",
               "range": true,
-              "refId": "A",
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_LOCAL-PROMETHEUS}"
-              }
+              "refId": "A"
             }
           ],
           "title": "sched_parallel_scheduler_tasks_pending_seconds_count",
@@ -947,7 +947,11 @@
     "list": [
       {
         "allowCustomValue": false,
-        "current": {},
+        "current": {
+          "text": "",
+          "value": "${DS_LOCAL-PROMETHEUS}",
+          "selected": true
+        },
         "description": "",
         "label": "Prometheus",
         "name": "prometheus",
@@ -960,6 +964,10 @@
       {
         "allowCustomValue": false,
         "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_LOCAL-PROMETHEUS}"
+        },
         "definition": "label_values(application_ready_time_seconds,instance)",
         "label": "Instances",
         "multi": true,
@@ -984,7 +992,7 @@
   "timezone": "browser",
   "title": "Spring Webflux",
   "uid": "grfsrrq",
-  "version": 12,
+  "version": 3,
   "weekStart": "",
   "id": null
 }
