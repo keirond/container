@@ -1,0 +1,50 @@
+version: v1.3.0
+
+dsn: postgres://kratos:secret@ory-kratos-db:5432/kratos?sslmode=disable
+
+serve:
+  public:
+    host: "0.0.0.0"
+    port: 4433
+    cors:
+      enabled: false
+      allow_credentials: true
+      options_passthrough: false
+      max_age: 0
+      debug: false
+  admin:
+    host: "0.0.0.0"
+    port: 4434
+
+identity:
+  default_schema_id: default
+  schemas:
+    - id: default
+      url: file:///etc/kratos/schemas/default.json
+
+selfservice:
+  default_browser_return_url: http://localhost:4455/welcome
+  methods:
+    password:
+      enabled: true
+  flows:
+    registration:
+      ui_url: http://localhost:4455/registration
+      after:
+        default_browser_return_url: http://localhost:4455/welcome
+    login:
+      ui_url: http://localhost:4455/login
+      after:
+        default_browser_return_url: http://localhost:4455/welcome
+    settings:
+      ui_url: http://localhost:4455/settings
+      after:
+        default_browser_return_url: http://localhost:4455/settings
+    recovery:
+      ui_url: http://localhost:4455/recovery
+      after:
+        default_browser_return_url: http://localhost:4455/login
+    verification:
+      ui_url: http://localhost:4455/verification
+      after:
+        default_browser_return_url: http://localhost:4455/welcome

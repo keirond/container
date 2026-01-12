@@ -1,0 +1,44 @@
+services:
+  ory-kratos:
+    image: ${REGISTRY:-}oryd/kratos:${ORY_KRATOS_VERSION:-latest}
+    container_name: ory-kratos
+    ports:
+      - "4433:4433" # Public API
+      - "4434:4434" # Admin API
+    command: serve --config /etc/kratos/kratos.yaml --dev
+    volumes:
+      - ./x/kratos.yaml:/etc/kratos/kratos.yaml:ro
+    depends_on:
+      ory-kratos-db:
+        condition: service_healthy
+    networks:
+      - ory-network
+
+  ory-kratos-db:
+    image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-latest}
+    container_name: ory-kratos-db
+    ports:
+      - "19322:5432"
+    environment:
+      - POSTGRES_DB=kratos
+      - POSTGRES_USER=kratos
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ory-kratos-postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kratos -d kratos"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ory-network
+
+volumes:
+  ory-kratos-postgres-data:
+    name: ory-kratos-postgres-data
+    driver: local
+
+networks:
+  ory-network:
+    name: ory-network
+    driver: bridge
