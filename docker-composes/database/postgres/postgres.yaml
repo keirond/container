@@ -1,0 +1,6 @@
+service:
+  postgres:
+    image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-latest}
+    container_name: postgres
+    ports:
+      
