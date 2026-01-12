@@ -1,0 +1,103 @@
+services:
+  zitadel:
+    image: ${REGISTRY:-ghcr.io/}zitadel/zitadel:${ZITADEL_VERSION:-latest}
+    container_name: zitadel
+    ports:
+      - "8080:8080"
+      - "3000:3000"
+    command: start-from-init --masterkey "MasterkeyNeedsToHave32Characters"
+    environment:
+      ZITADEL_EXTERNALDOMAIN: localhost
+      ZITADEL_EXTERNALSECURE: false
+      ZITADEL_TLS_ENABLED: false
+      ZITADEL_DOMAINPOLICY_ALLOWHTTP: "true"
+
+      ZITADEL_DATABASE_POSTGRES_HOST: zitadel-db
+      ZITADEL_DATABASE_POSTGRES_PORT: 5432
+      ZITADEL_DATABASE_POSTGRES_DATABASE: zitadel
+
+      ZITADEL_DATABASE_POSTGRES_ADMIN_USERNAME: postgres
+      ZITADEL_DATABASE_POSTGRES_ADMIN_PASSWORD: P4ssw0rd!
+      ZITADEL_DATABASE_POSTGRES_ADMIN_SSL_MODE: disable
+
+      ZITADEL_DATABASE_POSTGRES_USER_USERNAME: zitadel
+      ZITADEL_DATABASE_POSTGRES_USER_PASSWORD: P4ssw0rd!
+      ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
+
+      ZITADEL_FIRSTINSTANCE_LOGINCLIENTPATPATH: /current-dir/login-client.pat
+      ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORDCHANGEREQUIRED: false
+      ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_MACHINE_USERNAME: login-client
+      ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_MACHINE_NAME: Automatically Initialized IAM_LOGIN_CLIENT
+      ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_PAT_EXPIRATIONDATE: "2029-01-01T00:00:00Z"
+
+      ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_REQUIRED: true
+      ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_BASEURI: http://localhost:3000/ui/v2/login
+      ZITADEL_OIDC_DEFAULTLOGINURLV2: http://localhost:3000/ui/v2/login/login?authRequest=
+      ZITADEL_OIDC_DEFAULTLOGOUTURLV2: http://localhost:3000/ui/v2/login/logout?post_logout_redirect=
+      ZITADEL_SAML_DEFAULTLOGINURLV2: http://localhost:3000/ui/v2/login/login?samlRequest=
+    volumes:
+      - .:/current-dir:delegated
+    healthcheck:
+      test:
+        - CMD
+        - /app/zitadel
+        - ready
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 10s
+    depends_on:
+      zitadel-db:
+        condition: service_healthy
+    networks:
+      - zitadel-network
+
+  zitadel-login:
+    image: ${REGISTRY:-ghcr.io/}zitadel/zitadel-login:${ZITADEL_LOGIN_VERSION:-latest}
+    container_name: zitadel-login
+    environment:
+      - ZITADEL_API_URL=http://localhost:8080
+      - ZITADEL_SERVICE_USER_TOKEN_FILE=/current-dir/login-client.pat
+    network_mode: service:zitadel
+    volumes:
+      - .:/current-dir:ro
+    depends_on:
+      zitadel:
+        condition: service_healthy
+
+  zitadel-db:
+    image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-17}
+    container_name: zitadel-db
+    ports:
+      - "19554:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=P4ssw0rd!
+    volumes:
+      - zitadel-postgres-data:/var/lib/postgresql
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready
+        - -d
+        - zitadel
+        - -U
+        - postgres
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 20s
+    networks:
+      - zitadel-network
+
+volumes:
+  zitadel-postgres-data:
+    name: zitadel-postgres-data
+    driver: local
+
+networks:
+  zitadel-network:
+    name: zitadel-network
+    driver: bridge
+    external: true
