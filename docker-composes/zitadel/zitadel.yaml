@@ -1,6 +1,4 @@
 services:
-  # username: zitadel-admin@zitadel.localhost
-  # password: Password1!
   zitadel:
     image: ${REGISTRY:-ghcr.io/}zitadel/zitadel:${ZITADEL_VERSION:-latest}
     container_name: zitadel
@@ -64,6 +62,7 @@ services:
     environment:
       - ZITADEL_API_URL=http://localhost:8080
       - ZITADEL_SERVICE_USER_TOKEN_FILE=/current-dir/login-client.pat
+    network_mode: service:zitadel
     volumes:
       - .:/current-dir:ro
     depends_on:
