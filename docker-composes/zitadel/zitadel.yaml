@@ -10,7 +10,7 @@ services:
     command: start-from-init --masterkey "MasterkeyNeedsToHave32Characters"
     environment:
       ZITADEL_EXTERNALDOMAIN: ${EXTERNAL_DOMAIN:-localhost}
-      ZITADEL_TRUSTED_DOMAINS: ${EXTERNAL_DOMAIN:-localhost}
+      ZITADEL_TRUSTED_DOMAINS: ${EXTERNAL_DOMAIN:-localhost},localhost,127.0.0.1
       ZITADEL_EXTERNALSECURE: false
       ZITADEL_TLS_ENABLED: false
       ZITADEL_DOMAINPOLICY_ALLOWHTTP: "true"
