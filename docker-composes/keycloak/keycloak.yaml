@@ -1,0 +1,45 @@
+services:
+  keycloak:
+    image: ${REGISTRY:-}keycloak/keycloak:${KEYCLOAK_VERSION:-latest}
+    container_name: keycloak
+    ports:
+      - "19542:8080"
+    command:
+      - start-dev
+      - --bootstrap-admin-password=${KEYCLOAK_ADMIN_PASSWORD:-P4ssw0rd!}
+      - --db=postgres
+      - --db-url-host=${KEYCLOAK_DB_HOST:-keycloak-db}
+      - --db-url-port=${KEYCLOAK_DB_PORT:-5432}
+      - --db-url-database=${KEYCLOAK_DB_NAME:-keycloak}
+      - --db-username=${KEYCLOAK_DB_USER:-keycloak}
+      - --db-password=${KEYCLOAK_DB_PASSWORD:-P4ssw0rd!}
+      - --db-schema=public
+      - --metrics-enabled=${KEYCLOAK_METRICS_ENABLED:-true}
+      - --log-console-output=${KEYCLOAK_LOG_CONSOLE_OUTPUT:-json}
+    networks:
+      - keycloak-network
+
+  keycloak-db:
+    image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-latest}
+    container_name: keycloak-db
+    ports:
+      - "19543:5432"
+    environment:
+      - POSTGRES_DB=${KEYCLOAK_DB_NAME:-keycloak}
+      - POSTGRES_USER=${KEYCLOAK_DB_USER:-keycloak}
+      - POSTGRES_PASSWORD=${KEYCLOAK_DB_PASSWORD:-P4ssw0rd!}
+    volumes:
+      - keycloak-postgres-data:/var/lib/postgresql
+    networks:
+      - keycloak-network
+
+volumes:
+  keycloak-postgres-data:
+    name: keycloak-postgres-data
+    driver: local
+
+networks:
+  keycloak-network:
+    name: keycloak-network
+    driver: bridge
+    external: true
