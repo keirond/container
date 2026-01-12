@@ -10,7 +10,7 @@ services:
     command: start-from-init --masterkey "MasterkeyNeedsToHave32Characters"
     environment:
       ZITADEL_EXTERNALDOMAIN: ${EXTERNAL_DOMAIN:-localhost}
-      ZITADEL_TRUSTED_DOMAINS: ${EXTERNAL_DOMAIN:-localhost},localhost,127.0.0.1
+      ZITADEL_TRUSTED_DOMAINS: "${EXTERNAL_DOMAIN:-localhost},localhost,127.0.0.1"
       ZITADEL_EXTERNALSECURE: false
       ZITADEL_TLS_ENABLED: false
       ZITADEL_DOMAINPOLICY_ALLOWHTTP: "true"
@@ -28,7 +28,6 @@ services:
       ZITADEL_DATABASE_POSTGRES_USER_SSL_MODE: disable
 
       ZITADEL_FIRSTINSTANCE_LOGINCLIENTPATPATH: /current-dir/login-client.pat
-      ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORDCHANGEREQUIRED: false
       ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_MACHINE_USERNAME: login-client
       ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_MACHINE_NAME: Automatically Initialized IAM_LOGIN_CLIENT
       ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_PAT_EXPIRATIONDATE: "2029-01-01T00:00:00Z"
@@ -42,6 +41,7 @@ services:
       ZITADEL_FIRSTINSTANCE_ORG_NAME: Tenant
       ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME: tenant-admin
       ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORD: Password1!
+      ZITADEL_FIRSTINSTANCE_ORG_HUMAN_PASSWORDCHANGEREQUIRED: false
     volumes:
       - .:/current-dir:delegated
     healthcheck:
@@ -63,7 +63,7 @@ services:
     image: ${REGISTRY:-ghcr.io/}zitadel/zitadel-login:${ZITADEL_LOGIN_VERSION:-latest}
     container_name: zitadel-login
     environment:
-      - ZITADEL_API_URL=http://${EXTERNAL_DOMAIN:-localhost}:8080
+      - ZITADEL_API_URL=http://127.0.0.1:8080
       - ZITADEL_SERVICE_USER_TOKEN_FILE=/current-dir/login-client.pat
     network_mode: service:zitadel
     volumes:
