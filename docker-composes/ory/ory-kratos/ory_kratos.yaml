@@ -18,7 +18,6 @@ services:
     ports:
       - "4433:4433" # Public API
       - "4434:4434" # Admin API
-      - "4455:4455" # Public UI
     command: serve --config /etc/kratos/kratos.yaml --dev
     volumes:
       - ./x/kratos.yaml:/etc/kratos/kratos.yaml:ro
@@ -27,7 +26,7 @@ services:
       ory-kratos-db:
         condition: service_healthy
       ory-kratos-migrate:
-        condition: service_started
+        condition: service_completed_successfully
     networks:
       - ory-network
 

@@ -6,7 +6,7 @@ serve:
   public:
     base_url: http://localhost:4433/
     cors:
-      enabled: false
+      enabled: true
       allow_credentials: true
       options_passthrough: false
       max_age: 0
@@ -21,28 +21,34 @@ identity:
       url: file:///etc/kratos/schemas/identity.schema.json
 
 selfservice:
-  default_browser_return_url: http://localhost:4455/welcome
+  # This is where users go AFTER a successful browser login
+  default_browser_return_url: http://localhost:3000/dashboard
+
+  # Allow Kratos to return session tokens in JSON responses (ideal for headless)
   methods:
     password:
       enabled: true
+      config:
+        haveibeenpwned_enabled: false # Optional: security check
+
   flows:
+    # In headless, Kratos uses these if a system error occurs
+    # or if a browser-based flow is accidentally triggered.
     registration:
-      ui_url: http://localhost:4455/registration
+      ui_url: http://localhost:3000/registration
       after:
-        default_browser_return_url: http://localhost:4455/welcome
+        password:
+          hooks:
+            - hook: session
     login:
-      ui_url: http://localhost:4455/login
-      after:
-        default_browser_return_url: http://localhost:4455/welcome
+      ui_url: http://localhost:3000/login
     settings:
-      ui_url: http://localhost:4455/settings
-      after:
-        default_browser_return_url: http://localhost:4455/settings
+      ui_url: http://localhost:3000/settings
+      privileged_session_max_age: 15m
     recovery:
-      ui_url: http://localhost:4455/recovery
-      after:
-        default_browser_return_url: http://localhost:4455/login
+      ui_url: http://localhost:3000/recovery
     verification:
-      ui_url: http://localhost:4455/verification
-      after:
-        default_browser_return_url: http://localhost:4455/welcome
+      ui_url: http://localhost:3000/verification
+    error:
+      # Mandatory: Kratos sends logic errors (like expired flows) here
+      ui_url: http://localhost:3000/error
