@@ -100,4 +100,3 @@ networks:
   zitadel-network:
     name: zitadel-network
     driver: bridge
-    external: true
