@@ -63,9 +63,8 @@ services:
     image: ${REGISTRY:-ghcr.io/}zitadel/zitadel-login:${ZITADEL_LOGIN_VERSION:-latest}
     container_name: zitadel-login
     environment:
-      - ZITADEL_API_URL=http://127.0.0.1:8080
+      - ZITADEL_API_URL=http://${EXTERNAL_DOMAIN:-localhost}:8080
       - ZITADEL_SERVICE_USER_TOKEN_FILE=/current-dir/login-client.pat
-    network_mode: service:zitadel
     volumes:
       - .:/current-dir:ro
     depends_on:
