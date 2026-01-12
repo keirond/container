@@ -9,8 +9,7 @@ services:
       - "3000:3000"
     command: start-from-init --masterkey "MasterkeyNeedsToHave32Characters"
     environment:
-      ZITADEL_EXTERNALDOMAIN: ${EXTERNAL_DOMAIN:-localhost}
-      ZITADEL_TRUSTED_DOMAINS: "${EXTERNAL_DOMAIN:-localhost},localhost,127.0.0.1"
+      ZITADEL_EXTERNALDOMAIN: localhost
       ZITADEL_EXTERNALSECURE: false
       ZITADEL_TLS_ENABLED: false
       ZITADEL_DOMAINPOLICY_ALLOWHTTP: "true"
@@ -33,10 +32,10 @@ services:
       ZITADEL_FIRSTINSTANCE_ORG_LOGINCLIENT_PAT_EXPIRATIONDATE: "2029-01-01T00:00:00Z"
 
       ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_REQUIRED: true
-      ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_BASEURI: http://${EXTERNAL_DOMAIN:-localhost}:3000/ui/v2/login
-      ZITADEL_OIDC_DEFAULTLOGINURLV2: http://${EXTERNAL_DOMAIN:-localhost}:3000/ui/v2/login/login?authRequest=
-      ZITADEL_OIDC_DEFAULTLOGOUTURLV2: http://${EXTERNAL_DOMAIN:-localhost}:3000/ui/v2/login/logout?post_logout_redirect=
-      ZITADEL_SAML_DEFAULTLOGINURLV2: http://${EXTERNAL_DOMAIN:-localhost}:3000/ui/v2/login/login?samlRequest=
+      ZITADEL_DEFAULTINSTANCE_FEATURES_LOGINV2_BASEURI: http://localhost:3000/ui/v2/login
+      ZITADEL_OIDC_DEFAULTLOGINURLV2: http://localhost:3000/ui/v2/login/login?authRequest=
+      ZITADEL_OIDC_DEFAULTLOGOUTURLV2: http://localhost:3000/ui/v2/login/logout?post_logout_redirect=
+      ZITADEL_SAML_DEFAULTLOGINURLV2: http://localhost:3000/ui/v2/login/login?samlRequest=
 
       ZITADEL_FIRSTINSTANCE_ORG_NAME: Tenant
       ZITADEL_FIRSTINSTANCE_ORG_HUMAN_USERNAME: tenant-admin
@@ -63,7 +62,7 @@ services:
     image: ${REGISTRY:-ghcr.io/}zitadel/zitadel-login:${ZITADEL_LOGIN_VERSION:-latest}
     container_name: zitadel-login
     environment:
-      - ZITADEL_API_URL=http://${EXTERNAL_DOMAIN:-localhost}:8080
+      - ZITADEL_API_URL=http://localhost:8080
       - ZITADEL_SERVICE_USER_TOKEN_FILE=/current-dir/login-client.pat
     volumes:
       - .:/current-dir:ro
