@@ -2,6 +2,9 @@ version: v1.3.0
 
 dsn: postgres://kratos:password@ory-kratos-db:5432/kratos?sslmode=disable
 
+log:
+  format: json
+
 serve:
   public:
     base_url: http://localhost:4433/
