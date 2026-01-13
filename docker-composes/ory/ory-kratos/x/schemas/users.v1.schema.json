@@ -13,7 +13,6 @@
               "password": { "identifier": true },
               "totp": { "account_name": true },
               "code": { "identifier": true, "via": "email" },
-              "link": { "identifier": true, "via": "email" },
               "webauthn": { "identifier": true },
               "passkey": { "display_name": true }
             },
