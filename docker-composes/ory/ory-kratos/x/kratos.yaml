@@ -55,7 +55,19 @@ selfservice:
 
   flows:
     registration:
+      lifespan: 15m
       after:
         password:
           hooks:
             - hook: session
+
+session:
+  lifespan: 24h
+  whoami:
+    tokenizer:
+      templates:
+        jwt:
+          ttl: "15m"
+          jwks_url: "file:///etc/kratos/configs/jwks.json"
+          claims_mapper_url: "file:///etc/kratos/configs/claims.jsonnet"
+
