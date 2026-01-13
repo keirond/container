@@ -38,7 +38,6 @@ selfservice:
       enabled: true
       config:
         lifespan: "15m"
-        missing_credential_fallback_enabled: false
     link:
       enabled: true
     webauthn:
