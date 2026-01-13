@@ -18,7 +18,12 @@ identity:
   default_schema_id: default
   schemas:
     - id: default
-      url: file:///etc/kratos/schemas/identity.schema.json
+      url: file:///etc/kratos/schemas/default.schema.json
+      selfservice_selectable: true
+
+    - id: users.v1
+      url: file:///etc/kratos/schemas/users.v1.schema.json
+      selfservice_selectable: true
 
 selfservice:
   # Where to go after success (e.g., Dashboard, Landing Page).

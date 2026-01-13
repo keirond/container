@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "traits": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "ory.sh/kratos": {
+            "credentials": {
+              "password": { "identifier": true },
+              "webauthn": { "identifier": true },
+              "totp": { "account_name": true },
+              "code": { "identifier": true, "via": "email" },
+              "link": { "identifier": true, "via": "email" },
+              "passkey": { "display_name": true }
+            },
+            "recovery": { "via": "email" },
+            "verification": { "via": "email" }
+          },
+          "maxLength": 320
+        },
+        "username": {
+          "type": "string",
+          "ory.sh/kratos": {
+            "credentials": {
+              "password": { "identifier": true },
+              "webauthn": { "identifier": true },
+              "totp": { "account_name": true },
+              "passkey": { "display_name": true }
+            }
+          },
+          "maxLength": 320
+        },
+        "phone_number": {
+          "type": "string",
+          "format": "tel",
+          "ory.sh/kratos": {
+            "credentials": {
+              "code": { "identifier": true, "via": "sms" }
+            },
+            "recovery": { "via": "sms" },
+            "verification": { "via": "sms" }
+          },
+          "maxLength": 320
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
