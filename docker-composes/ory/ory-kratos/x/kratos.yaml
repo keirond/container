@@ -21,34 +21,17 @@ identity:
       url: file:///etc/kratos/schemas/identity.schema.json
 
 selfservice:
-  # This is where users go AFTER a successful browser login
-  default_browser_return_url: http://localhost:3000/dashboard
+  # Where to go after success (e.g., Dashboard, Landing Page).
+  default_browser_return_url: http://cero.com/welcome
 
-  # Allow Kratos to return session tokens in JSON responses (ideal for headless)
   methods:
     password:
       enabled: true
-      config:
-        haveibeenpwned_enabled: false # Optional: security check
 
+  # ui_url: The pages that show forms (Login, Reg, etc.).
   flows:
-    # In headless, Kratos uses these if a system error occurs
-    # or if a browser-based flow is accidentally triggered.
     registration:
-      ui_url: http://localhost:3000/registration
       after:
         password:
           hooks:
             - hook: session
-    login:
-      ui_url: http://localhost:3000/login
-    settings:
-      ui_url: http://localhost:3000/settings
-      privileged_session_max_age: 15m
-    recovery:
-      ui_url: http://localhost:3000/recovery
-    verification:
-      ui_url: http://localhost:3000/verification
-    error:
-      # Mandatory: Kratos sends logic errors (like expired flows) here
-      ui_url: http://localhost:3000/error
