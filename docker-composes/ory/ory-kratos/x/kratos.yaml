@@ -52,3 +52,10 @@ selfservice:
       enabled: false
     oidc:
       enabled: false
+
+  flows:
+    registration:
+      after:
+        password:
+          hooks:
+            - hook: session
