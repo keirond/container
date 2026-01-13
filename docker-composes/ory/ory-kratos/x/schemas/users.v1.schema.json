@@ -11,10 +11,10 @@
           "ory.sh/kratos": {
             "credentials": {
               "password": { "identifier": true },
-              "webauthn": { "identifier": true },
               "totp": { "account_name": true },
               "code": { "identifier": true, "via": "email" },
               "link": { "identifier": true, "via": "email" },
+              "webauthn": { "identifier": true },
               "passkey": { "display_name": true }
             },
             "recovery": { "via": "email" },
@@ -27,8 +27,8 @@
           "ory.sh/kratos": {
             "credentials": {
               "password": { "identifier": true },
-              "webauthn": { "identifier": true },
               "totp": { "account_name": true },
+              "webauthn": { "identifier": true },
               "passkey": { "display_name": true }
             }
           },

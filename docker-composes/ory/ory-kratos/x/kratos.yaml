@@ -32,11 +32,15 @@ selfservice:
   methods:
     password:
       enabled: true
-
-  # ui_url: The pages that show forms (Login, Reg, etc.).
-  flows:
-    registration:
-      after:
-        password:
-          hooks:
-            - hook: session
+    totp:
+      enabled: true
+    code:
+      enabled: true
+    link:
+      enabled: true
+    webauthn:
+      enabled: false
+    passkey:
+      enabled: false
+    oidc:
+      enabled: false
