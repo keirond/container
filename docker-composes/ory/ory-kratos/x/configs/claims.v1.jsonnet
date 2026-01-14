@@ -1,23 +1,21 @@
-local session = std.extVar('session');
-local identity = session.identity;
+function(ctx) {
+  // Kratos passes the session context as 'ctx'
+  claims: {
+    // The unique user ID
+    sub: ctx.identity.id,
 
-{
-  // The unique user ID
-  sub: identity.id,
+    // Standard claims - checking traits safely
+    email: if std.objectHas(ctx.identity.traits, 'email') then ctx.identity.traits.email else null,
+    preferred_username: if std.objectHas(ctx.identity.traits, 'username') then ctx.identity.traits.username else null,
 
-  // Standard claims
-  email: if std.objectHas(identity.traits, 'email') then identity.traits.email else null,
-  preferred_username: if std.objectHas(identity.traits, 'username') then identity.traits.username else null,
-  phone_number: if std.objectHas(identity.traits, 'phone_number') then identity.traits.phone_number else null,
+    // Metadata and Session info
+    session_id: ctx.id,
+    aal: ctx.authenticator_assurance_level,
 
-  // Metadata and Session info
-  session_id: session.id,
-  aal: session.authenticator_assurance_level,
+    // Identity schema
+    schema_id: ctx.identity.schema_id,
 
-  // Identity schema
-  schema_id: identity.schema_id,
-
-  // Custom app-specific logic
-  // Example: Grant 'admin' if the email belongs to your domain
-  role: if std.endsWith(identity.traits.email, '@admin.cero.com') then 'admin' else 'user',
+    // Custom logic
+    role: if std.objectHas(ctx.identity.traits, 'email') && std.endsWith(ctx.identity.traits.email, '@admin.cero.com') then 'admin' else 'user',
+  }
 }
