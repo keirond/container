@@ -67,6 +67,6 @@ session:
     tokenizer:
       templates:
         "jwt.v1":
-          ttl: "15m"
+          ttl: "5m"
           jwks_url: "file:///etc/kratos/configs/jwks.v1.json"
           claims_mapper_url: "file:///etc/kratos/configs/claims.v1.jsonnet"
