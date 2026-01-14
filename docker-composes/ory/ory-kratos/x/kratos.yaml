@@ -66,8 +66,7 @@ session:
   whoami:
     tokenizer:
       templates:
-        jwt:
+        jwt.v1:
           ttl: "15m"
-          jwks_url: "file:///etc/kratos/configs/jwks.json"
-          claims_mapper_url: "file:///etc/kratos/configs/claims.jsonnet"
-
+          jwks_url: "file:///etc/kratos/configs/jwks.v1.json"
+          claims_mapper_url: "file:///etc/kratos/configs/claims.v1.jsonnet"
