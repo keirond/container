@@ -1,0 +1,48 @@
+services:
+  ory-hydra-migrate:
+    image: ${REGISTRY:-}oryd/hydra:${ORY_HYDRA_VERSION:-latest}
+    container_name: ory-hydra-migrate
+    command: migrate sql up --yes --config /etc/hydra/hydra.yaml
+    volumes:
+      - ./x/hydra.yaml:/etc/hydra/hydra.yaml:ro
+    depends_on:
+      ory-hydra-db:
+        condition: service_healthy
+    networks:
+      - ory-network
+
+  ory-hydra:
+    image: ${REGISTRY:-}oryd/hydra:${ORY_HYDRA_VERSION:-latest}
+    container_name: ory-hydra
+    ports:
+      - "4444:4444" # Public API
+      - "4445:4445" # Admin API
+    command: serve all --config /etc/hydra/hydra.yaml
+    volumes:
+      - ./x/hydra.yaml:/etc/hydra/hydra.yaml:ro
+    depends_on:
+      ory-hydra-db:
+        condition: service_healthy
+      ory-hydra-migrate:
+        condition: service_completed_successfully
+    networks:
+      - ory-network
+
+  ory-hydra-db:
+    image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-latest}
+    container_name: ory-hydra-db
+    ports:
+      - "19422:5432"
+    environment:
+      - POSTGRES_DB=hydra
+      - POSTGRES_USER=hydra
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ory-hydra-postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hydra -d hydra"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ory-network

@@ -1,0 +1,29 @@
+version: v2.3.0
+
+dsn: postges://hydra:password@ory-hydra-db:5432/hydra?sslmode=disable
+
+log:
+  format: json
+
+serve:
+  public:
+    host: "0.0.0.0"
+    port: 4444
+    cors:
+      enabled: true
+      allow_credentials: true
+      max_age: 0
+      debug: false
+  admin:
+    host: "0.0.0.0"
+    port: 4445
+
+oauth2:
+  expose_internal_errors: true
+  grant:
+    jwt:
+      max_ttl: 720h
+
+ttl:
+  access_token: 15m
+  refresh_token: 720h
