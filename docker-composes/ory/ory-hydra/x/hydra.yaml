@@ -2,6 +2,10 @@ version: v2.3.0
 
 dsn: postgres://hydra:password@ory-hydra-db:5432/hydra?sslmode=disable
 
+secrets:
+  system:
+    - please-change-this-secret-to-a-long-random-string
+
 log:
   format: json
 
