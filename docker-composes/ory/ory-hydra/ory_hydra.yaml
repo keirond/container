@@ -51,3 +51,8 @@ networks:
   ory-network:
     name: ory-network
     driver: bridge
+
+volumes:
+  ory-hydra-postgres-data:
+    name: ory-hydra-postgres-data
+    driver: local
