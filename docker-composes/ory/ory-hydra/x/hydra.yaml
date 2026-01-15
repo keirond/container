@@ -6,11 +6,6 @@ secrets:
   system:
     - please-change-this-secret-to-a-long-random-string
 
-webfinger:
-  jwks:
-    broadcast_keys:
-      - cero-as-jwk-set
-
 log:
   format: json
 
