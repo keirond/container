@@ -32,6 +32,10 @@
             "verification": { "via": "sms" }
           },
           "maxLength": 320
+        },
+        "display_name": {
+          "type": "string",
+          "maxLength": 320
         }
       },
       "additionalProperties": false
