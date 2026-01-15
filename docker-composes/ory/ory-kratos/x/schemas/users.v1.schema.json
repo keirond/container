@@ -21,18 +21,6 @@
           },
           "maxLength": 320
         },
-        "username": {
-          "type": "string",
-          "ory.sh/kratos": {
-            "credentials": {
-              "password": { "identifier": true },
-              "totp": { "account_name": true },
-              "webauthn": { "identifier": true },
-              "passkey": { "display_name": true }
-            }
-          },
-          "maxLength": 320
-        },
         "phone_number": {
           "type": "string",
           "format": "tel",
