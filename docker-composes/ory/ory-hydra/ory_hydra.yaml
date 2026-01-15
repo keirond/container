@@ -2,7 +2,7 @@ services:
   ory-hydra-migrate:
     image: ${REGISTRY:-}oryd/hydra:${ORY_HYDRA_VERSION:-latest}
     container_name: ory-hydra-migrate
-    command: migrate sql up --yes --config /etc/hydra/hydra.yaml
+    command: migrate sql up -e --yes --config /etc/hydra/hydra.yaml
     volumes:
       - ./x/hydra.yaml:/etc/hydra/hydra.yaml:ro
     depends_on:
