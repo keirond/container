@@ -6,7 +6,6 @@ services:
     volumes:
       - ./x/kratos.yaml:/etc/kratos/kratos.yaml:ro
       - ./x/schemas:/etc/kratos/schemas:ro
-      - ./x/configs:/etc/kratos/configs:ro
     depends_on:
       ory-kratos-db:
         condition: service_healthy
@@ -23,7 +22,6 @@ services:
     volumes:
       - ./x/kratos.yaml:/etc/kratos/kratos.yaml:ro
       - ./x/schemas:/etc/kratos/schemas:ro
-      - ./x/configs:/etc/kratos/configs:ro
     depends_on:
       ory-kratos-db:
         condition: service_healthy
