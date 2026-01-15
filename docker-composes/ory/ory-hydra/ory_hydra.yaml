@@ -9,7 +9,7 @@ services:
       ory-hydra-db:
         condition: service_healthy
     networks:
-      - ory-network
+      - ory-hydra-network
 
   ory-hydra:
     image: ${REGISTRY:-}oryd/hydra:${ORY_HYDRA_VERSION:-latest}
@@ -26,7 +26,7 @@ services:
       ory-hydra-migrate:
         condition: service_completed_successfully
     networks:
-      - ory-network
+      - ory-hydra-network
 
   ory-hydra-db:
     image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-latest}
@@ -45,14 +45,14 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - ory-network
-
-networks:
-  ory-network:
-    name: ory-network
-    driver: bridge
+      - ory-hydra-network
 
 volumes:
   ory-hydra-postgres-data:
     name: ory-hydra-postgres-data
     driver: local
+
+networks:
+  ory-hydra-network:
+    name: ory-hydra-network
+    driver: bridge

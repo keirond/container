@@ -10,7 +10,7 @@ services:
       ory-kratos-db:
         condition: service_healthy
     networks:
-      - ory-network
+      - ory-kratos-network
 
   ory-kratos:
     image: ${REGISTRY:-}oryd/kratos:${ORY_KRATOS_VERSION:-latest}
@@ -28,7 +28,7 @@ services:
       ory-kratos-migrate:
         condition: service_completed_successfully
     networks:
-      - ory-network
+      - ory-kratos-network
 
   ory-kratos-db:
     image: ${REGISTRY:-}postgres:${POSTGRES_VERSION:-latest}
@@ -47,7 +47,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - ory-network
+      - ory-kratos-network
 
 volumes:
   ory-kratos-postgres-data:
@@ -55,6 +55,6 @@ volumes:
     driver: local
 
 networks:
-  ory-network:
-    name: ory-network
+  ory-kratos-network:
+    name: ory-kratos-network
     driver: bridge
