@@ -1,6 +1,8 @@
 docker exec -it ory-hydra sh
 
-hydra create oauth2-client
+hydra create oauth2-client --endpoint http://localhost:4445 --name "cero-as-account-core" --grant-type client_credentials --response-type token --scope internal,token.issue.user --access-token-strategy jwt
+hydra update oauth2-client <client_id> --endpoint http://localhost:4445 --name "cero-as-account-core" --grant-type client_credentials --response-type token --scope internal,token.issue.user --access-token-strategy jwt
+
 
 ==============================================================================
 Create resources
