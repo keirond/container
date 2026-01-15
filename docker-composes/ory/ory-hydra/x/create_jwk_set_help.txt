@@ -1,13 +1,6 @@
 Example:
 
-hydra create jwk cero-as-jwk-set \
-    --endpoint http://localhost:4445 \
-    --alg RS256 --use sig
-
-SET ID          KEY ID                                  ALGORITHM       USE
-cero-as-jwk-set 2c9b6535-9494-4b67-965b-3fbb01a741f1    RS256           sig
-
-hydra get jwk cero-as-jwk-set \
+hydra get jwk cero-as.jwt.access-token \
     --endpoint http://localhost:4445 --format json > jwks.json
 
 ===============================================================
